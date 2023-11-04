@@ -1,28 +1,30 @@
+## <remove all of the example text and notes in < > such as this one>
 
 ## Functional Requirements
-1. UserRegister webpage
-2. requirement
-3. requirement
-4. requirement
-5. requirement
-6. requirement
-7. requirement
-8. requirement
-9. requirement
-10. requirement
-11. requirement
-12. requirement
-13. requirement
-14. requirement
+1. Sign In
+2. Sign out
+3. Register
+4. Visualize note connections(on Homepage)
+5. Edit notes
+6. Delete notes
+7. Export Notes
+8. Attach Images
+9. Search notes by note names
+10. Delete user profile
+11. Advance Search by regular expression
+12. Connect to Google Translate API
+13. Edit user profile
+14. Create Tables wiht Links to Notes
 
+
+<using the syntax [](images/ui1.png) add images in a folder called images/ and place sketches of your webpages>
 
 ## Non-functional Requirements
-1. non-functional
-2. non-functional
+1. Dark-Mode
+2. 
 
-<each of the 14 requirements will have a use case associated with it>
 ## Use Cases <Add name of who will write (this specific requirement) and implement (in subsequent milestones) the use case below>
-1. Use Case Name (Should match functional requirement name)
+1. Use Case Name<Visualize note connections>
 - **Pre-condition:** <can be a list or short description>
 - **Trigger:** <can be a list or short description>
 - **Primary Sequence:**
