@@ -14,14 +14,14 @@
 13. Create Tables with Links to Notes
 14. Delete Notes
 
-## UI
-1. [Account Page](images/ui1.png)
-2. [Delete User Page](images/ui2.png)
-3. [Edit Note Page](images/ui3.png)
-4. [Edit Table Page](images/ui4.png)
-5. [Edit User Profile Page](images/ui5.png)
-6. [Index Page](images/ui6.png)
-7. [Register Account Page](images/ui7.png)
+## UI Sketch with Functionals
+1. [Account Page: Sign out, Visualize Note Connections, Edit Notes, Search Note by Note Name, Search by Advance Expression, Edit User Profile and Create Tables With Links To Notes](images/ui1.png)
+2. [Delete User Page: Delete User Profile ](images/ui2.png)
+3. [Edit Note Page: Edit Note, Export Notes, Attach Images, Delete Note,and Connect Google API](images/ui3.png)
+4. [Edit Table Page: Create Tables With Links To Notes](images/ui4.png)
+5. [Edit User Profile Page: Edit User Profiles and Delete User Profiles](images/ui5.png)
+6. [Index Page: Sign In and Register an Account](images/ui6.png)
+7. [Register Account Page: Register an Account](images/ui7.png)
 
 
 
