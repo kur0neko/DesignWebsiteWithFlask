@@ -13,5 +13,5 @@ The next plan: Nutthawat will work on whatever task that had been assigned.
 
 - Noah worked on requirements 5-7, which is focused on the Edit Notes page, mainly the function to edit notes, export notes, and to attach images to a note. Noah will work on the next given assignment.
 
--**Summary:**
+- **Summary:**
  The group completed the requirements assignment, we split the work evenly. We finished all 14 requirements and non functional as well. The 14 we did are 1. Sign In 2. Sign out 3. Register an account 4. Visualize note connections 5. Edit notes 6. Export Notes 7. Attach Images 8. Search notes by note names 9. Delete user profile 10. Search with advanced expressions 11. Connect to Google Translate API 12. Edit user profile 13. Create Tables with Links to Notes 14. Delete Notes. Overall, everyone contributed evenly, we all share each individual opinions, gave all honest feedback to each other and we discussed to optimize our choices of requirements. Our goal is to achieve the realistic and the most useful functional features possible.
