@@ -24,6 +24,7 @@
 Yousef Asad
 
 **1. Sign in**
+
 - **Summary:**
     This use case outlines the steps a User follows to sign in to the Notes Application, allowing them to access their personalized notes, settings, and other features.
 -**Actors:**
@@ -55,6 +56,7 @@ User is not logged in
 Yousef Asad
 
 **2. Sign Out**
+
 - **Summary:**
     This use case outlines the steps a User follows to sign out of the Notes Application, allowing them to exit their session.
 -**Actors:**
@@ -83,6 +85,7 @@ User not signed out
 Yousef Asad
 
 **3.  Register an account**
+
 - **Summary:**
 This use case outlines the steps a User follows to register an account on the notes app
 -**Actors:**
@@ -113,6 +116,7 @@ User is not registered
 Yousef Asad
 
 **4.  Visualize note connections**
+
 - **Summary:**
 This use case outlines how Users can organize their notes using a folder system directly on the home page of the Notes Application
 -**Actors:**
@@ -137,6 +141,7 @@ User does not change anything on home layout
 Noah Nguyen
 
 **5.  Edit Notes**
+
 -**Summary:**
     The current user on the webpage can click on and edit a selected note
 - **Actor(s):** 
@@ -163,6 +168,7 @@ User has edited and saved content within named note
 Noah Nguyen
 
 **6.  Export Notes**
+
 -**Summary:**
     The user can download a note in the file type version based on their choice
 - **Actor(s):** 
@@ -189,6 +195,7 @@ User downloads page as preferred file type
 Noah Nguyen
 
 **7.  Attach Images**
+
 **Summary:**
 The user can attach images to their notes with
 - **Actor(s):** 
@@ -213,6 +220,7 @@ An attachment is placed on a note
 Nutthawat Panyangnoi
 
 **8.  Search notes by note names**
+
 - **Summary:** 
 This use case  allows user to search for specific note names.
 - **Actor(s):**
@@ -238,6 +246,7 @@ The webpage will show all files that matched to the search text that user entere
 Nutthawat Panyangnoi
 
 **9.  Delete user profile**
+
 - **Summary:** 
 This use case allow user to delete their own account from the our Note’ Website.
 - **Actor(s):**
@@ -266,6 +275,7 @@ User finished remove their account. The prompt appear “Account successfully re
 Nutthawat Panyangnoi 
 
 **10.  Search with advanced expressions**
+
 - **Summary:** 
 This use case allow user to search the file with expression at the specific location in the existing file. This search will allow to search the contents that match inside the file.
 - **Actor(s):**
@@ -295,10 +305,12 @@ The webpage will show all files that matched to the expression and string that u
 
 
 Meghana Indukuri
+
 **11.  Connect to Google Translate API**
-- **Summary** :
+
+- **Summary:** 
 Users should be able to convert their notes from one language to another. The application should utilize the google translate API so the user can do so. 
--**Actors**:
+-**Actors:**
         User and Notes Application
 - **Pre-condition:** 
 User is at the edit notes page
@@ -333,9 +345,10 @@ The note will have the translated text saved, and when the user decides to edit 
 Meghana Indukuri
 
 **12.  Edit User Profile**
-- **Summary** :
+
+- **Summary:** 
 Users should be able to edit their user profile, to change their password, name or username.
--**Actors**:
+-**Actors:**
 User and Notes Application
 - **Pre-condition:** 
 User is at the edit user webpage and has an account
@@ -369,9 +382,10 @@ User has a new username, password or name after the modification. Users must use
 Meghana Indukuri
 
 **13.  Create Tables with Links to Notes**
-- **Summary** :
+
+- **Summary:** 
 Users should be able to create tables in the application that contain links to existing notes in their account on the application.
--**Actors**:
+-**Actors:** 
 User and Notes Application
 - **Pre-condition:** 
 User is at the tables webpage in the application
@@ -402,9 +416,10 @@ User has a new table that is saved with the information they added while editing
 Meghana Indukuri
 
 **14.  Delete Notes**
-- **Summary** :
+
+- **Summary:** 
 Users should be able to delete their existing notes
--**Actors**:
+-**Actors:** 
 User and Notes Application
 - **Pre-condition:** 
 User is at the edit note webpage of the application
