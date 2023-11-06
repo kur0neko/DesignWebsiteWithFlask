@@ -1,52 +1,415 @@
-## <remove all of the example text and notes in < > such as this one>
-
 ## Functional Requirements
 1. Sign In
 2. Sign out
-3. Register
-4. Visualize note connections(on Homepage)
+3. Register an account
+4. Visualize note connections
 5. Edit notes
-6. Delete notes
-7. Export Notes
-8. Attach Images
-9. Search notes by note names
-10. Delete user profile
-11. Advance Search by regular expression
-12. Connect to Google Translate API
-13. Edit user profile
-14. Create Tables wiht Links to Notes
+6. Export Notes
+7. Attach Images
+8. Search notes by note names
+9. Delete user profile
+10. Search with advanced expressions
+11. Connect to Google Translate API
+12. Edit user profile
+13. Create Tables with Links to Notes
+14. Delete Notes
 
-
-<using the syntax [](images/ui1.png) add images in a folder called images/ and place sketches of your webpages>
 
 ## Non-functional Requirements
-1. Dark-Mode
-2. 
+1. Only work expect to work Google Chrome
+2. Multilingual Support
+3. Dark mode
+4. Change font colors
 
-## Use Cases <Add name of who will write (this specific requirement) and implement (in subsequent milestones) the use case below>
-1. Use Case Name<Visualize note connections>
-- **Pre-condition:** <can be a list or short description>
-- **Trigger:** <can be a list or short description>
+
+Yousef Asad
+1.  Sign in
+- **Summary:**
+    This use case outlines the steps a User follows to sign in to the Notes Application, allowing them to access their personalized notes, settings, and other features.
+-**Actors:**
+    User and Notes Application
+- **Pre-condition:** 
+    User has the app installed and loaded to sign in page
+- **Trigger:** 
+    User clicks sign in button on apps login page
 - **Primary Sequence:**
-1. Ut enim ad minim veniam, quis nostrum e
-2. Et sequi incidunt
-3. Quis aute iure reprehenderit
-4. ...
-5. ...
-6. ...
-7. ...
-8. ...
-9. ...
-10. <Try to stick to a max of 12 steps>
-- **Primary Postconditions:** <can be a list or short description>
-- **Alternate Sequence:** <you can have more than one alternate sequence to
-describe multiple issues that may arise and their outcomes>
-1. Ut enim ad minim veniam, quis nostrum e
-2. Ut enim ad minim veniam, quis nostrum e
-3. ...
-- **Alternate Sequence <optional>:** <you can have more than one alternate sequence to describe multiple issues that may arise>
+1. The Notes Application displays the sign-in interface, prompting the User to enter their username and password.
+2. The User enters their registered email address and password 
+3. The Notes Application validates the entered information by verifying it against the stored database.
+4. If the entered credentials are valid, the User is logged in
+- **Alternate Sequence:** 
+Invalid Password 
+    1. User inputs invalid password
+    2. Systems prompts forgot password option
+    3. System sends link to email with password recovery tool
+User has not registered an account yet
+    1.  Select the "Sign Up" option to create a new account.
+    2. Input credentials 
+- **Primary Postconditions:** 
+User Logs in
+-The User is signed in and can access their stored notes, preferences, and other personalized features within the Notes Application.
+User is not logged in
+-User is stuck at login page
 
-1. Ut enim ad minim veniam, quis nostrum e
-2. Ut enim ad minim veniam, quis nostrum e
-3. ...
+
+Yousef Asad
+2. Sign Out
+- **Summary:**
+    This use case outlines the steps a User follows to sign out of the Notes Application, allowing them to exit their session.
+-**Actors:**
+    User and Notes Application
+- **Pre-condition:** 
+    The User has the Notes Application installed and is currently logged in, viewing the application's interface.
+- **Trigger:** 
+User clicks sign out button 
+- **Primary Sequence:**
+1. User clicks sign out button
+2. Pop out prompts if user wants to sign out
+3. User clicks sign out
+4. App redirects user to sign in page
+- **Alternate Sequence :** 
+User Cancels signout procedure
+1. Sign out window closes 
+2. System displays page where user was 
+- **Primary Postconditions:** 
+User is signed out
+-The User is redirected to sign in page 
+
+User not signed out
+-User remains on page where they had been last 
+
+
+Yousef Asad
+3. Register an account
+- **Summary:**
+This use case outlines the steps a User follows to register an account on the notes app
+-**Actors:**
+        User and Notes Application
+- **Pre-condition:** 
+User has the app installed and loaded to sign in page
+- **Trigger:** 
+User clicks register account button
+- **Primary Sequence:**
+1. User clicks register account
+2. System opens new registration page
+3. System Prompts user to enter personal information
+4. User clicks register account
+5. App redirects user to sign in page
+6. User signs in with credentials 
+- **Alternate Sequence :** 
+User input Email that is already in use 
+1. App displays error to user 
+2. Prompts user to login with email or use different 
+- **Primary Postconditions:** 
+User is signed in with newly registered account 
+-The User is redirected to home page 
+
+User is not registered 
+-User remains on signup page 
+
+
+Yousef Asad
+4. Visualize note connections
+- **Summary:**
+This use case outlines how Users can organize their notes using a folder system directly on the home page of the Notes Application
+-**Actors:**
+        User and Notes Application
+- **Pre-condition:** The User has the Notes Application installed and is on the home page
+- **Trigger:** User clicks on homepage 
+- **Primary Sequence:**
+1. User creates folder and names it 
+2. User drags or uploads notes in specified folder
+3. User toggles through different folders on home menu 
+- **Alternate Sequence :** 
+User does not change home layout 
+1. Home page remains organized in a standard grid or list format.
+- **Primary Postconditions:** 
+The User can efficiently organize their notes
+-using a folder system on the home page, enhancing their ability to categorize and navigate their content effectively.
+
+User does not change anything on home layout 
+-User home page remains the same 
+
+
+Noah Nguyen
+5. Edit Notes
+-**Summary:**
+    The current user on the webpage can click on and edit a selected note
+- **Actor(s):** 
+The login user
+- **Pre-condition:** 
+User at homepage; page opened via notes list
+- **Trigger:** 
+User clicks on the edit button
+- **Primary Sequence:**
+1. Program checks which name of notes that is selected
+2. Program opens up Edit Notes page for editing content in note
+3. A box of existing content is shown on the page
+4. The user enters content or deletes content in the box
+5. The user selects “save” button and exits page
+- **Primary Postconditions:** 
+User has edited and saved content within named note
+- **Alternate Sequence:** 
+1. User opens note page 
+2. User edits content within box by adding or deleting content
+3. User exits the Edit Note page
+1. No content changes are saved to the note
+
+
+Noah Nguyen
+6. Export Notes
+-**Summary:**
+    The user can download a note in the file type version based on their choice
+- **Actor(s):** 
+The login user
+- **Pre-condition:** 
+User at Edit Notes Page
+- **Trigger:** 
+User hits the “Export” button
+- **Primary Sequence:**
+1. Program opens up pop-up for user 
+2. Pop-up contains the question “What type of file?” with choices of file types
+3. User selects their file type 
+4. User clicks download button on pop-up
+5. File is downloaded to the user’s machine
+6. Pop-up is removed from the page
+- **Primary Postconditions:** 
+User downloads page as preferred file type
+- **Alternate Sequence:** 
+1. User selects “Back” button on pop-up
+1. Pop-up taken off web page
+2. User remains in Edit Note Page
+
+
+Noah Nguyen
+7.Attach Images
+**Summary:**
+The user can attach images to their notes with
+- **Actor(s):** 
+The login user
+- **Pre-condition:** 
+User is at Edit Note page
+- **Trigger:** 
+User clicks on the “Attach Images” button
+- **Primary Sequence:**
+1. Program will prompt a file explorer
+2. User select image from files
+3. User will select a “Done” button
+4. Program will display attachment link of chosen image
+- **Primary Postconditions:** 
+An attachment is placed on a note
+- **Alternate Sequence:** 
+1. Program brings up file explorer
+2. User hits “Cancel” button on file explorer
+1. File explorer pop-up removed, web goes back to Edit Note page
+
+
+Nutthawat Panyangnoi
+8.  Search notes by note names
+- **Summary:** 
+This use case  allows user to search for specific note names.
+- **Actor(s):**
+User, note’s user
+- **Pre-condition:** 
+ User must already registered and have an account. Once user logged in they will be able to see the search box.
+- **Trigger:** 
+         User click on Search box and fill up search box with specific note name.
+- **Primary Sequence:**
+1. User finished registration and logged in to the website. 
+2. The search box appeared on top the profile page to search file from existed note files.
+3. User enter “String”name of the notes that they look for and click search or just press “Enter” on keybaord.
+4. The webapplication will traverse and search for the existing notes in the profile.
+5. If the string text that user entered is found. The webpage will retrieve and show that specific note to the user.
+- **Primary Postconditions:** 
+The webpage will show all files that matched to the search text that user entered. If multiple notes have similar name contained ,all of notes will appeared for user to select.
+- **Alternate Sequence:** 
+1. User does not have an account, user unable to logged in and see the search bar.
+2. User profile does not have any notes. Use will not see any file after entering the search box.
+3. There are multiple files existing but non of the file matched to the search text. Text appearing “Fiile is not found!”
+
+
+Nutthawat Panyangnoi
+9. Delete user profile
+- **Summary:** 
+This use case allow user to delete their own account from the our Note’ Website.
+- **Actor(s):**
+ User, Note’s User
+- **Pre-condition:** 
+User must fully finish registration an account or User must have an account already. User must click on User click on Edit User profile.
+- **Trigger:** 
+ User click on Edit User Profile. The delete account button appeared. User click on “Delete Account button”
+- **Primary Sequence:**
+1. User logged in to the webpage profile .
+2. User click on profile name. 
+3. User select Edit User Account under profile name.
+4. The delete account button appeared at the bottom of user edit profile page.
+5. User click on “Delete Account”.
+6. The webpage will forward to new webpage call “Delete Account” with message promp the reason why user delete the account with another promp message ask user to enter their password.
+7. After user fill up the prompt message and entered their password and click delete.
+8. The web application will prompt the message to confirmation of deleteing account “Are u sure you want to delete an account?”. 
+9. User will have to click on Button “Yes”, web application will execute a command remove an user account from database of the server. 
+- **Primary Postconditions:** 
+User finished remove their account. The prompt appear “Account successfully removed!”, the webpage redirect to homepage of the website.
+- **Alternate Sequence:** 
+1. User fill up the prompt message and enter their password, reenter their password and user click “Delete Account” button
+1. The prompt confirmation of delete account appear for the user to select “No”
+2. The account remains unchange. The webpage will redirect to homepage.
+
+Nutthawat Panyangnoi      
+10.Search with advanced expressions
+- **Summary:** 
+This use case allow user to search the file with expression at the specific location in the existing file. This search will allow to search the contents that match inside the file.
+- **Actor(s):**
+User, Note’s User
+- **Pre-condition:** 
+User must already registered and have an account. When user logged in, they will be able to see seach bar.
+- **Trigger:** 
+User click on Search box and fill up search box with specific note name and user click on “Filter Seach” button.
+
+- **Primary Sequence:**
+1. User finished registration and logged in to the website. 
+2. The search box will appeared on top the profile page to search file from existed note files, user can allow to enter any text with special expression.
+3. User enter “String”name of the notes with any expression that they look for and click on Filter Seach button
+4. The drop boxes will displaying specifically existing catalogs/floder file.
+5. The catalog/folder files will show check box. 
+6. User can click on check box to make a specific search inside those check box.
+7. The webpage will traverse searching for the string that matched with the user string enter which including any contents inside the notes.
+8. If the string is matched and found inside the note. It will show the file name of the file.
+9. If user click on that note file it will open the note displaying all the contents.
+
+- **Primary Postconditions:** 
+The webpage will show all files that matched to the expression and string that user enter in search text that user entered. If multiple notes have similar name contained ,all of notes will appeared for user to select. User be able to click on the notes and see the contents.
+- **Alternate Sequence:** 
+1. User does not have an account, user unable to logged in and see the search bar.
+2. User profile does not have any notes. Use will not see any file after entering the search box.
+3. User profile does not have any notes, the filter button does not show any option for check box.
+
+
+Meghana Indukuri
+11. Connect to Google Translate API
+- **Summary** :
+Users should be able to convert their notes from one language to another. The application should utilize the google translate API so the user can do so. 
+-**Actors**:
+        User and Notes Application
+- **Pre-condition:** 
+User is at the edit notes page
+- **Trigger:** 
+User clicks translate button located on the edits note page
+- **Primary Sequence:**
+1. System prompts the user to select the language to translate the note to.
+2. User clicks on the language they would like to translate the note to.
+3. System utilizes the google translate API. 
+4. Google translate API translates the text in the note, and sends it back to the application
+5. The text is then translated using the information provided by the google translate API.
+6. The user can then save the note with the translated text.
+- **Primary Postconditions:** 
+The note will have the translated text saved, and when the user decides to edit it again, only the translated text will be shown. User will return to the homepage
+- **Alternate Sequence:** 
+1. System prompts the user to select the language to translate the note to.
+2. User clicks on a language 
+3. System utilizes the google translate API. 
+4. Google translate API translates the text in the note, and sends it back to the application
+5. The text is then translated using the information provided by the google translate API.
+6. The user decides not to the save the note with the translated text
+    a. The text is not saved, and the user returns back to the homepage
+- **Alternate Sequence :** 
+1. System prompts user to select the language to translate the note to
+2. User selects a language the note is already written in.
+3. System utilizes the google translate API.
+4. Google translate API, makes no translation and informs the application of no new text
+5. The application makes no changes to the text
+    a. The user has no new text to save
+
+
+Meghana Indukuri
+12. Edit User Profile
+- **Summary** :
+Users should be able to edit their user profile, to change their password, name or username.
+-**Actors**:
+User and Notes Application
+- **Pre-condition:** 
+User is at the edit user webpage and has an account
+- **Trigger:** 
+User clicks change password,username or name option located on the edit user webpage.
+- **Primary Sequence:**
+1. User selects which of their personal information they would like to modify.
+2. User gets prompted with a textbox to change to a new username, password or name
+3. User must enter their new username,password or name in the textbox
+4. User must repeat their new username,password or name in the textbox
+5. Application prompts the user with an “are you sure?” message
+6. User clicks yes
+7. User’s username, password or name is permanently modified
+- **Primary Postconditions:** 
+User has a new username, password or name after the modification. Users must use the new username, password or name whenever they sign in from this point forward.
+- **Alternate Sequence:** 
+1. User selects which of their personal information they would like to modify
+2. User gets prompted with a textbox to change to a new username, password or name
+3. User enters the same username, password or name as the existing ones
+    a.  Application prompts user with an invalid password message
+    b.  User can enter a new password, username or name in the textbox
+- **Alternate Sequence :** 
+1. User selects which of their personal information they would like to modify.
+2. User gets prompted with a textbox to change to a new username, password or name
+3. User must enter their new username,password or name in the textbox
+4. User must repeat their new username,password or name in the textbox
+5. Application prompts the user with an “are you sure?” message
+6. User clicks no
+        a. No changes are made to the user’s name, username or password
+
+Meghana Indukuri
+13. Create Tables with Links to Notes
+- **Summary** :
+Users should be able to create tables in the application that contain links to existing notes in their account on the application.
+-**Actors**:
+User and Notes Application
+- **Pre-condition:** 
+User is at the tables webpage in the application
+- **Trigger:** 
+User clicks create table in the tables webpage
+- **Primary Sequence:**
+1. Web application prompts user to enter number of rows and columns
+2. User selects wanted rows and columns
+3. Empty Table is created by web application
+4. User can type in the cells of the table
+5. User selects links of existing notes from the side of the webpage
+6. Selected links are inserted into the cells of the table by the user
+7. The table is then be saved by the user
+- **Primary Postconditions:** 
+User has a new table that is saved with the information they added while editing the table. The table contains links to notes from their accounts that they have written before.
+- **Alternate Sequence:** 
+1. Web application prompts user to enter number of rows and columns
+2. User enters invalid row and column values 
+        a.  Web application displays an error message
+        b.  User is prompted to enter correct row and column values
+- **Alternate Sequence :** 
+1.Web application prompts user to enter number of rows and columns
+2. User selects wanted rows and columns
+3. Empty Table is created by web application
+4. User saves empty table
+    a.  Table is saved to the application under the user's account, but is empty containing no links to any existing notes.
+
+Meghana Indukuri
+14. Delete Notes
+- **Summary** :
+Users should be able to delete their existing notes
+-**Actors**:
+User and Notes Application
+- **Pre-condition:** 
+User is at the edit note webpage of the application
+- **Trigger:** 
+User clicks on the delete button located on the edit note webpage.
+- **Primary Sequence:**
+1. System prompts user to with message asking to confirm deletion, with options yes or no
+2. User selects yes
+3. Note content is deleted by application
+4. User is returned to homepage
+5. Application no longer displays deleted note on homepage
+- **Primary Postconditions:** 
+Note is permanently removed from the user's account and cannot be retrieved.
+- **Alternate Sequence:** 
+1. System prompts user to with message asking to confirm deletion, with options yes or no
+2. User selects no from prompt
+        a.  User remains on edit note webpage
+        b.  Note remains unchanged and not deleted
+
 
