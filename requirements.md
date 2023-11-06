@@ -14,12 +14,23 @@
 13. Create Tables with Links to Notes
 14. Delete Notes
 
+## UI
+1. [Account Page](images/ui1.png)
+2. [Delete User Page](images/ui2.png)
+3. [Edit Note Page](images/ui3.png)
+4. [Edit Table Page](images/ui4.png)
+5. [Edit User Profile Page](images/ui5.png)
+6. [Index Page](images/ui6.png)
+7. [Register Account Page](images/ui7.png)
+
+
 
 ## Non-functional Requirements
 1. Only work expect to work Google Chrome
 2. Multilingual Support
 3. Dark mode
 4. Change font colors
+
 
 Yousef Asad
 
