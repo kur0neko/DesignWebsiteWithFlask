@@ -48,10 +48,8 @@ User clicks sign in button on apps login page
 3. The Notes Application validates the entered information by verifying it against the stored database.
 4. If the entered credentials are valid, the User is logged in
 - **Primary Postconditions:**
-User Logs in
--The User is signed in and can access their stored notes, preferences, and other personalized features within the Notes Application.
-User is not logged in
--User is stuck at login page
+User Logs in, the User is signed in and can access their stored notes, preferences, and other personalized features within the Notes Application.
+User is not logged in, User is stuck at login page.
 - **Alternate Sequence:**
 Invalid Password
     1. User inputs invalid password
@@ -80,10 +78,8 @@ User clicks sign out button
 2. User clicks sign out
 3. App redirects user to sign in page
 - **Primary Postconditions:**
-User is signed out
--The User is redirected to sign in page
-User not signed out
--User remains on page where they had been last
+User is signed out, the User is redirected to sign in page.
+User not signed out, user remains on page where they had been last.
 - **Alternate Sequence :**
 User Cancels signout procedure
     1. Sign out window closes
@@ -110,10 +106,8 @@ User clicks register account button
 5. App redirects user to sign in page
 6. User signs in with credentials
 - **Primary Postconditions:**
-User is signed in with newly registered account
--The User is redirected to home page
-User is not registered
--User remains on signup page
+User is signed in with newly registered account, the User is redirected to home page.
+User is not registered, User remains on signup page.
 - **Alternate Sequence :**
 User input Email that is already in use
     1. App displays error to user
@@ -135,10 +129,8 @@ User and Notes Application
 2. User drags or uploads notes in specified folder
 3. User toggles through different folders on home menu
 - **Primary Postconditions:**
-The User can efficiently organize their notes
--using a folder system on the home page, enhancing their ability to categorize and navigate their content effectively.
-User does not change anything on home layout
--User home page remains the same
+The User can efficiently organize their notes, using a folder system on the home page, enhancing their ability to categorize and navigate their content effectively.
+User does not change anything on home layout, user home page remains the same.
 - **Alternate Sequence :**
 User does not change home layout
     1. Home page remains organized in a standard grid or list format.
@@ -246,7 +238,6 @@ User click on Search box and fill up search box with specific note name.
 5. If the string text that user entered is found. The webpage will retrieve and show that specific note to the user.
 - **Primary Postconditions:**
 The webpage will show all files that matched to the search text that user entered. If multiple notes have similar name contained ,all of notes will appeared for user to select.
-
 - **Alternate Sequence:**
 User does not have an account
     1. user unable to logged in and see the search bar.
@@ -280,7 +271,6 @@ User must fully finish registration an account or User must have an account alre
 9. User will have to click on Button “Yes”, web application will execute a command remove an user account from database of the server.
 - **Primary Postconditions:**
 User finished remove their account. The prompt appear “Account successfully removed!”, the webpage redirect to homepage of the website.
-
 - **Alternate Sequence:**
 User cancelling deletion profile.
     1.User select edit User Account, types in their password 
@@ -304,7 +294,6 @@ User, Note’s User
 User must already registered and have an account. When user logged in, they will be able to see search bar.
 - **Trigger:**
 User click on Search box and fill up search box with specific note name and user click on “Filter Search” button.
-
 - **Primary Sequence:**
 1. The search box will appear on top the profile page to search file from existed note files, user can allow to enter any text with a special expression.
 2. User enter name of the notes with any expression that they look for and click on Filter Search button
@@ -316,7 +305,6 @@ User click on Search box and fill up search box with specific note name and user
 
 - **Primary Postconditions:**
 The webpage will show all files that matched to the expression and string that user enter in search text that user entered. If multiple notes have similar name contained ,all of notes will appeared for user to select. User be able to click on the notes and see the contents.
-
 - **Alternate Sequence:**
 User does not have an account
     1.user unable to logged in and see the search bar.
