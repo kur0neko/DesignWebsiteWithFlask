@@ -36,8 +36,8 @@ Yousef Asad
 
 - **Summary:**
     This use case outlines the steps a User follows to sign in to the Notes Application, allowing them to access their personalized notes, settings, and other features.
--**Actors:**
-    User and Notes Application
+- **Actor(s):** 
+The login user
 - **Pre-condition:** 
     User has the app installed and loaded to sign in page
 - **Trigger:** 
