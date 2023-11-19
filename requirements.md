@@ -56,7 +56,7 @@ User is not logged in, User is stuck at login page.
     2. Systems prompts forgot password option
     3. System sends link to email with password recovery tool
 - **Alternate Sequence:**
-- User has not registered an account yet
+User has not registered an account yet
     1. Select the "Sign Up" option to create a new account.
     2. Input credentials
 
@@ -81,7 +81,7 @@ User clicks sign out button
 User is signed out, the User is redirected to sign in page.
 User not signed out, user remains on page where they had been last.
 - **Alternate Sequence :**
-- User Cancels signout procedure
+User Cancels signout procedure
     1. Sign out window closes
     2. System displays page where user was
 
@@ -109,7 +109,7 @@ User clicks register account button
 User is signed in with newly registered account, the User is redirected to home page.
 User is not registered, User remains on signup page.
 - **Alternate Sequence :**
-- User input Email that is already in use
+User input Email that is already in use
     1. App displays error to user
     2. Prompts user to login with email or use different
 
@@ -132,7 +132,7 @@ User and Notes Application
 The User can efficiently organize their notes, using a folder system on the home page, enhancing their ability to categorize and navigate their content effectively.
 User does not change anything on home layout, user home page remains the same.
 - **Alternate Sequence :**
-- User does not change home layout
+User does not change home layout
     1. Home page remains organized in a standard grid or list format.
 
 
@@ -157,7 +157,7 @@ User clicks on the edit button
 - **Primary Postconditions:**
 User has edited and saved content within named note
 - **Alternate Sequence:**
-- User creates changes without saving
+User creates changes without saving
     1. User opens note page
     2. User edits content within box by adding or deleting content
     3. User exits the Edit Note page
@@ -186,7 +186,7 @@ User hits the “Export” button
 - **Primary Postconditions:**
 User downloads page as preferred file type
 - **Alternate Sequence:**
-- User leaves “Export” pop-up
+User leaves “Export” pop-up
     1. User selects “Back” button on pop-up
     2. Pop-up taken off web page
     3. User remains in Edit Note Page
@@ -212,7 +212,7 @@ User clicks on the “Attach Images” button
 - **Primary Postconditions:**
 An attachment is placed on a note
 - **Alternate Sequence:**
-- User cancels “Attach Images” button 
+User cancels “Attach Images” button 
     1. Program brings up file explorer 
     2. User hits “Cancel” button on file explorer
     3. File explorer pop-up removed, web goes back to Edit Note page
@@ -239,11 +239,13 @@ User click on Search box and fill up search box with specific note name.
 - **Primary Postconditions:**
 The webpage will show all files that matched to the search text that user entered. If multiple notes have similar name contained ,all of notes will appeared for user to select.
 - **Alternate Sequence:**
-- User does not have an account
+User does not have an account
     1. user unable to logged in and see the search bar.
-- User profile does not have any notes. 
+- **Alternate Sequence:**
+User profile does not have any notes. 
     1. Use will not see any file after entering the search box.
-- There are multiple files existing but none of the files matched to the search text.
+- **Alternate Sequence:**
+There are multiple files existing but none of the files matched to the search text.
     1.Text appearing “File is not found!”
 
 
@@ -272,13 +274,13 @@ User must fully finish registration an account or User must have an account alre
 - **Primary Postconditions:**
 User finished remove their account. The prompt appear “Account successfully removed!”, the webpage redirect to homepage of the website.
 - **Alternate Sequence:**
-- User cancelling deletion profile.
+User cancelling deletion profile.
     1.User select edit User Account, types in their password 
     2.They hit the confirmation button of delete profileT
     3.he system prompts the user with ‘Yes’ or ‘No’ message to confirm deletion.
     4.User selects “No”
     5.The account remains unchanged. 
-    6. User is redirected to the homepage.
+    6.User is redirected to the homepage.
 
 
 
@@ -305,9 +307,10 @@ User click on Search box and fill up search box with specific note name and user
 - **Primary Postconditions:**
 The webpage will show all files that matched to the expression and string that user enter in search text that user entered. If multiple notes have similar name contained ,all of notes will appeared for user to select. User be able to click on the notes and see the contents.
 - **Alternate Sequence:**
-- User does not have an account
+User does not have an account
     1.user unable to logged in and see the search bar.
-- User profile does not have any notes. 
+- **Alternate Sequence:**
+User profile does not have any notes. 
     1.Use will not see any file after entering the search box.
  
 
@@ -343,7 +346,7 @@ The note will have the translated text saved, and when the user decides to edit 
     7. The text is not saved, and the user returns back to the homepage
 
 - **Alternate Sequence :**
-- User tries to translate note from a language to the same language
+User tries to translate note from a language to the same language
     1. System prompts user to select the language to translate the note to
     2. User selects a language the note is already written in.
     3. System utilizes the google translate API.
@@ -383,7 +386,7 @@ User tries to change existing personal information with the same information
     1. Application prompts user with an invalid password message
     2. User can enter a new password, username or name in the textbox
 - **Alternate Sequence :**
-- User decides to not change information
+User decides to not change information
     1. User selects which of their personal information they would like to modify.
     2. User gets prompted with a textbox to change to a new username, password or name
     3. User must enter their new username,password or name in the textbox
@@ -422,7 +425,7 @@ User has a new table that is saved with the information they added while editing
     3. Web application displays an error message
     4. User is prompted to enter correct row and column values
 - **Alternate Sequence :**
-- User creates table with no note links
+User creates table with no note links
     1. Web application prompts user to enter number of rows and columns
     2. User selects wanted rows and columns
     3. Empty Table is created by web application
@@ -451,7 +454,7 @@ User clicks on the delete button located on the edit note webpage.
 - **Primary Postconditions:**
 Note is permanently removed from the user's account and cannot be retrieved.
 - **Alternate Sequence:**
-- User decides to not delete note
+User decides to not delete note
     1. System prompts user to with message asking to confirm deletion, with options yes or no
     2. User selects no from prompt
     3. User remains on edit note webpage
