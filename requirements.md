@@ -245,7 +245,7 @@ User does not have an account
 User profile does not have any notes. 
     1. Use will not see any file after entering the search box.
 - **Alternate Sequence:**
-Multiple files existing ,but none of the them matched to the search file.
+None of the them matched to the search file.
     1.Message appearing “File is not found!”
 
 
@@ -274,11 +274,11 @@ User must fully finish registration an account or User must have an account alre
 - **Primary Postconditions:**
 User finished remove their account. The prompt appear “Account successfully removed!”, the webpage redirect to homepage of the website.
 - **Alternate Sequence:**
-User cancelling deletion profile.                                                                                                 
-    1.User select edit User Account, types in their password 
-    2.They hit the confirmation button of delete profileT
-    3.he system prompts the user with ‘Yes’ or ‘No’ message to confirm deletion.
-    4.User selects “No”
+User cancelling deletion profile.
+    1.User select edit User Account, types in their password.
+    2.They hit the confirmation button of delete profile.
+    3.The system prompts the user with ‘Yes’ or ‘No’ message to confirm deletion.
+    4.User selects “No”.
     5.The account remains unchanged. 
     6.User is redirected to the homepage.
 
@@ -344,7 +344,6 @@ User does not save changes to the note after translation
     5. The text is then translated using the information provided by the google translate API.
     6. The user decides not to the save the note with the translated text
     7. The text is not saved, and the user returns back to the homepage
-
 - **Alternate Sequence :**
 User tries to translate note from a language to the same language
     1. System prompts user to select the language to translate the note to
@@ -378,12 +377,12 @@ User clicks change password,username or name option located on the edit user web
 - **Primary Postconditions:**
 User has a new username, password or name after the modification. Users must use the new username, password or name whenever they sign in from this point forward.
 - **Alternate Sequence:**
-User tries to change existing personal information with the same information
-1. User selects which of their personal information they would like to modify
-2. User gets prompted with a textbox to change to a new username, password or name
-3. User enters the same username, password or name as the existing ones
-    1. Application prompts user with an invalid password message
-    2. User can enter a new password, username or name in the textbox
+User tries to change existing personal information with the same information.
+    1. User selects which of their personal information they would like to modify.
+    2. User gets prompted with a textbox to change to a new username, password or name.
+    3. User enters the same username, password or name as the existing ones.
+    4. Application prompts user with an invalid password message.
+    5. User can enter a new password, username or name in the textbox.
 - **Alternate Sequence :**
 User decides to not change information
     1. User selects which of their personal information they would like to modify.
@@ -391,7 +390,7 @@ User decides to not change information
     3. User must enter their new username,password or name in the textbox
     4. User must repeat their new username,password or name in the textbox
     5. Application prompts the user with an “are you sure?” message
-    6. User clicks no
+    6. User clicks no.
     7. No changes are made to the user’s name, username or password
 
 
