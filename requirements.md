@@ -68,8 +68,8 @@ Yousef Asad
 
 - **Summary:**
     This use case outlines the steps a User follows to sign out of the Notes Application, allowing them to exit their session.
--**Actors:**
-    User and Notes Application
+- **Actor(s):** 
+The login user
 - **Pre-condition:** 
     The User has the Notes Application installed and is currently logged in, viewing the application's interface.
 - **Trigger:** 
