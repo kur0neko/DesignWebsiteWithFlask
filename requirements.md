@@ -97,8 +97,8 @@ Yousef Asad
 
 - **Summary:**
 This use case outlines the steps a User follows to register an account on the notes app
--**Actors:**
-        User and Notes Application
+- **Actor(s):** 
+The login user
 - **Pre-condition:** 
 User has the app installed and loaded to sign in page
 - **Trigger:** 
@@ -128,8 +128,8 @@ Yousef Asad
 
 - **Summary:**
 This use case outlines how Users can organize their notes using a folder system directly on the home page of the Notes Application
--**Actors:**
-        User and Notes Application
+- **Actor(s):** 
+The login user
 - **Pre-condition:** The User has the Notes Application installed and is on the home page
 - **Trigger:** User clicks on homepage 
 - **Primary Sequence:**
