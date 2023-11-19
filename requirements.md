@@ -51,7 +51,7 @@ User clicks sign in button on apps login page
 User Logs in, the User is signed in and can access their stored notes, preferences, and other personalized features within the Notes Application.
 User is not logged in, User is stuck at login page.
 - **Alternate Sequence:**
-- Invalid Password
+Invalid Password
     1. User inputs invalid password
     2. Systems prompts forgot password option
     3. System sends link to email with password recovery tool
