@@ -242,11 +242,9 @@ The webpage will show all files that matched to the search text that user entere
 User does not have an account
     1. user unable to logged in and see the search bar.
 - **Alternate Sequence:**
-User profile does not have any notes. 
-    1. Use will not see any file after entering the search box.
-- **Alternate Sequence:**
-None of the them matched to the search file.
-    1.Message appearing “File is not found!”
+User profile does not have any notes or None of the them matched to the search file. 
+    1. Use will not see any file after entering the search box, message prompt “File is not found!”.
+
 
 
 Nutthawat Panyangnoi
@@ -274,13 +272,13 @@ User must fully finish registration an account or User must have an account alre
 - **Primary Postconditions:**
 User finished remove their account. The prompt appear “Account successfully removed!”, the webpage redirect to homepage of the website.
 - **Alternate Sequence:**
-User cancelling deletion profile.
-    1.User select edit User Account, types in their password.
-    2.They hit the confirmation button of delete profile.
-    3.The system prompts the user with ‘Yes’ or ‘No’ message to confirm deletion.
-    4.User selects “No”.
-    5.The account remains unchanged. 
-    6.User is redirected to the homepage.
+User cancelling deletion profile. 
+    1. User select edit User Account, types in their password.
+    2. They hit the confirmation button of delete profile.
+    3. The system prompts the user with ‘Yes’ or ‘No’ message to confirm deletion.
+    4. User selects “No”.
+    5. The account remains unchanged. 
+    6. User is redirected to the homepage.
 
 
 
@@ -308,10 +306,10 @@ User click on Search box and fill up search box with specific note name and user
 The webpage will show all files that matched to the expression and string that user enter in search text that user entered. If multiple notes have similar name contained ,all of notes will appeared for user to select. User be able to click on the notes and see the contents.
 - **Alternate Sequence:**
 User does not have an account
-    1.user unable to logged in and see the search bar.
+    1. user unable to logged in and see the search bar.
 - **Alternate Sequence:**
 User profile does not have any notes.
-    1.Use will not see any file after entering the search box.
+    1. Use will not see any file after entering the search box.
  
 
 Meghana Indukuri
