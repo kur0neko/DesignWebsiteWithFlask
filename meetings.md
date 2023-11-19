@@ -15,3 +15,19 @@ The next plan: Nutthawat will work on whatever task that had been assigned.
 
 - **Summary:**
  The group completed the requirements assignment, we split the work evenly. We finished all 14 requirements and non functional as well. The 14 we did are 1. Sign In 2. Sign out 3. Register an account 4. Visualize note connections 5. Edit notes 6. Export Notes 7. Attach Images 8. Search notes by note names 9. Delete user profile 10. Search with advanced expressions 11. Connect to Google Translate API 12. Edit user profile 13. Create Tables with Links to Notes 14. Delete Notes. Overall, everyone contributed evenly, we all share each individual opinions, gave all honest feedback to each other and we discussed to optimize our choices of requirements. Our goal is to achieve the realistic and the most useful functional features possible.
+
+### 2023-11-017 at 5:00PM
+- **Attendees: Yousef Asad, Nutthawat Panyangnoi, Noah Nguyen, Meghana Indukuri**
+
+-**Team updates:** 
+
+- Yousef worked on correcting and rectifying the previous milestone assignment. He corrected the requirements as per the professions guidelines & feedback. As a team we discussed next steps & reviewed the previous work. Next steps are to implement requirements that we drafted from milestone 1.
+
+- Nutthawat worked on revising miles stone one, He solved the issue that occurred on my requirements. He will continue work on webpagem functional that he responsible for.
+
+- Meghana worked on revising milestone one using the given feedback. She will work on the webpages to complete the requirements.
+
+- Noah worked on corrections of Milestone one. He will begin working on the main webpage to implement the requirements.
+
+- **Summary:**
+In this meeting the group discussed the comments and fixes needed for Milestone 1 regarding the requirements. Edits and changes were made and prepared to be pushed to Github. Base template and format of page was also discussed. In the future, the team will be working on their respective requirements on the web page and continue updating.
