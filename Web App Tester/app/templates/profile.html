@@ -1,8 +1,17 @@
-
-{% extends "base.html" %}
+{% extends "base.html"%}
 
 {% block content %}
-<h1 class="Title">
-  Welcome, to your profile!
-</h1>
+    <h1>Your name is {{user}}</h1>
+
+    <p>Your notes are:<br>
+        {% for note in note_list %}
+            <div>
+                <p>Note: {{note}}</p> 
+                <p>Note-Text: {{note_list[note]}}</p>
+                
+            </div>
+        {% endfor %}
+    </p>
+    
+    
 {% endblock %}

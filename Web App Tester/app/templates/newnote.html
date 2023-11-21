@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Created A New Note</h1>
+    <div>
+        <form action="" method="POST" novalidate>
+          {{note.hidden_tag()}}
+            <p>{{note.note_name.label}}
+                {{note.note_name}}</p>
+            <p>{{note.note_body(rows = 25, cols = 100)}}</p>
+
+            <p>{{note.submit()}}</p>
+        </form>
+    </div>
+{% endblock %}
