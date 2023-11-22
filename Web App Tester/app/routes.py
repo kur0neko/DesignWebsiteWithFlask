@@ -2,7 +2,7 @@ from flask import render_template
 from flask import redirect
 from flask import flash
 from flask import session
-from .forms import CreateAccountForm, LoginForm, Notebox, TableParams
+from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword
 from app.models import User, Note, Table
 from app import myapp_obj
 from app import db
@@ -48,12 +48,11 @@ def createaccount():
 
     return render_template('createaccount.html', form=form)
 
-@myapp_obj.route("/profile")
+@myapp_obj.route("/profile", methods=['GET', 'POST'])
 def profile():
 	if 'user' in session:
 		user = session['user']
 		found_user = User.query.filter_by(username=session['user']).first()
-
 		if found_user:
 			session['id'] = found_user.id
 
@@ -63,9 +62,25 @@ def profile():
 			for note in found_id:
 				note_list[f'{note.note_name}'] = (note.note_body)
 
+		found_user = User.query.filter_by(id = session['id']).first()
+		changeName = updateName()
+		changeName.username = found_user.username
+		if changeName.validate_on_submit():
+			found_user.username = changeName.newname.data
+			session['user'] = found_user.username
+			db.session.commit()
+			return redirect('/profile')
+
+		changePassword = updatePassword()
+		changePassword.password = found_user.password
+		if changePassword.validate_on_submit():
+			found_user.password = changeName.newpassword.data
+			db.session.commit()
+			return redirect('/profile')
+	
 	else:
 		return redirect('/login')
-	return render_template('profile.html', user=user, note_list=note_list)
+	return render_template('profile.html', user=user, note_list=note_list, changeName = changeName, changePassword= changePassword)
 
 @myapp_obj.route('/newnote', methods=['GET', 'POST'])
 def newnote():
@@ -94,7 +109,6 @@ def newtable():
 		
 		if table.validate_on_submit():
 			print('table creation')
-			found_user = User.query.filter_by(username=session['user']).first()
 			u = Table(table_name= table.name.data,  numRows = table.rows.data, numColumns = table.columns.data, user_id = session['id'])
 			db.session.add(u)
 			db.session.commit()

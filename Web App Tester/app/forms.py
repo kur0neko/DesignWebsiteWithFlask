@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField
-from wtforms.validators import DataRequired, Email, EqualTo, NumberRange
+from wtforms.validators import DataRequired, Email, EqualTo, NumberRange, ValidationError
 from wtforms.widgets import TextArea
 
 class LoginForm(FlaskForm):
@@ -27,6 +27,40 @@ class TableParams(FlaskForm):
     rows = IntegerField('Rows:', validators=[DataRequired(), NumberRange(min=1, message='Number must be greater than 1.')] )
     columns = IntegerField('Columns:', validators=[DataRequired(), NumberRange(min=1, message='Number must be greater than 1.')] )
     submit = SubmitField('Save Table')
+
+class updateName (FlaskForm):
+    oldname = StringField('Old username', validators=[DataRequired()])
+
+    def validate_oldname(self,check):
+        if(check.data != self.username):
+             raise ValidationError('oldname has to be same as current username')
+
+    newname = StringField('New username', validators=[DataRequired()])
+
+    def validate_newname(self,check):
+        if(self.oldname.data == check.data):
+             raise ValidationError('New name cannot be the same as your old name')
+   
+    submit = SubmitField('Update')
+
+class updatePassword (FlaskForm):
+    oldpassword = PasswordField('Old password', validators=[DataRequired()])
+
+    def validate_oldpassword(self,check):
+        if(check.data != self.password):
+             raise ValidationError('old password has to be same as current password')
+
+    newpassword = PasswordField('New password', validators=[DataRequired(), EqualTo('confirm', message='Passwords must match')])
+
+    def validate_newpassword(self,check):
+        if(self.oldpassword.data == check.data):
+             raise ValidationError('New password cannot be the same as your old password')
+
+    confirm  = PasswordField('Repeat New Password')
+   
+    submit = SubmitField('Update')
+    
+
 
 
 
