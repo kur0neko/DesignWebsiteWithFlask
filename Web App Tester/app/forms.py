@@ -21,3 +21,13 @@ class Notebox(FlaskForm):
     note_name = StringField('Note Name: ', validators=[DataRequired()])
     note_body = StringField('Note', widget=TextArea())
     submit = SubmitField('Save Note')
+
+class Editbox(FlaskForm):
+    note_body = StringField('Note', widget=TextArea())
+    save = SubmitField('Save Changes')
+    
+class NewNoteButton(FlaskForm):
+    button = SubmitField('New Note')
+
+class EditNoteButton(FlaskForm):
+    button = SubmitField('Edit Note')

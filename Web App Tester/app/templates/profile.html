@@ -2,16 +2,20 @@
 
 {% block content %}
     <h1>Your name is {{user}}</h1>
-
+    <form action="newnote">
+        {{newnote.hidden_tag()}}
+       <p>{{newnote.button}}</p>
+    </form>
     <p>Your notes are:<br>
         {% for note in note_list %}
             <div>
                 <p>Note: {{note}}</p> 
-                <p>Note-Text: {{note_list[note]}}</p>
-                
+                <p>Note-Text: {{note_list[note]}}
+                <form action = 'newnote'>
+                    {{editnote.hidden_tag()}}
+                    <p>{{editnote.button}}</p>
+                </form>
             </div>
         {% endfor %}
     </p>
-    
-    
 {% endblock %}

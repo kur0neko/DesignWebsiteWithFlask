@@ -2,10 +2,12 @@ from flask import render_template
 from flask import redirect
 from flask import flash
 from flask import session
-from .forms import CreateAccountForm, LoginForm, Notebox
+from flask import request
+from .forms import CreateAccountForm, LoginForm, Notebox, NewNoteButton, EditNoteButton, Editbox
 from app.models import User, Note
 from app import myapp_obj
 from app import db
+from wtforms.widgets import TextArea
 
 @myapp_obj.route("/")
 def index():
@@ -48,12 +50,14 @@ def createaccount():
 
     return render_template('createaccount.html', form=form)
 
-@myapp_obj.route("/profile")
+@myapp_obj.route("/profile", methods=['POST', 'GET'])
 def profile():
 	if 'user' in session:
+		newnote = NewNoteButton()
+		editnote = EditNoteButton()
 		user = session['user']
-		found_user = User.query.filter_by(username=session['user']).first()
 
+		found_user = User.query.filter_by(username=session['user']).first()
 		if found_user:
 			session['id'] = found_user.id
 
@@ -62,10 +66,11 @@ def profile():
 		found_id = Note.query.filter_by(user_id = session['id']).all()
 		if found_id:
 			for note in found_id:
-				note_list[f'{note.note_name}'] = (note.note_body)
+				note_list[note.note_name] = (note.note_body)
+		
 	else:
 		return redirect('/login')
-	return render_template('profile.html', user=user, note_list=note_list)
+	return render_template('profile.html', user=user, note_list=note_list,newnote=newnote,editnote=editnote)
 
 @myapp_obj.route('/newnote', methods=['GET', 'POST'])
 def newnote():
@@ -81,5 +86,24 @@ def newnote():
 	else:
 		return redirect('/login')
 	return render_template('newnote.html', note=note)
+
+@myapp_obj.route('/editnote', methods=['GET', 'POST'])
+def editnote():
+	if 'user' in session:
+		found_user = Note.query.filter_by(id = 1).first()
+		if found_user:
+			editnote = Editbox(note_body=found_user.note_body)
+
+		if editnote.validate_on_submit():
+			found_user.note_body = editnote.note_body.data
+			print()
+			db.session.commit()
+			return redirect('/profile')
+		
+	return render_template('editnote.html', editnote=editnote)
+
+
+
+
 
 
