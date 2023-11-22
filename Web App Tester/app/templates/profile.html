@@ -9,9 +9,21 @@
             {{changeName.hidden_tag()}}
             <p> {{changeName.oldname.label}} <br>
                {{changeName.oldname(size=32)}}</p>
+
+               <div class = "error">
+                {% for error in changeName.oldname.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+               </div>    
         
             <p> {{changeName.newname.label}} <br>
                {{changeName.newname(size=32)}}</p>
+
+               <div class = "error">
+                {% for error in changeName.newname.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+               </div>    
         
             <p>{{changeName.submit()}}</p>
         </form>
@@ -24,12 +36,30 @@
             
             <p> {{changePassword.oldpassword.label}} <br>
                {{changePassword.oldpassword(size=32)}}</p>
+
+               <div class = "error">
+                {% for error in changePassword.oldpassword.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+               </div>    
         
             <p> {{changePassword.newpassword.label}} <br>
                {{changePassword.newpassword(size=32)}}</p>
 
+               <div class = "error">
+                {% for error in changePassword.newpassword.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+               </div>  
+
             <p> {{changePassword.confirm.label}} <br>
                {{changePassword.confirm(size=32)}}</p>
+
+               <div class = "error">
+                {% for error in changePassword.confirm.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+               </div>  
         
             <p>{{changePassword.submit()}}</p>
         </form>
