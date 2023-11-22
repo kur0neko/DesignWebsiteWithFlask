@@ -4,7 +4,7 @@
     <h1>New Table</h1>
    
     <div>
-        {% if not (request.method == 'POST' and table.validate_on_submit()) %}
+        {% if not table.validate_on_submit() %}
         <form action="" method="POST" novalidate>
             {{table.hidden_tag()}}
             <p> {{table.name.label}} <br>
@@ -20,7 +20,7 @@
         </form>
         {% endif %}
 
-        {% if request.method == 'POST' and table.validate_on_submit() %}
+        {%if table.validate_on_submit() %}
             <!-- show table -->
             <p>Table: {{ table.name.data }}</p>
 
