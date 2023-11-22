@@ -101,6 +101,12 @@ def newnote():
 @myapp_obj.route('/newtable', methods=['GET', 'POST'])
 def newtable():
 	if 'user' in session:
+
+		user = session['user']
+		found_user = User.query.filter_by(username=session['user']).first()
+		if found_user:
+			session['id'] = found_user.id
+			
 		table = TableParams()
 		table_list = {}
 		found_id = Table.query.filter_by(user_id = session['id']).all()
