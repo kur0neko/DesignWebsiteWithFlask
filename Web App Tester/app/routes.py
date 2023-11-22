@@ -46,6 +46,8 @@ def createaccount():
         db.session.commit()
         return redirect('/')
 
+    return render_template('createaccount.html', form=form)
+
 @myapp_obj.route("/profile")
 def profile():
 	if 'user' in session:
@@ -75,7 +77,7 @@ def newnote():
 			u = Note(note_body = note.note_body.data, note_name = note.note_name.data, owner=found_user)
 			db.session.add(u)
 			db.session.commit()
-			return redirect('/user')
+			return redirect('/profile')
 	else:
 		return redirect('/login')
 	return render_template('newnote.html', note=note)
