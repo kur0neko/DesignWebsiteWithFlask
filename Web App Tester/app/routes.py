@@ -46,6 +46,8 @@ def createaccount():
         db.session.commit()
         return redirect('/')
 
+    return render_template('createaccount.html', form=form)
+
 @myapp_obj.route("/profile")
 def profile():
 	if 'user' in session:

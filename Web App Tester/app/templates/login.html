@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html"%}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Flask Auth Example</title>
-    <link rel="stylesheet" 
-href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" 
-/>
-</head>
+{% block content %}
+<h1>Login User </h1>
+<form action="" method="POST" novalidate>
+      {{form.hidden_tag()}}
+      <p> {{form.username.label}} <br>
+       {{form.username(size=32)}}</p>
 
-<body>
-	<div class="hero-body">
-            <div class="container has-text-centered">
-               <h1 class ="title">
-		Login Here
-		</h1> 
-            </div>
-        </div>
-</body>
-</html>
+      <p> {{form.password.label}} <br>
+       {{form.password(size=32)}}</p>
+
+      <p> {{form.remember_me.label}} <br>
+       {{form.remember_me()}}</p>
+
+      <p>{{form.submit()}}</p>
+</form>
+{% endblock %}
