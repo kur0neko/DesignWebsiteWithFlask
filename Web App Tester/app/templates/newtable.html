@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>New Table</h1>
+   
+    <div>
+        {% if not (request.method == 'POST' and table.validate_on_submit()) %}
+        <form action="" method="POST" novalidate>
+            {{table.hidden_tag()}}
+            <p> {{table.name.label}} <br>
+               {{table.name(size=32)}}</p>
+        
+            <p> {{table.rows.label}} <br>
+               {{table.rows(size=10)}}</p>
+        
+            <p> {{table.columns.label}} <br>
+               {{table.columns(size=10)}}</p>
+        
+            <p>{{table.submit()}}</p>
+        </form>
+        {% endif %}
+
+        {% if request.method == 'POST' and table.validate_on_submit() %}
+            <!-- show table -->
+            <p>Table: {{ table.name.data }}</p>
+
+            <table>
+                {% for row in range(table.rows.data) %}
+                        <tr>
+                            {% for col in range(table.columns.data) %}
+                                <td> |{{row}},{{col}}| &nbsp;&nbsp; </td>
+                            {% endfor %}
+                        </tr>
+                {% endfor %}
+            </table>  
+            
+             
+        <div>
+            <p>Your Tables:
+                {% for table in table_list %}
+                 <div>
+                        <p>Table: {{table}}</p>
+                 </div>
+                {% endfor %}
+            </p>
+
+        </div>
+            
+        {% endif %}
+
+
+    </div>
+
+
+
+{% endblock %}

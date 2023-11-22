@@ -2,8 +2,8 @@ from flask import render_template
 from flask import redirect
 from flask import flash
 from flask import session
-from .forms import CreateAccountForm, LoginForm, Notebox
-from app.models import User, Note
+from .forms import CreateAccountForm, LoginForm, Notebox, TableParams
+from app.models import User, Note, Table
 from app import myapp_obj
 from app import db
 
@@ -13,7 +13,7 @@ def index():
 
 @myapp_obj.route("/home")
 def home():
-		return render_template('base.html')
+		return render_template('home.html')
 
 @myapp_obj.route("/login", methods=['GET', 'POST'])
 def login():
@@ -58,11 +58,11 @@ def profile():
 			session['id'] = found_user.id
 
 		note_list = {}
-		num = 0
 		found_id = Note.query.filter_by(user_id = session['id']).all()
 		if found_id:
 			for note in found_id:
 				note_list[f'{note.note_name}'] = (note.note_body)
+
 	else:
 		return redirect('/login')
 	return render_template('profile.html', user=user, note_list=note_list)
@@ -80,6 +80,29 @@ def newnote():
 			return redirect('/profile')
 	else:
 		return redirect('/login')
-	return render_template('newnote.html', note=note)
+	return render_template('newnote.html', note= note)
+
+@myapp_obj.route('/newtable', methods=['GET', 'POST'])
+def newtable():
+	if 'user' in session:
+		table = TableParams()
+		table_list = {}
+		found_id = Table.query.filter_by(user_id = session['id']).all()
+		if found_id:
+			for dbtable in found_id:
+				table_list[f'{dbtable.table_name}'] = (dbtable.numRows, dbtable.numColumns)
+		
+		if table.validate_on_submit():
+			print('table creation')
+			found_user = User.query.filter_by(username=session['user']).first()
+			u = Table(table_name= table.name.data,  numRows = table.rows.data, numColumns = table.columns.data, user_id = session['id'])
+			db.session.add(u)
+			db.session.commit()
+		
+	else:
+		return redirect('/login')
+	return render_template('newtable.html', table = table, table_list = table_list)
+
+
 
 
