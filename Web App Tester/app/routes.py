@@ -19,7 +19,7 @@ def home():
 def login():
 	form = LoginForm()
 	if form.validate_on_submit():
-		found_user = User.query.filter_by(username=form.username.data).first()
+		found_user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
 		if found_user:
 			session['user'] = form.username.data
 			print('you logged in! it worked!')
