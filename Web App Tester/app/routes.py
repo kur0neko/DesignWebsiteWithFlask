@@ -23,8 +23,9 @@ def login():
 		if found_user:
 			session['user'] = form.username.data
 			print('you logged in! it worked!')
+			return redirect('/home')
 		else:
-			redirect('/createaccount')
+			return redirect('/createaccount')
 	return render_template('login.html', form=form)
 
 @myapp_obj.route('/logout')
