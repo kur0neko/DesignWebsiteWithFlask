@@ -28,3 +28,27 @@ class Note(db.Model):
     def __repr__(self):
         return f'<note {self.id}: {self.note_name}>'
 
+
+class Table(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    table_name = db.Column(db.String(15))
+    numRows = db.Column(db.Integer)
+    numColumns = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return f'<table {self.id}: {self.table_name}>'
+
+
+class TableEntry(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    entryRow = db.Column(db.Integer)
+    entryColumn = db.Column(db.Integer)
+    entry_body = db.Column(db.String(1000))
+    table_id = db.Column(db.Integer, db.ForeignKey('table.id'))
+
+    def __repr__(self):
+        return f'<note {self.id}: {self.entry_body}>'
+    
+
