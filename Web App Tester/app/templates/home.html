@@ -3,12 +3,24 @@
 
 {% block content %}
 <h1 class="Title">
-  Welcome, to your profile!
+  Welcome, to your homepage
 </h1>
-{% endblock %}{% extends "base.html" %}
+<form method="POST" action="{{url_for('search')}}" class="d-flex">{{form.hidden_tag()}}
+  <label for="query">Search:</label>
+  <input type="search" placeholder="search" aria-label="Search", name="searched">
+  <button type="submit"class="btn btn-outline-secondary">Search</button>
+</form>
+<h2>Results</h2>
+<ul>
+  {% for result in results %}
+      <li>{{ result }}</li>
+  {% endfor %}
+</ul>
 
-{% block content %}
-<h1 class="titlee">
-  Welcome, to your homepage!
-</h1>
+<a href="/newtable">
+  <button>Create Table</button>
+</a>
+
 {% endblock %}
+
+
