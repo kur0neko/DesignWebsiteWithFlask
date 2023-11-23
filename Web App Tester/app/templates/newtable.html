@@ -9,12 +9,30 @@
             {{table.hidden_tag()}}
             <p> {{table.name.label}} <br>
                {{table.name(size=32)}}</p>
-        
+
+               <div class = "error">
+                {% for error in table.name.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+               </div>    
+
             <p> {{table.rows.label}} <br>
                {{table.rows(size=10)}}</p>
+
+               <div class = "error">
+                {% for error in table.rows.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+               </div>    
         
             <p> {{table.columns.label}} <br>
                {{table.columns(size=10)}}</p>
+
+               <div class = "error">
+                {% for error in table.columns.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+               </div>    
         
             <p>{{table.submit()}}</p>
         </form>
