@@ -61,6 +61,9 @@ class updatePassword (FlaskForm):
     submit = SubmitField('Update')
     
 
+class SearchForm(FlaskForm):
+    searched = StringField('Searched', validators=[DataRequired()])
+    submit = SubmitField("submit")
 
 
 

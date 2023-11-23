@@ -2,7 +2,8 @@ from flask import render_template
 from flask import redirect
 from flask import flash
 from flask import session
-from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword
+from flask import request
+from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm
 from app.models import User, Note, Table
 from app import myapp_obj
 from app import db
@@ -124,6 +125,26 @@ def newtable():
 		return redirect('/login')
 	return render_template('newtable.html', table = table, table_list = table_list)
 
+#function of flask that return dictionary
+@myapp_obj.context_processor
+def base():
+    form = SearchForm()
+    return dict(form=form)
 
 
-
+  #get data from submitted form 
+   #Query the database
+    #notes=notes.order_by(Note.note_name).all()
+@myapp_obj.route('/search',methods=['GET', 'POST'])
+def search():
+    form=SearchForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        searched=form.searched.data
+        #notes=Note.filter(Note.note_name.like('%'+notes.searched+'%')).all()
+        result = Note.query.filter(Note.note_name.like(searched)).all()
+        return render_template("search.html",form =form, searched=searched,result=result)
+    else:
+        return render_template("search.html")
+        
+    
+         
