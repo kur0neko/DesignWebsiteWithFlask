@@ -59,6 +59,16 @@ class updatePassword (FlaskForm):
     confirm  = PasswordField('Repeat New Password')
    
     submit = SubmitField('Update')
+
+class Editbox(FlaskForm):
+    note_body = StringField('Note', widget=TextArea())
+    save = SubmitField('Save Changes')
+    
+class NewNoteButton(FlaskForm):
+    button = SubmitField('New Note')
+
+class EditNoteButton(FlaskForm):
+    button = SubmitField('Edit Note')
     
 
 class SearchForm(FlaskForm):

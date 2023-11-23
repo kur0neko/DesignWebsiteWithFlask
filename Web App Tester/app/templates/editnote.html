@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Edit a Note</h1>
+    <div></div>
+    <form action="" method="POST" novalidate>
+        {{editnote.hidden_tag()}}
+        <p>{{editnote.note_body(rows = 25, cols = 100)}}</p>
+        <p>{{editnote.save()}}</p>
+    </form>
+    </div>
+{% endblock %}

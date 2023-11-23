@@ -3,7 +3,7 @@ from flask import redirect
 from flask import flash
 from flask import session
 from flask import request
-from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm
+from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm, NewNoteButton, EditNoteButton, Editbox
 from app.models import User, Note, Table
 from app import myapp_obj
 from app import db
@@ -54,6 +54,8 @@ def createaccount():
 def profile():
 	if 'user' in session:
 		user = session['user']
+		newnote = NewNoteButton() 
+		editbutton = EditNoteButton()
 		found_user = User.query.filter_by(username=session['user']).first()
 		if found_user:
 			session['id'] = found_user.id
@@ -62,7 +64,7 @@ def profile():
 		found_id = Note.query.filter_by(user_id = session['id']).all()
 		if found_id:
 			for note in found_id:
-				note_list[f'{note.note_name}'] = (note.note_body)
+				note_list[f'{note.note_name}'] = (note.note_body, editbutton)
 
 		found_user = User.query.filter_by(id = session['id']).first()
 		changeName = updateName()
@@ -79,10 +81,9 @@ def profile():
 			found_user.password = changeName.newpassword.data
 			db.session.commit()
 			return redirect('/profile')
-	
 	else:
 		return redirect('/login')
-	return render_template('profile.html', user=user, note_list=note_list, changeName = changeName, changePassword= changePassword)
+	return render_template('profile.html', user=user, note_list=note_list, changeName = changeName, changePassword= changePassword, newnote=newnote)
 
 @myapp_obj.route('/newnote', methods=['GET', 'POST'])
 def newnote():
@@ -125,6 +126,19 @@ def newtable():
 		return redirect('/login')
 	return render_template('newtable.html', table = table, table_list = table_list)
 
+@myapp_obj.route('/editnote/<notename>', methods=['GET', 'POST'])
+def editnote(notename):
+	if 'user' in session:
+		found_user = Note.query.filter_by(note_name=notename).first()
+		if found_user:
+			editnote = Editbox(note_body=found_user.note_body)
+
+		if editnote.validate_on_submit():
+			found_user.note_body = editnote.note_body.data
+			print()
+			db.session.commit()
+			return redirect('/profile')
+	return render_template('editnote.html', editnote=editnote)
 #function of flask that return dictionary
 @myapp_obj.context_processor
 def base():
