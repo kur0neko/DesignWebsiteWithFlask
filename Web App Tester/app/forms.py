@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, HiddenField
 from wtforms.validators import DataRequired, Email, EqualTo
 from wtforms.widgets import TextArea
 
@@ -30,4 +30,5 @@ class NewNoteButton(FlaskForm):
     button = SubmitField('New Note')
 
 class EditNoteButton(FlaskForm):
+    hidden = HiddenField('Hidden')
     button = SubmitField('Edit Note')

@@ -7,7 +7,6 @@ from .forms import CreateAccountForm, LoginForm, Notebox, NewNoteButton, EditNot
 from app.models import User, Note
 from app import myapp_obj
 from app import db
-from wtforms.widgets import TextArea
 
 @myapp_obj.route("/")
 def index():
@@ -54,7 +53,7 @@ def createaccount():
 def profile():
 	if 'user' in session:
 		newnote = NewNoteButton()
-		editnote = EditNoteButton()
+		editbutton = EditNoteButton()
 		user = session['user']
 
 		found_user = User.query.filter_by(username=session['user']).first()
@@ -66,11 +65,11 @@ def profile():
 		found_id = Note.query.filter_by(user_id = session['id']).all()
 		if found_id:
 			for note in found_id:
-				note_list[note.note_name] = (note.note_body)
-		
+				note_list[note.note_name] = (note.note_body, editbutton)
+
 	else:
 		return redirect('/login')
-	return render_template('profile.html', user=user, note_list=note_list,newnote=newnote,editnote=editnote)
+	return render_template('profile.html', user=user, note_list=note_list,newnote=newnote)
 
 @myapp_obj.route('/newnote', methods=['GET', 'POST'])
 def newnote():
@@ -87,10 +86,10 @@ def newnote():
 		return redirect('/login')
 	return render_template('newnote.html', note=note)
 
-@myapp_obj.route('/editnote', methods=['GET', 'POST'])
-def editnote():
+@myapp_obj.route('/editnote/<notename>', methods=['GET', 'POST'])
+def editnote(notename):
 	if 'user' in session:
-		found_user = Note.query.filter_by(id = 1).first()
+		found_user = Note.query.filter_by(note_name=notename).first()
 		if found_user:
 			editnote = Editbox(note_body=found_user.note_body)
 
@@ -101,9 +100,6 @@ def editnote():
 			return redirect('/profile')
 		
 	return render_template('editnote.html', editnote=editnote)
-
-
-
 
 
 
