@@ -53,7 +53,9 @@ def createaccount():
 @myapp_obj.route("/profile", methods=['GET', 'POST'])
 def profile():
 	if 'user' in session:
-		user = session['user']; newnote = NewNoteButton(); editbutton = EditNoteButton()
+		user = session['user']
+		newnote = NewNoteButton() 
+		editbutton = EditNoteButton()
 		found_user = User.query.filter_by(username=session['user']).first()
 		if found_user:
 			session['id'] = found_user.id
