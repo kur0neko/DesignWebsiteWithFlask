@@ -64,22 +64,5 @@
             <p>{{changePassword.submit()}}</p>
         </form>
       </details>
-    
-    <form action="newnote">
-    {{newnote.hidden_tag()}}
-    <p>{{newnote.button}}</p>
-    </form>
-    <p>Your notes are:<br>
-        {% for note in note_list %}
-            <div>
-                <p>Note: {{note}}</p> 
-                <p>Note-Text: {{note_list[note][0]}}</p>
-                <form action = "editnote/{{note}}">
-                    <p>{{note_list[note][1].button}}</p>
-                </form>
-            </div>
-        {% endfor %}
-    </p>
-    
 {% endblock %}
 
