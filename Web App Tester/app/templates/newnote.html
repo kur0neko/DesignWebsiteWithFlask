@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+     <!--Page of the NewNote-->
     <h1>Created A New Note</h1>
     <div>
         <form action="" method="POST" novalidate>
+            <!--Displays the name of the note wanted to be entered, and the textbox for the note-->
           {{note.hidden_tag()}}
             <p>{{note.note_name.label}}
                 {{note.note_name}}</p>
             <p>{{note.note_body(rows = 25, cols = 100)}}</p>
-            
+            <!--Submit button-->
             <p>{{note.submit()}}</p>
         </form>
     </div>

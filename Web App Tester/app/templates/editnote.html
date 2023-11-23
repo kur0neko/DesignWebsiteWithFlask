@@ -4,8 +4,10 @@
     <h1>Edit a Note</h1>
     <div></div>
     <form action="" method="POST" novalidate>
+    <!--Displays the textbox of the edit note page-->
         {{editnote.hidden_tag()}}
         <p>{{editnote.note_body(rows = 25, cols = 100)}}</p>
+    <!--'Save Changes Button'-->
         <p>{{editnote.save()}}</p>
     </form>
     </div>
