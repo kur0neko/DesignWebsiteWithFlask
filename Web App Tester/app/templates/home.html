@@ -3,27 +3,12 @@
 
 {% block content %}
 <h1 class="Title">
-  Welcome, to your homepage
+  Welcome, to your profile!
 </h1>
-<a href="/newtable">
-  <button>Create Table</button>
-</a>
+{% endblock %}{% extends "base.html" %}
 
-<form action="newnote">
-  {{newnote.hidden_tag()}}
- <p>{{newnote.button}}</p>
-</form>
-<p>Your notes are:<br>
-  {% for note in note_list %}
-      <div>
-          <p>Note: {{note}}</p> 
-          <p>Note-Text: {{note_list[note][0]}}
-          <form action = "editnote/{{note}}">
-              <p>{{note_list[note][1].button}}</p>
-          </form>
-      </div>
-  {% endfor %}
-</p>
+{% block content %}
+<h1 class="titlee">
+  Welcome, to your homepage!
+</h1>
 {% endblock %}
-
-
