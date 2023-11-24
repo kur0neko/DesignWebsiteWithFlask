@@ -153,14 +153,11 @@ def base():
     #notes=notes.order_by(Note.note_name).all()
 @myapp_obj.route('/search',methods=['GET', 'POST'])
 def search():
-    form=SearchForm()
+    form=SearchForm()#
     if request.method == 'POST' and form.validate_on_submit():
-        searched=form.searched.data
-        #notes=Note.filter(Note.note_name.like('%'+notes.searched+'%')).all()
-        result = Note.query.filter(Note.note_name.like(searched)).all()
-        return render_template("search.html",form =form, searched=searched,result=result)
-    else:
-        return render_template("search.html")
+         query = request.form.get('searched', '')     #searched=form.searched.data#
+         result=Note.query.filter(Note.note_name.like('%' + query + '%')).all()
+         return render_template("search.html",form =form,query=query, result=result)  
         
     
          

@@ -71,7 +71,7 @@ class EditNoteButton(FlaskForm):
     button = SubmitField('Edit Note')
     
 class SearchForm(FlaskForm):
-    searched = StringField('Searched', validators=[DataRequired()])
+    searched = StringField('searched', validators=[DataRequired()])
     submit = SubmitField("submit")
 
 
