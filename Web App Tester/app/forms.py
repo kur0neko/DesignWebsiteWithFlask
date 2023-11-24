@@ -74,5 +74,17 @@ class SearchForm(FlaskForm):
     searched = StringField('Searched', validators=[DataRequired()])
     submit = SubmitField("submit")
 
+class DeleteProfile(FlaskForm):
+
+    typepassword = PasswordField('Type your current password to confirm deletion', validators=[DataRequired(), EqualTo('confirm', message='Passwords must match') ])
+
+    def validate_typepassword(self,check):
+        if(check.data != self.password):
+             raise ValidationError('The password you typed does not match the your current password')
+
+    confirm  = PasswordField('Repeat New Password')
+    confirmDeletion = BooleanField('Confirm Deletion',validators=[DataRequired()])
+    submit = SubmitField('Delete Profile')
+
 
 
