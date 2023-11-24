@@ -84,7 +84,7 @@ def profile():
 		changePassword = updatePassword()
 		changePassword.password = found_user.password
 		if changePassword.validate_on_submit():
-			found_user.password = changeName.newpassword.data
+			found_user.password = changePassword.newpassword.data
 			db.session.commit()
 			return redirect('/profile')
 		
