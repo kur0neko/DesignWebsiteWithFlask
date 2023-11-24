@@ -157,7 +157,9 @@ def search():
     if request.method == 'POST' and form.validate_on_submit():
          query = request.form.get('searched', '')     #searched=form.searched.data#
          result=Note.query.filter(Note.note_name.like('%' + query + '%')).all()
-         return render_template("search.html",form =form,query=query, result=result)  
+         return render_template("search.html",form =form,query=query, result=result)
+    else:
+        return render_template("search.html",message="error, Note is not found")
         
     
          
