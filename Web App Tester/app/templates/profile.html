@@ -64,5 +64,42 @@
             <p>{{changePassword.submit()}}</p>
         </form>
       </details>
+
+      <details>
+        <summary>Delete Profile</summary>
+        <form action="" method="POST" novalidate>
+            {{delete.hidden_tag()}}
+            
+            <p> {{delete.typepassword.label}} <br>
+               {{delete.typepassword(size=32)}}</p>
+
+               <div class = "error">
+                {% for error in delete.typepassword.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+               </div>    
+        
+            <p> {{delete.confirm.label}} <br>
+               {{delete.confirm(size=32)}}</p>
+
+               <div class = "error">
+                {% for error in delete.confirm.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+               </div>  
+
+            <p> {{delete.confirmDeletion.label}} <br>
+               {{delete.confirmDeletion()}}</p>
+
+               <div class = "error">
+                {% for error in changePassword.confirm.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+               </div>  
+        
+            <p>{{delete.submit()}}</p>
+        </form>
+      </details>
+      
 {% endblock %}
 

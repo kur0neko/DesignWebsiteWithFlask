@@ -13,7 +13,9 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    noter = db.relationship('Note', backref ='owner', lazy = 'dynamic')
+    noter = db.relationship('Note', backref ='owner', lazy = 'dynamic', cascade = 'all')
+    tabler = db.relationship('Table', backref ='owner', lazy = 'dynamic', cascade = 'all')
+
 
     def __repr__(self):
        return f'{self.id}: {self.username}'
