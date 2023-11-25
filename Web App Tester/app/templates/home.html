@@ -5,7 +5,7 @@
 <h1 class="Title">
   Welcome, to your homepage
 </h1>
-<form method="POST" action="{{url_for('search')}}" class="d-flex">{{form.hidden_tag()}}
+<form method="POST" action="{{url_for('search')}}" >
   <label for="query">Search:</label>
   <input type="search" placeholder="search" aria-label="Search", name="searched">
   <button type="submit"class="btn btn-outline-secondary">Search</button>
