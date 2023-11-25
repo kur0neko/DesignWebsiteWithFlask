@@ -13,8 +13,7 @@
 <h2>Results</h2>
 <ul>
   {% for result in results %}
-      <li>{{ result }}</li>
-  {% endfor %}
+  <li>{{ result }}</li>
 </ul>
 
 <!-- represents the newnote and the edit notes buttons on the profile-->
@@ -36,7 +35,7 @@
                   {% for name in img %}
                 <!--link each image in the dictionary for 1 note-->
                     {% if img[name] == note_list[note][2] %}
-                      <a href="download/{{name}}">Attachment:{{name}}</a><br>
+                      <a href="download/{{name}}">Attachment: {{name}}</a><br>
                     {% endif %}
                   {% endfor %}
                 {% endfor %}
