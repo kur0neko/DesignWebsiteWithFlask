@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, MultipleFileField
 from wtforms.validators import DataRequired, Email, EqualTo, NumberRange, ValidationError
 from wtforms.widgets import TextArea
 
@@ -20,7 +20,8 @@ class CreateAccountForm(FlaskForm):
 class Notebox(FlaskForm):
     note_name = StringField('Note Name: ', validators=[DataRequired()])
     note_body = StringField('Note', widget=TextArea())
-    submit = SubmitField('Save Note')
+    image_upload = MultipleFileField('Image', name='image')
+    submit = SubmitField('Create Note')
 
 class TableParams(FlaskForm):
     name = StringField('Table Name:', validators=[DataRequired()])
@@ -62,6 +63,7 @@ class updatePassword (FlaskForm):
 
 class Editbox(FlaskForm):
     note_body = StringField('Note', widget=TextArea())
+    image_upload2 = MultipleFileField('Images2', name='image2')
     save = SubmitField('Save Changes')
     
 class NewNoteButton(FlaskForm):

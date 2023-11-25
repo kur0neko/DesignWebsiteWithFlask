@@ -29,6 +29,8 @@ class Note(db.Model):
 
     def __repr__(self):
         return f'<note {self.id}: {self.note_name}>'
+    
+    images = db.relationship('Image', backref ='note', lazy = 'dynamic')
 
 
 class Table(db.Model):
@@ -53,4 +55,11 @@ class TableEntry(db.Model):
     def __repr__(self):
         return f'<note {self.id}: {self.entry_body}>'
     
-
+class Image(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    img = db.Column(db.LargeBinary)
+    mimetype = db.Column(db.Text, nullable=False)
+    imgname = db.Column(db.String(100), nullable=False)
+    note_id = db.Column(db.Integer, db.ForeignKey('note.id'))
+    def __repr__(self):
+        return f'<image {self.img}: {self.id}>'

@@ -2,11 +2,15 @@ from flask import render_template
 from flask import redirect
 from flask import flash
 from flask import session
+from flask import request, send_file
+from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm, NewNoteButton, EditNoteButton, Editbox
+from app.models import User, Note, Table, Image
 from flask import request
 from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm, NewNoteButton, EditNoteButton, Editbox, DeleteProfile
 from app.models import User, Note, Table
 from app import myapp_obj
 from app import db
+from io import BytesIO
 
 @myapp_obj.route("/")
 def index():
@@ -21,17 +25,28 @@ def home():
 		found_user = User.query.filter_by(username=session['user']).first()						#find the database entry with the same name as the user logged in
 		if found_user:
 			session['id'] = found_user.id														#make the session id equal to the id of the found entry
-
+		
+		img_list = []																			#holds all images for each note																			#dictionary to hold the image name and id
 		note_list = {}																			#dictionary to hold the note_name, note_body, and edit button
 		found_id = Note.query.filter_by(user_id = session['id']).all()							#find all entries under the id of the user's id
 		if found_id:																						
-			for note in found_id:																#if found any entries, for valueadd their note_body (content in box) and key as note_name
-				note_list[f'{note.note_name}'] = (note.note_body, editbutton)
+			for note in found_id:
+				found_img = Image.query.filter_by(note_id=note.id).all()						#find all image with the same id as the note
+				if found_img:
+					img_dict = {}																#create a new dictionary for each note
+					for img in found_img:														#if found, append all images into a dictionary
+						imagename = img.imgname											 		#take the name of the image
+						img_dict[imagename] = note.id											#to check values appended										
+					img_list.append(img_dict)
+					print(img_list)															
+					note_list[f'{note.note_name}'] = [note.note_body, editbutton, note.id]		#if found any entries, for value add their note_body (content in box) and key as note_name	
+				else:
+					note_list[f'{note.note_name}'] = [note.note_body, editbutton]				#no images, do not have a list for the values
 	else:
-		return redirect('/login')
-	return render_template('home.html',  user=user, note_list=note_list, newnote=newnote)
+		return redirect('/login')													
+	return render_template('home.html',  user=user, note_list=note_list, newnote=newnote, img_list=img_list)
 
-@myapp_obj.route("/login", methods=['GET', 'POST'])																#basic login function
+@myapp_obj.route("/login", methods=['GET', 'POST'])												#basic login function
 def login():
 	form = LoginForm()
 	if form.validate_on_submit():
@@ -101,20 +116,28 @@ def profile():
 		return redirect('/login')
 	return render_template('profile.html', user = user, changeName = changeName, changePassword= changePassword, delete = delete)
 
-@myapp_obj.route('/newnote', methods=['GET', 'POST'])
+@myapp_obj.route('/newnote', methods=['GET','POST'])
 def newnote():
 	if 'user' in session:																						#make sure user is logged in before proceeding, if not send back to login
 		note = Notebox()																						
 		if note.validate_on_submit():																			#once the note is submitted, functions are applied
 			print('you submitted your note!')																	#check if note is submitted
 			found_user = User.query.filter_by(username=session['user']).first()									#find the data entry with the same name as the logged-in user
-			u = Note(note_body = note.note_body.data, note_name = note.note_name.data, owner=found_user)		#create new data entry, (owner=found_user) is one to many relationship --> id in users table connected to user-id in note tables
-			db.session.add(u)
-			db.session.commit()																					#add new data entry into the the database
+			u = Note(note_body=note.note_body.data, note_name=note.note_name.data, owner=found_user)			#create new data entry, (owner=found_user) is one to many relationship --> id in users table connected to user-id in note tables
+			db.session.add(u)																					#add new data entry into the the database
+			db.session.commit()		
+
+			for image in request.files.getlist('image'):														#grabs all images from the image_upload attribute
+				print(image)																					#test for all images inside												#
+				mimetype = image.mimetype																		#grab type of image
+				i = Image(img=image.read(), mimetype=mimetype, imgname=image.filename, note=u)					#import into database (Image Table)
+				db.session.add(i)																				
+			
+			db.session.commit()																					#commit changes from Image
 			return redirect('/home')																			#send back to home
 	else:
 		return redirect('/login')
-	return render_template('newnote.html', note= note)
+	return render_template('newnote.html', note=note)
 
 @myapp_obj.route('/newtable', methods=['GET', 'POST'])
 def newtable():
@@ -152,19 +175,30 @@ def search():
 @myapp_obj.route('/editnote/<notename>', methods=['GET', 'POST'])		#creation of edit note page/'<notename> for the name of the note being sent
 def editnote(notename):
 	if 'user' in session:
-		found_user = Note.query.filter_by(note_name=notename).first()	#find the note in the database that matches the notename in the url
-		if found_user:
-			editnote = Editbox(note_body=found_user.note_body)			#if found, make the inital string in the box the same as the note_body string in the database
+		found_note = Note.query.filter_by(note_name=notename).first()											#find the note in the database that matches the notename in the url
+		if found_note:
+			editnote = Editbox(note_body=found_note.note_body)													#if found, make the inital string in the box the same as the note_body string in the database
 
-		if editnote.validate_on_submit():								#represents if the edited note is submitted, apply functions below
-			found_user.note_body = editnote.note_body.data				#if validated make the changed string equal to the database note_body variable (the content)				
-			db.session.commit()											#commit the changes to the database to change the string value
-			return redirect('/profile')									#take back to profile page
+		if editnote.validate_on_submit():																		#represents if the edited note is submitted, apply functions below
+			found_note.note_body = editnote.note_body.data														#if validated make the changed string equal to the database note_body variable (the content)																							
+			db.session.commit()																					#commit the changes to the database to change the string value
+
+			for image2 in request.files.getlist('image2'):													
+				mimetype = image2.mimetype																		
+				i2 = Image(img=image2.read(), mimetype=mimetype, imgname=image2.filename, note=found_note)			
+				db.session.add(i2)
+				db.session.commit()
+				
+				return redirect('/home')
+			return redirect('/home')																#take back to profile page
 	return render_template('editnote.html', editnote=editnote)			 
 
 def search_notes(keyword):
     result=Note.query.filter(Note.note_name.ilike(f'%{keyword}%')).all()
     return result
     
-    
+@myapp_obj.route('/download/<img_name>', methods=['GET'])													#used to receive the image name for download
+def download(img_name):
+	found_img = Image.query.filter_by(imgname=img_name).first()												#find the data entry with same name as the image name
+	return send_file(BytesIO(found_img.img), download_name=found_img.imgname, as_attachment=True)			#use send file, change read data into image, download w/name of image as attachment
  
