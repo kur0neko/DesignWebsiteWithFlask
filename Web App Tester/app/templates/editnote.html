@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Edit a Note</h1>
     <div></div>
-    <form action="" method="POST" novalidate>
+    <form action="" method="POST">
     <!--Displays the textbox of the edit note page-->
         {{editnote.hidden_tag()}}
         <p>{{editnote.note_body(rows = 25, cols = 100)}}</p>

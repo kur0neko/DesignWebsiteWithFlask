@@ -29,17 +29,28 @@
             <!--display the note name, note content, and an edit button-->
               <p>Note: {{note}}</p> 
               <p>Note-Text: {{note_list[note][0]}}</p>
-               <!--for every edit note button, it is linked to 'editnote/(name of the note corresponding to dictionary)'-->
+              <!--for every edit note button, it is linked to 'editnote/(name of the note corresponding to dictionary)'-->
               <form action = "editnote/{{note}}">
                   <p>{{note_list[note][1].button}}</p>
               </form>
+              <!--If there are images (img_list exists), make a download attachment for each image-->
+              {% if note_list[note][2] %}
+                {% for img in img_list %}
+                <!--loop through all sets of images for each note-->
+                  {% for name in img %}
+                <!--link each image in the dictionary for 1 note-->
+                    {% if img[name] == note_list[note][2] %}
+                      <a href="download/{{name}}">Attachment:{{name}}</a><br>
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+              {% endif %}
           </div>
       {% endfor %}
 
 <a href="/newtable">
   <button>Create Table</button>
 </a>
-
 {% endblock %}
 
 
