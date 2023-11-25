@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    table {
+        border: 1px solid #000000;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #000000;
+    }
+
+</style>
+
+<table>
+    {% for row in range(thisTable.numRows) %}
+            <tr>
+                {% for col in range(thisTable.numColumns) %}
+                    <td> 
+                        
+                        <form method="POST" novalidate>
+                            {{tableEnt.hidden_tag()}}
+                            <input type="hidden" name="row" value="{{ row }}">
+                            <input type="hidden" name="column" value="{{ col }}">
+                   
+                        
+                            <p>{{tableEnt.note.label}} <br>
+                               {{tableEnt.note(size=1)}}</p>
+
+                            <p> {{tableEnt.string.label}} <br>
+                                {{tableEnt.string(size=10)}}</p>
+                
+                            <p>{{tableEnt.submit(size=10)}}</p>
+                        </form>
+                    
+                    
+                    </td>
+                {% endfor %}
+            </tr>
+    {% endfor %}
+</table>  
+
+<br>
+<p>Table: {{ thisTable.table_name }}</p>
+
+            <table>
+                {% for row in range(thisTable.numRows) %}
+                        <tr>
+                            {% for col in range(thisTable.numColumns) %}
+                                <td> 
+                                    {% for entry in entryList %}
+                                        {% if entry.entryRow == row and entry.entryColumn == col%} 
+                                            <p> content: {{ entry.entry_String}}</p>
+                                            {% for note in notes %}
+                                                {% if entry.entry_Note == note.id %} 
+
+                                                    <a href="{{ url_for('editnote', notename = note.note_name) }}">
+                                                            <p>link to note: {{ note.note_name}}</p>
+                                                    </a>
+
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                  
+                                </td>
+                            {% endfor %}
+                        </tr>
+                {% endfor %}
+            </table>  
+            
+             
+
+
+{% endblock %}

@@ -48,8 +48,23 @@
           </div>
       {% endfor %}
 
+<br>
 <a href="/newtable">
   <button>Create Table</button>
 </a>
+
+<div>
+  <p>Your Tables:
+      {% for table in table_list %}
+       <div>
+        <a href="{{ url_for('edittable', table_id = table.id) }}">
+              <p>{{table.table_name}}</p>
+        </a>
+      </div>
+      {% endfor %}
+  </p>
+
+</div>
+
 {% endblock %}
 
