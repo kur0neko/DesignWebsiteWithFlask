@@ -165,17 +165,25 @@ def newtable():
 		return redirect('/login')
 	return render_template('newtable.html', table = table, table_list = table_list)
 
-@myapp_obj.route('/editnote/<notename>', methods=['GET', 'POST'])		#creation of edit note page/'<notename> for the name of the note being sent
+@myapp_obj.route('/editnote/<notename>', methods=['GET', 'POST'])												#creation of edit note page/'<notename> for the name of the note being sent
 def editnote(notename):
 	if 'user' in session:
-		found_user = Note.query.filter_by(note_name=notename).first()	#find the note in the database that matches the notename in the url
-		if found_user:
-			editnote = Editbox(note_body=found_user.note_body)			#if found, make the inital string in the box the same as the note_body string in the database
+		found_note = Note.query.filter_by(note_name=notename).first()											#find the note in the database that matches the notename in the url
+		if found_note:
+			editnote = Editbox(note_body=found_note.note_body)													#if found, make the inital string in the box the same as the note_body string in the database
 
-		if editnote.validate_on_submit():								#represents if the edited note is submitted, apply functions below
-			found_user.note_body = editnote.note_body.data				#if validated make the changed string equal to the database note_body variable (the content)				
-			db.session.commit()											#commit the changes to the database to change the string value
-			return redirect('/home')									#take back to profile page
+		if editnote.validate_on_submit():																		#represents if the edited note is submitted, apply functions below
+			found_note.note_body = editnote.note_body.data														#if validated make the changed string equal to the database note_body variable (the content)																							
+			db.session.commit()																					#commit the changes to the database to change the string value
+
+			for image2 in request.files.getlist('image2'):													
+				mimetype = image2.mimetype																		
+				i2 = Image(img=image2.read(), mimetype=mimetype, imgname=image2.filename, note=found_note)			
+				db.session.add(i2)
+				db.session.commit()
+				
+				return redirect('/home')
+			return redirect('/home')																#take back to profile page
 	return render_template('editnote.html', editnote=editnote)			 
 
 #function of flask that return dictionary
@@ -203,7 +211,5 @@ def search():
 def download(img_name):
 	found_img = Image.query.filter_by(imgname=img_name).first()												#find the data entry with same name as the image name
 	return send_file(BytesIO(found_img.img), download_name=found_img.imgname, as_attachment=True)			#use send file, change read data into image, download w/name of image as attachment
-		
-        
-    
+
          

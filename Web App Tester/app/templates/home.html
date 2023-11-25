@@ -26,13 +26,9 @@
       <!--for loop to print every note in the dictionary in '/home' route function-->
       {% for note in note_list %}
           <div>
-            <!--display the note name, note content, and an edit button-->
+              <!--display the note name, note content, and an edit button-->
               <p>Note: {{note}}</p> 
               <p>Note-Text: {{note_list[note][0]}}</p>
-              <!--for every edit note button, it is linked to 'editnote/(name of the note corresponding to dictionary)'-->
-              <form action = "editnote/{{note}}">
-                  <p>{{note_list[note][1].button}}</p>
-              </form>
               <!--If there are images (img_list exists), make a download attachment for each image-->
               {% if note_list[note][2] %}
                 {% for img in img_list %}
@@ -45,6 +41,10 @@
                   {% endfor %}
                 {% endfor %}
               {% endif %}
+              <!--for every edit note button, it is linked to 'editnote/(name of the note corresponding to dictionary)'-->
+              <form action = "editnote/{{note}}">
+                <p>{{note_list[note][1].button}}</p>
+              </form>
           </div>
       {% endfor %}
 

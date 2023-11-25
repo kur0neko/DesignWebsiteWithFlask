@@ -21,7 +21,7 @@ class Notebox(FlaskForm):
     note_name = StringField('Note Name: ', validators=[DataRequired()])
     note_body = StringField('Note', widget=TextArea())
     image_upload = MultipleFileField('Image', name='image')
-    submit = SubmitField('Save Note')
+    submit = SubmitField('Create Note')
 
 class TableParams(FlaskForm):
     name = StringField('Table Name:', validators=[DataRequired()])
@@ -63,6 +63,7 @@ class updatePassword (FlaskForm):
 
 class Editbox(FlaskForm):
     note_body = StringField('Note', widget=TextArea())
+    image_upload2 = MultipleFileField('Images2', name='image2')
     save = SubmitField('Save Changes')
     
 class NewNoteButton(FlaskForm):
