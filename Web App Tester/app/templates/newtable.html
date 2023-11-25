@@ -4,7 +4,6 @@
     <h1>New Table</h1>
    
     <div>
-        {% if not table.validate_on_submit() %}
         <form action="" method="POST" novalidate>
             {{table.hidden_tag()}}
             <p> {{table.name.label}} <br>
@@ -36,36 +35,6 @@
         
             <p>{{table.submit()}}</p>
         </form>
-        {% endif %}
-
-        {%if table.validate_on_submit() %}
-    
-            <p>Table: {{ table.name.data }}</p>
-
-            <table>
-                {% for row in range(table.rows.data) %}
-                        <tr>
-                            {% for col in range(table.columns.data) %}
-                                <td> |{{row}},{{col}}| &nbsp;&nbsp; </td>
-                            {% endfor %}
-                        </tr>
-                {% endfor %}
-            </table>  
-            
-             
-            <div>
-                <p>Your Tables:
-                    {% for table in table_list %}
-                     <div>
-                            <p>Table: {{table}}</p>
-                    </div>
-                    {% endfor %}
-                </p>
-
-            </div>
-            
-        {% endif %}
-
 
     </div>
 

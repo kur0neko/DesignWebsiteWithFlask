@@ -1,12 +1,12 @@
 from flask import render_template
-from flask import redirect
+from flask import redirect, url_for
 from flask import flash
 from flask import session
 from flask import request, send_file
 from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm, NewNoteButton, EditNoteButton, Editbox
-from app.models import User, Note, Table, Image
+from app.models import User, Note, Table, Image, TableEntries
 from flask import request
-from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm, NewNoteButton, EditNoteButton, Editbox, DeleteProfile
+from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm, NewNoteButton, EditNoteButton, Editbox, DeleteProfile, tableEntry
 from app.models import User, Note, Table
 from app import myapp_obj
 from app import db
@@ -42,9 +42,14 @@ def home():
 					note_list[f'{note.note_name}'] = [note.note_body, editbutton, note.id]		#if found any entries, for value add their note_body (content in box) and key as note_name	
 				else:
 					note_list[f'{note.note_name}'] = [note.note_body, editbutton]				#no images, do not have a list for the values
+
+
+		table_list = Table.query.filter_by(user_id = session['id']).all()
+		
+
 	else:
 		return redirect('/login')													
-	return render_template('home.html',  user=user, note_list=note_list, newnote=newnote, img_list=img_list)
+	return render_template('home.html',  user=user, note_list=note_list, newnote=newnote, img_list=img_list, table_list = table_list)
 
 @myapp_obj.route("/login", methods=['GET', 'POST'])												#basic login function
 def login():
@@ -54,6 +59,7 @@ def login():
 		if found_user:
 			session['user'] = form.username.data
 			print('you logged in! it worked!')
+			db.session.commit()
 			return redirect('/home')
 		else:
 			return redirect('/createaccount')
@@ -149,21 +155,56 @@ def newtable():
 			session['id'] = found_user.id
 			
 		table = TableParams()
-		table_list = {}
-		found_id = Table.query.filter_by(user_id = session['id']).all()
-		if found_id:
-			for dbtable in found_id:
-				table_list[f'{dbtable.table_name}'] = (dbtable.numRows, dbtable.numColumns)
-		
+	
 		if table.validate_on_submit():
 			print('table creation')
 			u = Table(table_name= table.name.data,  numRows = table.rows.data, numColumns = table.columns.data, user_id = session['id'])
 			db.session.add(u)
 			db.session.commit()
+			redirecttest = url_for('edittable', table_id=u.id)
+			return redirect(redirecttest)
 		
 	else:
 		return redirect('/login')
-	return render_template('newtable.html', table = table, table_list = table_list)
+	return render_template('newtable.html', table = table)
+
+@myapp_obj.route('/edittable/<table_id>', methods=['GET', 'POST'])	
+def edittable(table_id):
+	if 'user' in session:
+		thisTable = Table.query.filter_by(id=table_id).first()	
+			 
+		tableEnt = tableEntry()
+       
+		notes = Note.query.filter(Note.user_id == session['id']).all()
+		tableEnt.note.choices = [(note.id, note.note_name) for note in notes]
+
+		entryList = TableEntries.query.filter(TableEntries.table_id == thisTable.id).all()
+		if tableEnt.validate_on_submit():
+			entry = TableEntries.query.filter(TableEntries.entryRow == tableEnt.row.data, TableEntries.entryColumn == tableEnt.column.data, TableEntries.table_id == thisTable.id).first()
+
+			if entry:
+				entry.entryRow = tableEnt.row.data
+				entryColumn = tableEnt.column.data
+				entry.entry_String =  tableEnt.string.data
+				entry.entry_Note = tableEnt.note.data
+			
+			else:
+				u = TableEntries(entryRow = tableEnt.row.data, entryColumn = tableEnt.column.data,
+				entry_String =  tableEnt.string.data, 
+				entry_Note = int(tableEnt.note.data), 
+				table_id = thisTable.id)
+				db.session.add(u)
+
+			entryList = TableEntries.query.filter(TableEntries.table_id == thisTable.id).all()
+			db.session.commit()
+			redirecttest = url_for('edittable', table_id = table_id)
+			return redirect(redirecttest)
+	else:
+		return redirect('/login')
+	return render_template('edittable.html', thisTable = thisTable, tableEnt = tableEnt, entryList = entryList, notes = notes)
+
+	
+
 
 @myapp_obj.route('/search', methods=['GET','POST'])
 def search():

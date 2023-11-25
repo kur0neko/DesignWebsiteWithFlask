@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, MultipleFileField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, MultipleFileField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo, NumberRange, ValidationError
 from wtforms.widgets import TextArea
 
@@ -87,6 +87,16 @@ class DeleteProfile(FlaskForm):
     confirm  = PasswordField('Repeat New Password')
     confirmDeletion = BooleanField('Confirm Deletion',validators=[DataRequired()])
     submit = SubmitField('Delete Profile')
+
+class  tableEntry(FlaskForm):
+
+    row = IntegerField('Row:')
+    column = IntegerField('Column:')
+    note = SelectField('Select a Note')
+    string =  StringField('Content:')
+    submit = SubmitField('Save Cell')
+
+
 
 
 

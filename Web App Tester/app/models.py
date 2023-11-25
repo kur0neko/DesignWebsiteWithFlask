@@ -45,15 +45,16 @@ class Table(db.Model):
         return f'<table {self.id}: {self.table_name}>'
 
 
-class TableEntry(db.Model):
+class TableEntries(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     entryRow = db.Column(db.Integer)
     entryColumn = db.Column(db.Integer)
-    entry_body = db.Column(db.String(1000))
+    entry_String = db.Column(db.String(1000))
+    entry_Note = db.Column(db.Integer)
     table_id = db.Column(db.Integer, db.ForeignKey('table.id'))
 
     def __repr__(self):
-        return f'<note {self.id}: {self.entry_body}>'
+        return f'<tableEntr {self.id}: {self.entry_String}>'
     
 class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
