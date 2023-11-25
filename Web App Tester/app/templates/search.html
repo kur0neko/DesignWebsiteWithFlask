@@ -2,19 +2,19 @@
 
 {% block content %}
 
-    <br><h2>Your Search for ..<em>{{searched}}</em></h2><br/>
+    <br><h2>Your Search for ..<em>{{query}}</em></h2><br/>
     {% if posts %}
 
-    {% for post in result %}
+    {% for query in note.note_name  %}
 
-    <a href="{{url_for('note',id=note.id)}}">{{note.note_name}}
+     <a href="{{url_for('note',id=note.id)}}">{{note.note_name}}
+     <a href="{{url_for('note',id=note.id)}}">{{result}}
         {}
     {% endfor %}
 
     {% else %}
     Sorry, your seach term: <strong>{{
-        searched}}</strong> was not found...
+        message}}</strong> 
     {% endif %}
 
 {% endblock %}
-

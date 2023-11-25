@@ -5,6 +5,9 @@ from flask import session
 from flask import request, send_file
 from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm, NewNoteButton, EditNoteButton, Editbox
 from app.models import User, Note, Table, Image
+from flask import request
+from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm, NewNoteButton, EditNoteButton, Editbox, DeleteProfile
+from app.models import User, Note, Table
 from app import myapp_obj
 from app import db
 from io import BytesIO
@@ -80,7 +83,11 @@ def createaccount():
 @myapp_obj.route("/profile", methods=['GET', 'POST'])
 def profile():
 	if 'user' in session:
-		found_user = User.query.filter_by(id = session['id']).first()
+		user = session['user']
+		found_user = User.query.filter_by(username=session['user']).first()
+		if found_user:
+			session['id'] = found_user.id
+			
 		changeName = updateName()
 		changeName.username = found_user.username
 		if changeName.validate_on_submit():
@@ -92,12 +99,22 @@ def profile():
 		changePassword = updatePassword()
 		changePassword.password = found_user.password
 		if changePassword.validate_on_submit():
-			found_user.password = changeName.newpassword.data
+			found_user.password = changePassword.newpassword.data
 			db.session.commit()
 			return redirect('/profile')
+		
+		delete = DeleteProfile()
+		delete.password = found_user.password
+		if delete.validate_on_submit():
+			db.session.delete(found_user)
+			db.session.commit()
+			print(Table.query.all()) #debug
+			print(Note.query.all()) #debug
+			return redirect('/logout')
+
 	else:
 		return redirect('/login')
-	return render_template('profile.html', changeName = changeName, changePassword= changePassword)
+	return render_template('profile.html', user = user, changeName = changeName, changePassword= changePassword, delete = delete)
 
 @myapp_obj.route('/newnote', methods=['GET','POST'])
 def newnote():
@@ -173,12 +190,11 @@ def base():
     #notes=notes.order_by(Note.note_name).all()
 @myapp_obj.route('/search',methods=['GET', 'POST'])
 def search():
-    form=SearchForm()
+    form=SearchForm()#
     if request.method == 'POST' and form.validate_on_submit():
-        searched=form.searched.data
-        #notes=Note.filter(Note.note_name.like('%'+notes.searched+'%')).all()
-        result = Note.query.filter(Note.note_name.like(searched)).all()
-        return render_template("search.html",form =form, searched=searched,result=result)
+         query = request.form.get('searched', '')     #searched=form.searched.data#
+         result=Note.query.filter(Note.note_name.like('%' + query + '%')).all()
+         return render_template("search.html",form =form,query=query, result=result)
     else:
         return render_template("search.html")
 	
