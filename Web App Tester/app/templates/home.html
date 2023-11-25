@@ -12,8 +12,9 @@
 </form>
 <h2>Results</h2>
 <ul>
-  {% for result in results %}
-      <li>{{ result }}</li>
+  {% for note in note_results %}
+  Note name: <strong>{{ note.note_name }}</strong>
+  <p>Note detail:{{ note.note_body }}</p>
   {% endfor %}
 </ul>
 
@@ -41,5 +42,3 @@
 </a>
 
 {% endblock %}
-
-

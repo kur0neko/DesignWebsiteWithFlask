@@ -142,6 +142,13 @@ def newtable():
 		return redirect('/login')
 	return render_template('newtable.html', table = table, table_list = table_list)
 
+@myapp_obj.route('/search', methods=['GET','POST'])
+def search():
+    keyword = request.args.get('searched','')#get form only use args.get with extra argument
+    note_results = search_notes(keyword)
+    return render_template('search.html', keyword=keyword, note_results=note_results)
+
+
 @myapp_obj.route('/editnote/<notename>', methods=['GET', 'POST'])		#creation of edit note page/'<notename> for the name of the note being sent
 def editnote(notename):
 	if 'user' in session:
@@ -155,25 +162,9 @@ def editnote(notename):
 			return redirect('/profile')									#take back to profile page
 	return render_template('editnote.html', editnote=editnote)			 
 
-#function of flask that return dictionary
-@myapp_obj.context_processor
-def base():
-    form = SearchForm()
-    return dict(form=form)
-
-
-  #get data from submitted form 
-   #Query the database
-    #notes=notes.order_by(Note.note_name).all()
-@myapp_obj.route('/search',methods=['GET', 'POST'])
-def search():
-    form=SearchForm()#
-    if request.method == 'POST' and form.validate_on_submit():
-         query = request.form.get('searched', '')     #searched=form.searched.data#
-         result=Note.query.filter(Note.note_name.like('%' + query + '%')).all()
-         return render_template("search.html",form =form,query=query, result=result)
-    else:
-        return render_template("search.html",message="error, Note is not found")
-        
+def search_notes(keyword):
+    result=Note.query.filter(Note.note_name.ilike(f'%{keyword}%')).all()
+    return result
     
-         
+    
+ 
