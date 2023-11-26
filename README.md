@@ -43,11 +43,10 @@ NoteHub is the Note Web application built with Flask python framework, WTforms, 
 ```bash
 brew install pip3
 ```
-**Guideline installation**
-[Download requirement.txt ](https://github.com/kur0neko/DesignWebsiteWithFlask/blob/master/Web%20App%20Tester/requirements.txt)
+**Guideline Install Instruction**
 
-**Install Instruction**
-- on Terminal
+1 [Download requirement.txt ](https://github.com/kur0neko/DesignWebsiteWithFlask/blob/master/Web%20App%20Tester/requirements.txt)
+2 on Terminal use pip3 install command below
 ```bash
 Pip3 install -r requirements.txt
 ```
