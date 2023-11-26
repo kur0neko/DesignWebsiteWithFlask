@@ -1,5 +1,7 @@
 # NoteHub
-is the note web application built with Flask
+NoteHub is the Note Web application built with Flask python framework, WTforms, SQL alchemy and Jinja web template engine.
+
+**Group Members**
 
 - Nutthawat Panyangnoi (@kur0neko)
 - Yousef Asad (@yasad21)
