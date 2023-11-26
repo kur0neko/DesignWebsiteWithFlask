@@ -246,7 +246,8 @@ def editnote(notename):
 	return render_template('editnote.html', editnote=editnote)			 
 
 def search_notes(userID,keyword):
-     result = Note.query.filter(userID == Note.user_id, Note.note_name.ilike(f'%{keyword}%')).all()
+    #also compare user from the FK_noteID to user ID
+     result = Note.query.filter(userID == Note.user_id, Note.note_name.ilike(f'%{keyword}%')).all() 
      return result
     
 @myapp_obj.route('/download/<img_name>', methods=['GET'])													#used to receive the image name for download
