@@ -9,6 +9,13 @@
           {{note.hidden_tag()}}
             <p>{{note.note_name.label}}
                 {{note.note_name}}</p>
+
+                <div class = "error">
+                    {% for error in note.note_name.errors %}
+                        <span style="color:red;">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                
             <p>{{note.note_body(rows = 25, cols = 100)}}</p>
             <!--Used to grab images-->
             <p>{{note.image_upload}}</p>

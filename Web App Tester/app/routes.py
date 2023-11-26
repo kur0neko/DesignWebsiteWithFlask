@@ -125,7 +125,9 @@ def profile():
 @myapp_obj.route('/newnote', methods=['GET','POST'])
 def newnote():
 	if 'user' in session:																						#make sure user is logged in before proceeding, if not send back to login
-		note = Notebox()																						
+		note = Notebox()
+		notelist1 = Note.query.filter(Note.user_id == session['id']).all()
+		note.notelist = notelist1																						
 		if note.validate_on_submit():																			#once the note is submitted, functions are applied
 			print('you submitted your note!')																	#check if note is submitted
 			found_user = User.query.filter_by(username=session['user']).first()									#find the data entry with the same name as the logged-in user

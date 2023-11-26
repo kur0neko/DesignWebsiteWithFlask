@@ -19,6 +19,12 @@ class CreateAccountForm(FlaskForm):
 
 class Notebox(FlaskForm):
     note_name = StringField('Note Name: ', validators=[DataRequired()])
+    
+    def validate_note_name(self,check):
+        for note in self.notelist:
+            if check.data == note.note_name:
+                raise ValidationError('This note name already exists')
+    
     note_body = StringField('Note', widget=TextArea())
     image_upload = MultipleFileField('Image', name='image')
     submit = SubmitField('Create Note')
