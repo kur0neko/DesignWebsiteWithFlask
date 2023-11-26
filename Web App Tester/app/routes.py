@@ -3,10 +3,8 @@ from flask import redirect, url_for
 from flask import flash
 from flask import session
 from flask import request, send_file
-from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm, NewNoteButton, EditNoteButton, Editbox
 from app.models import User, Note, Table, Image, TableEntries
-from flask import request
-from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm, NewNoteButton, EditNoteButton, Editbox, DeleteProfile, tableEntry
+from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm, NewNoteButton, EditNoteButton, Editbox, DeleteProfile, tableEntry, modifyParams
 from app.models import User, Note, Table
 from app import myapp_obj
 from app import db
@@ -44,7 +42,7 @@ def home():
 					note_list[f'{note.note_name}'] = [note.note_body, editbutton]				#no images, do not have a list for the values
 
 
-		table_list = Table.query.filter_by(user_id = session['id']).all()
+		table_list = Table.query.filter_by(user_id = session['id']).all() 						# create a list of all tables that belong to the current user
 		
 
 	else:
@@ -88,38 +86,39 @@ def createaccount():
 
 @myapp_obj.route("/profile", methods=['GET', 'POST'])
 def profile():
-	if 'user' in session:
-		user = session['user']
-		found_user = User.query.filter_by(username=session['user']).first()
-		if found_user:
-			session['id'] = found_user.id
-			
-		changeName = updateName()
-		changeName.username = found_user.username
-		if changeName.validate_on_submit():
-			found_user.username = changeName.newname.data
-			session['user'] = found_user.username
-			db.session.commit()
-			return redirect('/profile')
+	if 'user' in session:															#check if the user is in session (i.e logged in)
+		user = session['user']														#set the user to the current session's user
+		found_user = User.query.filter_by(username=session['user']).first()			#find the corresponding user in the User database
 
-		changePassword = updatePassword()
-		changePassword.password = found_user.password
-		if changePassword.validate_on_submit():
-			found_user.password = changePassword.newpassword.data
-			db.session.commit()
-			return redirect('/profile')
+		if found_user:																#if this user exists (which will always be true, but better safe than sorry)
+			session['id'] = found_user.id											#set the session id to the found user's id
+			
+		changeName = updateName()													#create the form so the user can update their username
+		changeName.username = found_user.username									#create a variable for the changeName form so that it can be used in the validation in forms.py
+		if changeName.validate_on_submit():											#check if the form was validated
+			found_user.username = changeName.newname.data							#change the user's username to the new username
+			session['user'] = found_user.username									#change the session's username to this new username as well
+			db.session.commit()														#commit the changes
+			return redirect('/profile')												#redirect to the profile
+
+		changePassword = updatePassword()											#create the form so the user can update their password
+		changePassword.password = found_user.password								#create a variable for the changePassword form so that it can be used in the validation in forms.py
+		if changePassword.validate_on_submit():										#check if the form was validated
+			found_user.password = changePassword.newpassword.data					#change the user's password to the new password
+			db.session.commit()														#commit the changes
+			return redirect('/profile')												#redirect to the profile
 		
-		delete = DeleteProfile()
-		delete.password = found_user.password
-		if delete.validate_on_submit():
-			db.session.delete(found_user)
-			db.session.commit()
-			print(Table.query.all()) #debug
-			print(Note.query.all()) #debug
-			return redirect('/logout')
+		delete = DeleteProfile()													#create the form so that the user can delete their profile
+		delete.password = found_user.password										#create a variable for the form so that it can be used in forms.py for validation
+		if delete.validate_on_submit():												#check if form validated
+			db.session.delete(found_user)											#delete the user from the database
+			db.session.commit()														#commit the changes
+			print(Table.query.all()) 												#debug to see if cascading delete occurs
+			print(Note.query.all()) 												#debug to see if cascading delete occurs
+			return redirect('/logout')												#simply logout of the account which no longer exists, which will basically redirect us to login
 
 	else:
-		return redirect('/login')
+		return redirect('/login')													#if user is not in session redirect to login
 	return render_template('profile.html', user = user, changeName = changeName, changePassword= changePassword, delete = delete)
 
 @myapp_obj.route('/newnote', methods=['GET','POST'])
@@ -153,61 +152,101 @@ def newnote():
 
 @myapp_obj.route('/newtable', methods=['GET', 'POST'])
 def newtable():
-	if 'user' in session:
+	if 'user' in session: 																						#check if user is in session
 
-		user = session['user']
-		found_user = User.query.filter_by(username=session['user']).first()
-		if found_user:
-			session['id'] = found_user.id
+		user = session['user'] 																					# set the user to the current session's user
+		found_user = User.query.filter_by(username=session['user']).first() 									# find the corresponding user in the User database
+		if found_user: 																							# if this user exists (which will always be true, but better safe than sorry)
+			session['id'] = found_user.id 																		# set the session id to the found user's id
 			
-		table = TableParams()
+		table = TableParams() 																					# create form which use will input paramaters for their table
 	
 		if table.validate_on_submit():
-			print('table creation')
-			u = Table(table_name= table.name.data,  numRows = table.rows.data, numColumns = table.columns.data, user_id = session['id'])
-			db.session.add(u)
-			db.session.commit()
-			redirecttest = url_for('edittable', table_id=u.id)
-			return redirect(redirecttest)
+			print('table creation') 																			# debug
+			u = Table(table_name= table.name.data,  
+						numRows = table.rows.data, 
+						numColumns = table.columns.data, 
+						user_id = session['id']) 																# create new Table 
+			db.session.add(u) 																					# add it to database
+			db.session.commit() 																				# commit the changes
+			redirecttest = url_for('edittable', table_id=u.id) 													# get url for editing this specific table
+			return redirect(redirecttest) 																		# redirect to the url found above
 		
 	else:
-		return redirect('/login')
+		return redirect('/login') 																				# if a current session is not found return to the login page. 
 	return render_template('newtable.html', table = table)
 
-@myapp_obj.route('/edittable/<table_id>', methods=['GET', 'POST'])	
+@myapp_obj.route('/edittable/<table_id>', methods=['GET', 'POST'])												#we use dynamic routes here because we want each edit table webpage to be assigned to a single table
 def edittable(table_id):
-	if 'user' in session:
-		thisTable = Table.query.filter_by(id=table_id).first()	
+	if 'user' in session: 																						#check if user is in session
+		thisTable = Table.query.filter_by(id=table_id).first()													# find the table that corresponds to the table_id in the route
 			 
-		tableEnt = tableEntry()
+		tableEnt = tableEntry() 																				# create the form for entering a value into the table
        
-		notes = Note.query.filter(Note.user_id == session['id']).all()
-		tableEnt.note.choices = [(note.id, note.note_name) for note in notes]
+		notes = Note.query.filter(Note.user_id == session['id']).all() 											#get all the notes that belongs to the session's user
+		tableEnt.note.choices = [(note.id, note.note_name) for note in notes]  									# set the choices for note selection in the form to the list of notes
+		tableEnt.note.choices.insert(0,(None, ' ')) 															# insert an option to select no note at index 0 of the selections
 
-		entryList = TableEntries.query.filter(TableEntries.table_id == thisTable.id).all()
-		if tableEnt.validate_on_submit():
-			entry = TableEntries.query.filter(TableEntries.entryRow == tableEnt.row.data, TableEntries.entryColumn == tableEnt.column.data, TableEntries.table_id == thisTable.id).first()
+		entryList = TableEntries.query.filter(TableEntries.table_id == thisTable.id).all() 						# get a list of all the entries for this table
+		if tableEnt.validate_on_submit(): 																		# when form is sucessfully submitted
 
-			if entry:
+			entry = TableEntries.query.filter(TableEntries.entryRow == tableEnt.row.data, 
+												TableEntries.entryColumn == tableEnt.column.data, 
+												TableEntries.table_id == thisTable.id).first() 					#get the entry for the specified flask form in the cell
+
+			if entry: 																							# if there is already an entry, dont create a new entry into the database, instead just modify it
 				entry.entryRow = tableEnt.row.data
 				entryColumn = tableEnt.column.data
 				entry.entry_String =  tableEnt.string.data
 				entry.entry_Note = tableEnt.note.data
 			
-			else:
+			else: 																								# if there is no entry, create a new entry and commit it into the database
 				u = TableEntries(entryRow = tableEnt.row.data, entryColumn = tableEnt.column.data,
 				entry_String =  tableEnt.string.data, 
-				entry_Note = int(tableEnt.note.data), 
+				entry_Note = tableEnt.note.data, 
 				table_id = thisTable.id)
 				db.session.add(u)
 
-			entryList = TableEntries.query.filter(TableEntries.table_id == thisTable.id).all()
-			db.session.commit()
+			entryList = TableEntries.query.filter(TableEntries.table_id == thisTable.id).all() 					#update entry list
+			db.session.commit() 																				# commit all the cganges
 			redirecttest = url_for('edittable', table_id = table_id)
-			return redirect(redirecttest)
+			return redirect(redirecttest) 																		#redirect to the same webpage with all the changes
+		
+		newsize = modifyParams() 																				#user form for changing the rows and columns 
+		
+		if newsize.validate_on_submit():																		#if form is validated
+
+			if newsize.rows.data > thisTable.numRows:															#check if the new rows is greater than the original rows
+				thisTable.numRows = newsize.rows.data															#change numRows of the table
+			
+			if newsize.columns.data > thisTable.numColumns:														#check if the new columns is greater than the original columns
+				thisTable.numColumns = newsize.columns.data														#change numColumns of the table
+			
+			if newsize.rows.data < thisTable.numRows:															#check if new rows is less than the current numRows
+				change = thisTable.numRows - newsize.rows.data													#find the difference between the two
+				for i in range(change):																			#iterate through that change
+					x = thisTable.numRows - i -1																#We want to delete the outside rows, so we calculate a new value with an offset
+					entryList = TableEntries.query.filter(TableEntries.entryRow == x).all() 					#we query all the entries that are in a row that must be deleted
+					for entry in entryList:																		#we delete all those entries
+						db.session.delete(entry)	
+					thisTable.numRows = newsize.rows.data														#we change the value of numRows correspondingly
+			
+			if newsize.columns.data < thisTable.numColumns:														#check if new columns is less than the current numColumns
+				change = thisTable.numColumns - newsize.columns.data											#find the difference between the two 
+				for i in range(change):																			#iterate through that change
+					x = thisTable.numColumns - i -1																#We want to delete the outside columns, so we calculate a new value with an offset 
+					entryList = TableEntries.query.filter(TableEntries.entryColumn == x).all() 					#we query all the enteries that are in the row that must be deleted
+					for entry in entryList:																		#we delete all those entries
+						db.session.delete(entry)																
+					thisTable.numColumns = newsize.columns.data													#we change the value of numColumns correspondingly
+
+			db.session.commit()																					#we commit these changes
+			redirecttest = url_for('edittable', table_id = table_id)											#we redirect to the same webpage so we can see the changes
+			return redirect(redirecttest)																		
+
 	else:
-		return redirect('/login')
-	return render_template('edittable.html', thisTable = thisTable, tableEnt = tableEnt, entryList = entryList, notes = notes)
+		return redirect('/login')																				#if user is not in a session redirect them back to the login page
+	return render_template('edittable.html', thisTable = thisTable, tableEnt = tableEnt, entryList = entryList, notes = notes, newsize= newsize) # render the template, this way these variables can be used in other files
 
 	
 
