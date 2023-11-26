@@ -212,9 +212,13 @@ def edittable(table_id):
 
 @myapp_obj.route('/search', methods=['GET','POST'])
 def search():
-    keyword = request.args.get('searched','')#get form only use args.get with extra argument
-    note_results = search_notes(keyword)
-    return render_template('search.html', keyword=keyword, note_results=note_results)
+    if 'user' in session:
+        UserID = session.get('id')  
+        keyword = request.args.get('searched', '')
+        note_results = search_notes(UserID, keyword)
+        return render_template('search.html', keyword=keyword, note_results=note_results)
+    else:
+        return redirect('/home')
 
 
 @myapp_obj.route('/editnote/<notename>', methods=['GET', 'POST'])		#creation of edit note page/'<notename> for the name of the note being sent
@@ -241,9 +245,9 @@ def editnote(notename):
 			return redirect('/home')																#take back to profile page
 	return render_template('editnote.html', editnote=editnote)			 
 
-def search_notes(keyword):
-    result=Note.query.filter(Note.note_name.ilike(f'%{keyword}%')).all()
-    return result
+def search_notes(userID,keyword):
+     result = Note.query.filter(userID == Note.user_id, Note.note_name.ilike(f'%{keyword}%')).all()
+     return result
     
 @myapp_obj.route('/download/<img_name>', methods=['GET'])													#used to receive the image name for download
 def download(img_name):
