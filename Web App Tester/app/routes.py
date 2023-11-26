@@ -248,6 +248,8 @@ def editnote(notename):
 def search_notes(userID,keyword):
     #also compare user from the FK_noteID to user ID
      result = Note.query.filter(userID == Note.user_id, Note.note_name.ilike(f'%{keyword}%')).all() 
+     #result = Note.query.filter(userID == Note.user_id, Note.note_name.like(f'%{keyword}%')).all() 
+     #code above is only look for exact words
      return result
     
 @myapp_obj.route('/download/<img_name>', methods=['GET'])													#used to receive the image name for download
