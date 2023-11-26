@@ -43,5 +43,4 @@ In this meeting the group discussed the comments and fixes needed for Milestone 
 1. Meghana worked on the following requirements: create table, edit profile, and delete profile. Will work on integrating google translate api as the final requirement. Will also add row deletion and column deletion for table requirement.
 1. Noah finished up coding the requirements for Attach Images and Edit Notes and a new requirement Create Note. In the future, will work on interface design of the pages related to the requirements worked on.
 1. **Summary:**
-
 The team discussed the requirements that were finished over the last week and the requirements that need to be finished before the deadline of Milestone 2. Also the team worked on and tested the code written for the requirements to catch bugs and errors. Finally the team also discussed what the next steps of the project are and any finishing requirements for the project.
