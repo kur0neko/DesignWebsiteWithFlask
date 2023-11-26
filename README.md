@@ -1,4 +1,5 @@
 # NoteHub
+is the note web application built with Flask
 
 - Nutthawat Panyangnoi (@kur0neko)
 - Yousef Asad (@yasad21)
