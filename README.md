@@ -38,7 +38,7 @@
 ```bash
 brew install pip3
 ```
-[Requirements packages](Web App Tester/requirements.txt)
+[Requirement.txt](https://github.com/kur0neko/DesignWebsiteWithFlask/blob/master/Web%20App%20Tester/requirements.txt)
 
 **Install**
 ```bash
