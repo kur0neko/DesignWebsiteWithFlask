@@ -1,5 +1,5 @@
 # NoteHub
-NoteHub is the Note Web application built with Flask python framework, WTforms, SQL alchemy and Jinja web template engine.
+NoteHub is the Note Web application built with Flask python framework, WTforms, SQL alchemy, and Jinja web template engine.
 
 **Group Members**
 
@@ -8,8 +8,10 @@ NoteHub is the Note Web application built with Flask python framework, WTforms, 
 - Noah Nguyen (@noahnguyen015) (team lead)
 - Meghana Indukuri (@meghanai28)
 
-**Framework and libraries requirements**
+**Framework and Libraries Requirements**
 -
+
+<p>Follow the guideline installation below</p>
 
 ![Static Badge](https://img.shields.io/badge/blinker-version%201.7.0-green)
 ![Static Badge](https://img.shields.io/badge/click-version%208.1.7-blue)
@@ -28,7 +30,7 @@ NoteHub is the Note Web application built with Flask python framework, WTforms, 
 ![Static Badge](https://img.shields.io/badge/Werkzeug-version%203.0.1-green?style=3d&logo=Werkzeug)
 ![Static Badge](https://img.shields.io/badge/WTForms-3.1.1-white?style=3d&logo=WTForms)
 
-**Prerequisite installation**
+**Prerequisite requirement**
 -
 -![Static Badge](https://img.shields.io/badge/Linux-purple?style=3d&logo=Linux) ![Static Badge](https://img.shields.io/badge/Mac%20OS-black?style=3d&logo=Apple)
 - Python from version 3.4+ come with pip3
@@ -41,9 +43,11 @@ NoteHub is the Note Web application built with Flask python framework, WTforms, 
 ```bash
 brew install pip3
 ```
-[Requirement.txt](https://github.com/kur0neko/DesignWebsiteWithFlask/blob/master/Web%20App%20Tester/requirements.txt)
+**Guideline installation**
+[Download requirement.txt ](https://github.com/kur0neko/DesignWebsiteWithFlask/blob/master/Web%20App%20Tester/requirements.txt)
 
-**Install**
+**Install Instruction**
+- on Terminal
 ```bash
 Pip3 install -r requirements.txt
 ```
