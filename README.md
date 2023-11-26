@@ -49,6 +49,23 @@ brew install pip3
 ```bash
 Pip3 install -r requirements.txt
 ```
-**Recommended to installation and run on virtual environments**
+**Recommended to install all frameworks and run on virtual environments**
+1. Install Python virtual environments
+   ```bash
+   pip install virtualenv
+   ```
+2. Create Python virtual environments
+   ```bash
+    python<version> -m venv <virtual-environment-name>
+   ```
+4. Activate Python Virtual Environments
+   ```bash
+    source .<virtual-environment-name>/bin/activate
+   ```
+5. Deactivate Python Virtual Environments while in the virtual environment
+   ```bash
+    deactivate
+   ```
+   
 
 
