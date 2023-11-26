@@ -45,8 +45,9 @@ brew install pip3
 ```
 **Guideline Install Instruction**
 
-1 [Download requirement.txt ](https://github.com/kur0neko/DesignWebsiteWithFlask/blob/master/Web%20App%20Tester/requirements.txt)
-2 on Terminal use pip3 install command below
+1. [Download requirement.txt ](https://github.com/kur0neko/DesignWebsiteWithFlask/blob/master/Web%20App%20Tester/requirements.txt)
+
+2. on Terminal use pip3 install command below
 ```bash
 Pip3 install -r requirements.txt
 ```
