@@ -6,6 +6,7 @@
 - Meghana Indukuri (@meghanai28)
 
 **Framework and libraries requirements**
+
 ![Static Badge](https://img.shields.io/badge/blinker-version%201.7.0-green)
 ![Static Badge](https://img.shields.io/badge/click-version%208.1.7-blue)
 ![Static Badge](https://img.shields.io/badge/dnspython-version%202.4.2-Darkgreen)
