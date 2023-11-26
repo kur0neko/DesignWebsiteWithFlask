@@ -39,7 +39,7 @@ In this meeting the group discussed the comments and fixes needed for Milestone 
 -**Team updates:**
 
 1. Yousef worked on sign in and registration requirements. He plans on impeding sign out next. He also completed the ethics essay for the group and plans to continue working on the rest of the requirements.
-1. Nutthawat worked on the following requirements: Search and he planing on finish delete note functions. Additionally, he reviewed the codes in the pull request and do minor test in order to prevent and error in the master branch. He also converted the Ethic Implications docx to Markdown format. He will continue implementing  the advanced search function and integrating the advance search function later on in the final requirements.
+1. Nutthawat worked on the following requirements: Search and he planing on finish delete note functions. Additionally, he reviewed the codes in the pull request and did minor test in order to prevent an error in the master branch. He also converted the Ethic Implications docx to Markdown format. He will continue implementing  the advanced search function and integrating the advanced search function later on in the final requirements.
 1. Meghana worked on the following requirements: create table, edit profile, and delete profile. Will work on integrating google translate api as the final requirement. Will also add row deletion and column deletion for table requirement.
 1. Noah finished up coding the requirements for Attach Images and Edit Notes and a new requirement Create Note. In the future, will work on interface design of the pages related to the requirements worked on.
 1. **Summary:**
