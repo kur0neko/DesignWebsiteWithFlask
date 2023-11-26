@@ -31,12 +31,13 @@
               <p>Note-Text: {{note_list[note][0]}}</p>
               <!--If there are images (img_list exists), make a download attachment for each image-->
               {% if note_list[note][2] %}
+              <span>Attachments: </span>
                 {% for img in img_list %}
                 <!--loop through all sets of images for each note-->
                   {% for name in img %}
                 <!--link each image in the dictionary for 1 note-->
                     {% if img[name] == note_list[note][2] %}
-                      <a href="download/{{name}}">Attachment: {{name}}</a><br>
+                    <a href="download/{{name}}">{{name}}</a><br>
                     {% endif %}
                   {% endfor %}
                 {% endfor %}

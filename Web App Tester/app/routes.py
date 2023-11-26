@@ -132,12 +132,16 @@ def newnote():
 			u = Note(note_body=note.note_body.data, note_name=note.note_name.data, owner=found_user)			#create new data entry, (owner=found_user) is one to many relationship --> id in users table connected to user-id in note tables
 			db.session.add(u)																					#add new data entry into the the database
 			db.session.commit()		
+			
 
-			for image in request.files.getlist('image'):														#grabs all images from the image_upload attribute
-				print(image)																					#test for all images inside												#
+			for image in request.files.getlist('image'):														#grabs all images from the image_upload attribute																					#test for all images inside												
 				mimetype = image.mimetype																		#grab type of image
-				i = Image(img=image.read(), mimetype=mimetype, imgname=image.filename, note=u)					#import into database (Image Table)
-				db.session.add(i)																				
+				print(mimetype)
+				if mimetype == 'application/octet-stream':
+					print('this is an empty image field')
+				else:
+					i = Image(img=image.read(), mimetype=mimetype, imgname=image.filename, note=u)				#import into database (Image Table)
+					db.session.add(i)																				
 			
 			db.session.commit()																					#commit changes from Image
 			return redirect('/home')																			#send back to home
@@ -224,11 +228,14 @@ def editnote(notename):
 			found_note.note_body = editnote.note_body.data														#if validated make the changed string equal to the database note_body variable (the content)																							
 			db.session.commit()																					#commit the changes to the database to change the string value
 
-			for image2 in request.files.getlist('image2'):													
-				mimetype = image2.mimetype																		
-				i2 = Image(img=image2.read(), mimetype=mimetype, imgname=image2.filename, note=found_note)			
-				db.session.add(i2)
-				db.session.commit()
+			for image2 in request.files.getlist('image2'):
+				mimetype = image2.mimetype		
+				if mimetype == 'application/octet-stream':
+					print('this is an empty image field')
+				else:																														
+					i2 = Image(img=image2.read(), mimetype=mimetype, imgname=image2.filename, note=found_note)			
+					db.session.add(i2)
+					db.session.commit()
 				
 				return redirect('/home')
 			return redirect('/home')																#take back to profile page
