@@ -1,24 +1,37 @@
-{% extends "base.html"%}
+<!DOCTYPE html>
+<html>
 
-{% block content %}
-<h1>Sign In</h1>
-<form action="" method="POST" novalidate>
-    {{form.hidden_tag()}}
-    <p> {{form.name.label}} <br>
-       {{form.name(size=32)}}</p>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tester</title>
+    <link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" 
+/>
+</head>
 
-    <p> {{form.email.label}} <br>
-       {{form.email(size=32)}}</p>
+<body>
+   <br>
+   <h1>Create an Account</h1>
+   <form action="" method="POST" novalidate>
+       {{form.hidden_tag()}}
+       <p> {{form.name.label}} <br>
+          {{form.name(size=32)}}</p>
+   
+       <p> {{form.email.label}} <br>
+          {{form.email(size=32)}}</p>
+   
+       <p> {{form.username.label}} <br>
+          {{form.username(size=32)}}</p>
+   
+       <p> {{form.password.label}} <br>
+          {{form.password(size=32)}}</p>
+   
+       <p> {{form.confirm.label}} <br>
+          {{form.confirm(size=32)}}</p>
+   
+       <p>{{form.submit()}}</p>
+   </form>
+</body>
 
-    <p> {{form.username.label}} <br>
-       {{form.username(size=32)}}</p>
-
-    <p> {{form.password.label}} <br>
-       {{form.password(size=32)}}</p>
-
-    <p> {{form.confirm.label}} <br>
-       {{form.confirm(size=32)}}</p>
-
-    <p>{{form.submit()}}</p>
-</form>
-{% endblock %}

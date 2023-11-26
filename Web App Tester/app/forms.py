@@ -102,6 +102,11 @@ class  tableEntry(FlaskForm):
     string =  StringField('Content:')
     submit = SubmitField('Save Cell')
 
+class modifyParams(FlaskForm):
+    rows = IntegerField('Rows:', validators=[DataRequired(), NumberRange(min=1, message='Number must be greater than 1.')] )
+    columns = IntegerField('Columns:', validators=[DataRequired(), NumberRange(min=1, message='Number must be greater than 1.')] )
+    submit = SubmitField('Save Changes')
+
 
 
 
