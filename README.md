@@ -45,11 +45,11 @@ brew install pip3
 ```
 **Guideline Install Instruction**
 1. [Download requirement.txt ](https://github.com/kur0neko/DesignWebsiteWithFlask/blob/master/Web%20App%20Tester/requirements.txt)
-2. On Terminal use the pip3 install command below
+2. On Terminal use the pip3 install command below, (Recommended to install all frameworks and run on virtual environments)
 ```bash
 Pip3 install -r requirements.txt
 ```
-**Recommended to install all frameworks and run on virtual environments**
+**Python Virtual Environments Instruction**
 1. Install Python virtual environments
    ```bash
    pip install virtualenv
