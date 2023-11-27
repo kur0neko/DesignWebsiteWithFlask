@@ -1,102 +1,137 @@
 {% extends "base.html"%}
 
 {% block content %}
+    <!-- show user their username -->
     <h1> Hello {{user}}, this is your profile page: </h1>
 
+    <!-- create a dropdown style editor for changing the username -->
     <details>
+        <!-- tell user the title of this dropdown -->
         <summary>Change Username</summary>
+        <!-- form for user to modify their username -->
         <form action="" method="POST" novalidate>
             {{changeName.hidden_tag()}}
+
+            <!-- let user enter their old/current username -->
             <p> {{changeName.oldname.label}} <br>
                {{changeName.oldname(size=32)}}</p>
 
-               <div class = "error">
+                <!-- show the errors if the user submits a username that does not match their current username or inputs nothing -->
+                <div class = "error">
+                <!-- show all the errors the user incurred by using a for loop -->
                 {% for error in changeName.oldname.errors %}
                     <span style="color:red;">{{ error }}</span>
                 {% endfor %}
                </div>    
         
+            <!-- let user enter their new username -->
             <p> {{changeName.newname.label}} <br>
                {{changeName.newname(size=32)}}</p>
 
-               <div class = "error">
+                <!-- show the errors if the user submits a username that matches their current username or inputs nothing -->
+                <div class = "error">
+                <!-- show all the errors the user incurred by using a for loop -->
                 {% for error in changeName.newname.errors %}
                     <span style="color:red;">{{ error }}</span>
                 {% endfor %}
                </div>    
         
+            <!-- submit the form-->
             <p>{{changeName.submit()}}</p>
         </form>
       </details>
 
+      <!-- create a dropdown style editor for changing the password -->
       <details>
+        <!-- create name for the dropdown-->
         <summary>Change Password</summary>
         <form action="" method="POST" novalidate>
             {{changePassword.hidden_tag()}}
             
+            <!-- user eneters their current password here -->
             <p> {{changePassword.oldpassword.label}} <br>
                {{changePassword.oldpassword(size=32)}}</p>
 
+               <!-- show the errors if the user submits a password that does not match their current password or inputs nothing -->
                <div class = "error">
+                <!-- show all the errors the user incurred by using a for loop -->
                 {% for error in changePassword.oldpassword.errors %}
                     <span style="color:red;">{{ error }}</span>
                 {% endfor %}
                </div>    
         
+            <!--user enters their new password here -->
             <p> {{changePassword.newpassword.label}} <br>
                {{changePassword.newpassword(size=32)}}</p>
 
+               <!-- show the errors if the user submits a username that matches their current password or inputs nothing -->
                <div class = "error">
+                <!-- show all the errors the user incurred by using a for loop -->
                 {% for error in changePassword.newpassword.errors %}
                     <span style="color:red;">{{ error }}</span>
                 {% endfor %}
                </div>  
 
+            <!-- user retypes their new password -->
             <p> {{changePassword.confirm.label}} <br>
                {{changePassword.confirm(size=32)}}</p>
 
+               <!-- user must confirm their password change by retyping their new password-->
                <div class = "error">
+                <!-- show all the errors the user incurred by using a for loop -->
                 {% for error in changePassword.confirm.errors %}
                     <span style="color:red;">{{ error }}</span>
                 {% endfor %}
                </div>  
         
+            <!-- user submits -->
             <p>{{changePassword.submit()}}</p>
         </form>
       </details>
 
+      <!-- create a dropdown style editor for deleting the account-->
       <details>
         <summary>Delete Profile</summary>
         <form action="" method="POST" novalidate>
             {{delete.hidden_tag()}}
             
+            <!-- user types password -->
             <p> {{delete.typepassword.label}} <br>
                {{delete.typepassword(size=32)}}</p>
 
+               <!-- user must type their current password or else errors are displayed-->
                <div class = "error">
+                <!-- show all the errors the user incurred by using a for loop -->
                 {% for error in delete.typepassword.errors %}
                     <span style="color:red;">{{ error }}</span>
                 {% endfor %}
                </div>    
         
+            <!-- user retypes password once again-->
             <p> {{delete.confirm.label}} <br>
                {{delete.confirm(size=32)}}</p>
 
+               <!-- user must type their current password again or else errors are displayed-->
                <div class = "error">
+                <!-- show all the errors the user incurred by using a for loop -->
                 {% for error in delete.confirm.errors %}
                     <span style="color:red;">{{ error }}</span>
                 {% endfor %}
                </div>  
 
+            <!-- user must confirm deletion-->
             <p> {{delete.confirmDeletion.label}} <br>
                {{delete.confirmDeletion()}}</p>
 
-               <div class = "error">
+              <!-- user must type their confrim deletion or else errors are displayed-->
+              <div class = "error">
+                <!-- show all the errors the user incurred by using a for loop -->
                 {% for error in changePassword.confirm.errors %}
                     <span style="color:red;">{{ error }}</span>
                 {% endfor %}
                </div>  
         
+            <!-- user submits form -->
             <p>{{delete.submit()}}</p>
         </form>
       </details>

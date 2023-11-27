@@ -14,7 +14,7 @@ class User(db.Model):
         return check_password_hash(self.password, password)
 
     noter = db.relationship('Note', backref ='owner', lazy = 'dynamic', cascade = 'all')
-    tabler = db.relationship('Table', backref ='owner', lazy = 'dynamic', cascade = 'all')
+    tabler = db.relationship('Table', backref ='owner', lazy = 'dynamic', cascade = 'all') #build the relationship between the table and the user, so when a user is deleted their is a cascading delete 
 
 
     def __repr__(self):
@@ -33,28 +33,28 @@ class Note(db.Model):
     images = db.relationship('Image', backref ='note', lazy = 'dynamic')
 
 
-class Table(db.Model):
+class Table(db.Model):                                          #model for table 
 
-    id = db.Column(db.Integer, primary_key=True)
-    table_name = db.Column(db.String(15))
-    numRows = db.Column(db.Integer)
-    numColumns = db.Column(db.Integer)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-    def __repr__(self):
-        return f'<table {self.id}: {self.table_name}>'
-
-
-class TableEntries(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    entryRow = db.Column(db.Integer)
-    entryColumn = db.Column(db.Integer)
-    entry_String = db.Column(db.String(1000))
-    entry_Note = db.Column(db.Integer)
-    table_id = db.Column(db.Integer, db.ForeignKey('table.id'))
+    id = db.Column(db.Integer, primary_key=True)                #table id/primary key
+    table_name = db.Column(db.String(15))                       #name of table
+    numRows = db.Column(db.Integer)                             #number of rows
+    numColumns = db.Column(db.Integer)                          #number of columns
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))   #foriegn key which allows user to have one to many relationship with table  
 
     def __repr__(self):
-        return f'<tableEntr {self.id}: {self.entry_String}>'
+        return f'<table {self.id}: {self.table_name}>'          #define a string rep of the table itself
+
+
+class TableEntries(db.Model):                                   #model for table entries
+    id = db.Column(db.Integer, primary_key=True)                #primary key for the table which is id
+    entryRow = db.Column(db.Integer)                            #entryRow is the row of the cell's entry
+    entryColumn = db.Column(db.Integer)                         #column of the cell's entry
+    entry_String = db.Column(db.String(1000))                   #string that user types in the cell
+    entry_Note = db.Column(db.Integer)                          #id of the note in the cell
+    table_id = db.Column(db.Integer, db.ForeignKey('table.id')) #foriegn key to reresent the one to many relationship the table has to the table enteries
+
+    def __repr__(self):
+        return f'<tableEntr {self.id}: {self.entry_String}>'    #define a string rep of the table entries
     
 class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)

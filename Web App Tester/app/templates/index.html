@@ -5,29 +5,53 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Flask Auth Example</title>
-    <link rel="stylesheet" 
-href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" 
+    <title>NoteHub</title>
+    <!-- pulled font from google api-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
 
-/>
+    <style>
+
+        /* set font family for the body*/
+        body {
+        font-family: Quicksand
+        }
+
+        /* button is styled with border, padding and color*/
+        .button {
+        border: 1px solid black;
+        text-decoration: none;
+        padding: 0.5vw;
+        color: black;
+        background-color: rgb(255, 255, 255);
+        }
+
+        /* button changed when hovered by color and border*/
+        .button:hover {
+        background-color: rgb(0, 0, 0);
+        color: #ffffff;
+        }
+
+    </style>
 </head>
 
 <body>
-	<div class="hero-body">
-            <div class="container has-text-centered">
-               <h1 class ="title">
-		Welcome to the Notes App
+
+        <h1>
+		    Welcome to the Notes App
 		</h1> 
-            </div>
 
-            <a href="/login">
-                <button>Login</button>
-            </a>
-
-            <a href="/createaccount">
-                <button>Create Account</button>
-            </a>
-    </div>
+            <p>
+                <a href="/login" class = "button">
+                    Login
+                </a>
+    
+                &nbsp; 
+    
+                <a href="/createaccount" class = "button">
+                    Create Account
+                </a>
+            </p>
+            
 
 </body>
 

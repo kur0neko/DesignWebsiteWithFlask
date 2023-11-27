@@ -66,7 +66,7 @@ def login():
 @myapp_obj.route('/logout')
 def logout():
 	session.pop("user", None)
-	return redirect('/login')
+	return redirect('/')
 
 @myapp_obj.route("/createaccount", methods=['GET', 'POST'])							#template for create account
 def createaccount():
