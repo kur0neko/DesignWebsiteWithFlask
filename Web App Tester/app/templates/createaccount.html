@@ -2,13 +2,24 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tester</title>
-    <link rel="stylesheet" 
-href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" 
-/>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- webpage title -->
+   <title>NoteHub</title>
+
+   <!-- pulled font from google api-->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+
+   <style>
+
+       /* set font family for the body*/
+       body {
+       font-family: Quicksand
+       }
+
+   </style>
+
 </head>
 
 <body>
@@ -18,18 +29,23 @@ href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
        {{form.hidden_tag()}}
        <p> {{form.name.label}} <br>
           {{form.name(size=32)}}</p>
+
    
        <p> {{form.email.label}} <br>
           {{form.email(size=32)}}</p>
+
    
        <p> {{form.username.label}} <br>
           {{form.username(size=32)}}</p>
-   
+
+
        <p> {{form.password.label}} <br>
           {{form.password(size=32)}}</p>
+
    
        <p> {{form.confirm.label}} <br>
           {{form.confirm(size=32)}}</p>
+
    
        <p>{{form.submit()}}</p>
    </form>
