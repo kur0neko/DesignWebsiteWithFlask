@@ -66,8 +66,8 @@ Pip3 install -r requirements.txt
    ```bash
     deactivate
    ```
-**Example How to Run our project on a virtual Environment**
-![](https://github.com/kur0neko/DesignWebsiteWithFlask/blob/master/images/example.gif)
+**Example How to Run our project on a Virtual Environment**
+![](https://github.com/kur0neko/DesignWebsiteWithFlask/blob/master/images/Example1.gif)
 
    
 
