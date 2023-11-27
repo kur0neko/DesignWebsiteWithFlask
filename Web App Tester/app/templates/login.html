@@ -1,18 +1,56 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
 
 {% block content %}
-<h1>Login User </h1>
-<form action="" method="POST" novalidate>
-      {{form.hidden_tag()}}
-      <p> {{form.username.label}} <br>
-       {{form.username(size=32)}}</p>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title text-center mb-4">Login</h1>
 
-      <p> {{form.password.label}} <br>
-       {{form.password(size=32)}}</p>
+            <!-- Flash Messages -->
+            <div class="flash-messages">
+              {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  <div class="alert alert-danger">
+                    {% for message in messages %}
+                      {{ message }}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% endwith %}
+            </div>
 
-      <p> {{form.remember_me.label}} <br>
-       {{form.remember_me()}}</p>
+            <form action="" method="POST" novalidate>
+              {{ form.hidden_tag() }}
 
-      <p>{{form.submit()}}</p>
-</form>
+              <div class="form-group">
+                {{ form.username.label(class="form-control-label") }}
+                {{ form.username(size=32, class="form-control", placeholder="Enter your username") }}
+              </div>
+
+              <div class="form-group">
+                {{ form.password.label(class="form-control-label") }}
+                {{ form.password(size=32, class="form-control", placeholder="Enter your password") }}
+              </div>
+
+              <div class="form-group form-check">
+                {{ form.remember_me(class="form-check-input") }}
+                {{ form.remember_me.label(class="form-check-label") }}
+              </div>
+
+              <div class="form-group text-center">
+                {{ form.submit(class="btn btn-primary btn-block") }}
+              </div>
+            </form>
+            
+            <!-- Sign Up Link -->
+            <div class="text-center">
+              <p>Don't have an account? <a href="{{ url_for('createaccount') }}">Sign Up</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

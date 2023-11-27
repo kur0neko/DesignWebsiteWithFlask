@@ -16,18 +16,29 @@ def index():
 def home():
 		return render_template('home.html')
 
+from flask import flash
+
 @myapp_obj.route("/login", methods=['GET', 'POST'])
 def login():
-	form = LoginForm()
-	if form.validate_on_submit():
-		found_user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
-		if found_user:
-			session['user'] = form.username.data
-			print('you logged in! it worked!')
-			return redirect('/home')
-		else:
-			return redirect('/createaccount')
-	return render_template('login.html', form=form)
+    form = LoginForm()
+    if form.validate_on_submit():
+        found_user = User.query.filter_by(username=form.username.data).first()
+        if found_user:
+            print(f'Found user: {found_user.username}')
+            if found_user.check_password(form.password.data):
+                session['user'] = form.username.data
+                flash('Login successful!', 'success')
+                return redirect('/home')
+            else:
+                print('Invalid password')
+        else:
+            print('User not found')
+
+        flash('Invalid username or password. Please try again.', 'danger')
+        return redirect('/login')
+    return render_template('login.html', form=form)
+
+
 
 @myapp_obj.route('/logout')
 def logout():
@@ -37,18 +48,16 @@ def logout():
 @myapp_obj.route("/createaccount", methods=['GET', 'POST'])
 def createaccount():
     form = CreateAccountForm()
-    print(form.validate_on_submit())
     if form.validate_on_submit():
-        print('do something')
-        print(f'this is the username of the user {form.username.data}')
-        print(f'this is the password of the user {form.password.data}')
-        u = User(username=form.username.data, password=form.password.data,
-                 email=form.email.data)
+        u = User(username=form.username.data, email=form.email.data)
+        u.set_password(form.password.data)  # Hash the password
         db.session.add(u)
         db.session.commit()
+        flash('Account created successfully!', 'success')
         return redirect('/')
-
     return render_template('createaccount.html', form=form)
+
+
 
 @myapp_obj.route("/profile", methods=['GET', 'POST'])
 def profile():

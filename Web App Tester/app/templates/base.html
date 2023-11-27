@@ -6,32 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tester</title>
-    <link rel="stylesheet" 
-href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" 
-/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
 </head>
 
 <body>
-	 <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-                    <div id="navbarMenuHeroA" class="navbar-menu">
-                        <div class="navbar-end"> 
-				<a href ="home">Home </a>
-				<a href= "profile">Profile </a>
-			 </div>
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container">
+                <div id="navbarMenuHeroA" class="navbar-menu">
+                    <div class="navbar-end">
+                        <a href="/home">Home</a>
+                        <a href="/profile">Profile</a>
+                        {% if 'user' in session %}
+                            <a href="{{ url_for('logout') }}">Sign Out</a>
+                        {% endif %}
                     </div>
                 </div>
-            </nav>
-        </div>
-		
-
-	<div class="text">
-            <div class="modify">
-               {% block content %}
-               {% endblock %}
             </div>
+        </nav>
+    </div>
+
+    <div class="text">
+        <div class="modify">
+            {% block content %}
+            {% endblock %}
         </div>
+    </div>
 </body>
 
 </html>

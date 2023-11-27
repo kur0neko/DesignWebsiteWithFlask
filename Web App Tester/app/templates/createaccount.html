@@ -1,24 +1,47 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
 
 {% block content %}
-<h1>Sign In</h1>
-<form action="" method="POST" novalidate>
-    {{form.hidden_tag()}}
-    <p> {{form.name.label}} <br>
-       {{form.name(size=32)}}</p>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow">
+          <div class="card-body">
+            <h1 class="card-title text-center mb-4">Sign In</h1>
+            <form action="" method="POST" novalidate>
+              {{ form.hidden_tag() }}
 
-    <p> {{form.email.label}} <br>
-       {{form.email(size=32)}}</p>
+              <div class="form-group">
+                <label for="{{ form.name.id }}" class="form-control-label">Full Name</label>
+                {{ form.name(size=32, class="form-control", placeholder="Enter your full name") }}
+              </div>
 
-    <p> {{form.username.label}} <br>
-       {{form.username(size=32)}}</p>
+              <div class="form-group">
+                <label for="{{ form.email.id }}" class="form-control-label">Email</label>
+                {{ form.email(size=32, class="form-control", placeholder="Enter your email") }}
+              </div>
 
-    <p> {{form.password.label}} <br>
-       {{form.password(size=32)}}</p>
+              <div class="form-group">
+                <label for="{{ form.username.id }}" class="form-control-label">Username</label>
+                {{ form.username(size=32, class="form-control", placeholder="Choose a username") }}
+              </div>
 
-    <p> {{form.confirm.label}} <br>
-       {{form.confirm(size=32)}}</p>
+              <div class="form-group">
+                <label for="{{ form.password.id }}" class="form-control-label">Password</label>
+                {{ form.password(size=32, class="form-control", placeholder="Enter your password") }}
+              </div>
 
-    <p>{{form.submit()}}</p>
-</form>
+              <div class="form-group">
+                <label for="{{ form.confirm.id }}" class="form-control-label">Confirm Password</label>
+                {{ form.confirm(size=32, class="form-control", placeholder="Confirm your password") }}
+              </div>
+
+              <div class="form-group text-center">
+                {{ form.submit(class="btn btn-primary btn-block") }}
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
