@@ -4,7 +4,7 @@ from flask import flash
 from flask import session
 from flask import request, send_file
 from app.models import User, Note, Table, Image, TableEntries
-from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, SearchForm, NewNoteButton, EditNoteButton, Editbox, DeleteProfile, tableEntry, modifyParams
+from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, NewNoteButton, EditNoteButton, Editbox, DeleteProfile, tableEntry, modifyParams
 from app.models import User, Note, Table
 from app import myapp_obj
 from app import db
@@ -43,11 +43,14 @@ def home():
 
 
 		table_list = Table.query.filter_by(user_id = session['id']).all() 						# create a list of all tables that belong to the current user
-		
 
+		UserID = session.get('id')  
+		keyword = request.args.get('searched')
+		note_results = search_notes(UserID, keyword)
+		
 	else:
 		return redirect('/login')													
-	return render_template('home.html',  user=user, note_list=note_list, newnote=newnote, img_list=img_list, table_list = table_list)
+	return render_template('home.html',  user=user, note_list=note_list, newnote=newnote, img_list=img_list, table_list = table_list, note_results = note_results, keyword = keyword)
 
 @myapp_obj.route("/login", methods=['GET', 'POST'])												#basic login function
 def login():

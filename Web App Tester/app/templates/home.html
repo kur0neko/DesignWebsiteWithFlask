@@ -31,17 +31,39 @@
 
 <!-- Search Requirement -->
 <div class = "searchFunction">
-  <form method="POST" action="{{url_for('search')}}" >
+
+  <form method="GET">
     <label for="query">Search:</label>
     <input type="search" placeholder="search" aria-label="Search", name="searched">
     <button type="submit"class="btn btn-outline-secondary">Search</button>
   </form>
-  <h3>Results:</h3>
-  <ul>
-    {% for result in results %}
-    <li>{{ result }}</li>
-    {% endfor %}
-  </ul>
+
+  {% if keyword %}
+  <h1 Notes search :> {{keyword}}</h1>
+  
+  {% if note_results %}
+  <p>The result is found!<br></p>
+  
+  <p>Here is the result:<br></p>
+  <ul> 
+      {% for note in note_results %}
+          <li>
+              Note: 
+                <strong>
+                <a href="{{ url_for('editnote', notename = note.note_name) }}">
+                {{ note.note_name}}
+                </a>
+                </strong>
+              
+          </li>
+      {% endfor %}
+  
+      {% else %}
+      Sorry, your seach term: <strong>{{keyword}}</strong> file is not found
+      {% endif %}
+
+    {% endif %}
+
 </div>
 
 <br>

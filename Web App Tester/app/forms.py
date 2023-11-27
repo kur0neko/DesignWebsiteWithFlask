@@ -79,9 +79,6 @@ class NewNoteButton(FlaskForm):
 class EditNoteButton(FlaskForm):
     button = SubmitField('Edit Note')
     
-class SearchForm(FlaskForm):
-    searched = StringField('searched', validators=[DataRequired()])
-    submit = SubmitField("submit")
 
                                                                                                                         
 class DeleteProfile(FlaskForm):                                                                                             #form for user to delete their profile
