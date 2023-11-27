@@ -1,73 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <!-- title of webpage -->
     <h1>New Table</h1>
    
-    <div>
-        {% if not table.validate_on_submit() %}
+        <!-- form where user can submit their params for table-->
         <form action="" method="POST" novalidate>
             {{table.hidden_tag()}}
+            <!-- user eneters table name -->
             <p> {{table.name.label}} <br>
                {{table.name(size=32)}}</p>
 
+               <!-- any errors will be displayed using a for loop-->
                <div class = "error">
+                <!-- invalid input will be higlighted in red-->
                 {% for error in table.name.errors %}
                     <span style="color:red;">{{ error }}</span>
                 {% endfor %}
                </div>    
 
+            <!-- user eneters the number of rows they would like-->
             <p> {{table.rows.label}} <br>
                {{table.rows(size=10)}}</p>
 
+               <!-- any errors will be displayed using a for loop-->
                <div class = "error">
+                <!-- invalid input will be higlighted in red-->
                 {% for error in table.rows.errors %}
                     <span style="color:red;">{{ error }}</span>
                 {% endfor %}
                </div>    
         
+            <!-- user eneters the number of columns they would like-->
             <p> {{table.columns.label}} <br>
                {{table.columns(size=10)}}</p>
 
+               <!-- any errors will be displayed using a for loop-->
                <div class = "error">
+                 <!-- invalid input will be higlighted in red-->
                 {% for error in table.columns.errors %}
                     <span style="color:red;">{{ error }}</span>
                 {% endfor %}
                </div>    
         
+             <!-- user submits the form -->
             <p>{{table.submit()}}</p>
         </form>
-        {% endif %}
 
-        {%if table.validate_on_submit() %}
-    
-            <p>Table: {{ table.name.data }}</p>
-
-            <table>
-                {% for row in range(table.rows.data) %}
-                        <tr>
-                            {% for col in range(table.columns.data) %}
-                                <td> |{{row}},{{col}}| &nbsp;&nbsp; </td>
-                            {% endfor %}
-                        </tr>
-                {% endfor %}
-            </table>  
-            
-             
-            <div>
-                <p>Your Tables:
-                    {% for table in table_list %}
-                     <div>
-                            <p>Table: {{table}}</p>
-                    </div>
-                    {% endfor %}
-                </p>
-
-            </div>
-            
-        {% endif %}
-
-
-    </div>
 
 
 

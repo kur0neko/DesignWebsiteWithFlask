@@ -357,36 +357,36 @@ Meghana Indukuri
 **12.  Edit User Profile**
 
 - **Summary:**
-Users should be able to edit their user profile, to change their password, name or username.
+Users should be able to edit their user profile, to change their passwordor username.
 - **Actors:**
 User and Notes Application
 - **Pre-condition:**
 User is at the edit user webpage and has an account
 - **Trigger:**
-User clicks change password,username or name option located on the edit user webpage.
+User clicks change password or username option located on the edit user webpage.
 - **Primary Sequence:**
 1. User selects which of their personal information they would like to modify.
-2. User gets prompted with a textbox to change to a new username, password or name
-3. User must enter their new username,password or name in the textbox
-4. User must repeat their new username,password or name in the textbox
+2. User gets prompted with a textbox to change to a new username or password
+3. User must enter their new username or passwordin the textbox
+4. User must repeat their new username or password in the textbox
 5. Application prompts the user with an “are you sure?” message
 6. User clicks yes
-7. User’s username, password or name is permanently modified
+7. User’s username or password is permanently modified
 - **Primary Postconditions:**
-User has a new username, password or name after the modification. Users must use the new username, password or name whenever they sign in from this point forward.
+User has a new username, password or name after the modification. Users must use the new username or password whenever they sign in from this point forward.
 - **Alternate Sequence:**
 User tries to change existing personal information with the same information.
     1. User selects which of their personal information they would like to modify.
-    2. User gets prompted with a textbox to change to a new username, password or name.
-    3. User enters the same username, password or name as the existing ones.
+    2. User gets prompted with a textbox to change to a new username or password
+    3. User enters the same username or password as the existing ones.
     4. Application prompts user with an invalid password message.
-    5. User can enter a new password, username or name in the textbox.
+    5. User can enter a new password or username in the textbox.
 - **Alternate Sequence :**
 User decides to not change information
     1. User selects which of their personal information they would like to modify.
-    2. User gets prompted with a textbox to change to a new username, password or name
-    3. User must enter their new username,password or name in the textbox
-    4. User must repeat their new username,password or name in the textbox
+    2. User gets prompted with a textbox to change to a new username or password
+    3. User must enter their new username or password in the textbox
+    4. User must repeat their new username or password in the textbox
     5. Application prompts the user with an “are you sure?” message
     6. User clicks no.
     7. No changes are made to the user’s name, username or password

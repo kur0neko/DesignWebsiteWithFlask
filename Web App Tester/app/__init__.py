@@ -16,7 +16,7 @@ myapp_obj.config.from_mapping(
 db = SQLAlchemy(myapp_obj)
 
 with myapp_obj.app_context():
-    from app.models import User, Note
+    from app.models import User, Note, Table
     db.create_all()
 
 from app import routes

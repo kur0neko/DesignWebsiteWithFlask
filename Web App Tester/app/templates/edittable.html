@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    /* add nice border to the entire table */
+    table {
+        border: 1px solid #000000;
+    }
+
+    /* add nice border and padding to each cell in the table */
+    th, td {
+        padding: 10px;
+        border: 1px solid #000000;
+    }
+
+</style>
+
+<!-- first form that allows user to select number of rows and columns that they want to change for the existing table -->
+<form action="" method="POST" novalidate>
+    {{newsize.hidden_tag()}} 
+
+    <!-- first part of the form which allows rows to be changed -->
+    <p> {{newsize.rows.label}} <br>
+       {{newsize.rows(size=5)}}</p>
+
+        <!-- show the errors if the user submits and invalid number -->
+       <div class = "error">
+        <!-- show all the errors the user incurred by using a for loop -->
+        {% for error in newsize.rows.errors %}
+            <span style="color:red;">{{ error }}</span>
+        {% endfor %}
+       </div>    
+
+    <!-- second part of the form which allows columns to be changed -->
+    <p> {{newsize.columns.label}} <br>
+       {{newsize.columns(size=5)}}</p>
+
+        <!-- show the errors if the user submits and invalid number -->
+       <div class = "error">
+        <!-- show all the errors the user incurred by using a for loop -->
+        {% for error in newsize.columns.errors %}
+            <span style="color:red;">{{ error }}</span>
+        {% endfor %}
+       </div>    
+
+    <!-- button to let user submit -->
+    <p>{{newsize.submit()}}</p>
+</form>
+
+<br>
+
+<!-- showcase the table of forms where user can change values for indvidual cells -->
+<table>
+    <!-- iterate through each row in the table -->
+    {% for row in range(thisTable.numRows) %}
+            <tr>
+                <!-- iterate through each coulmn in the table -->
+                {% for col in range(thisTable.numColumns) %}
+                    <td> 
+                        <!-- in each cell create a form for user to input entries-->
+                        <form method="POST" novalidate>
+                            {{tableEnt.hidden_tag()}}
+
+                            <!-- the cell row and column is predetermined, so user should not be able to input anything here-->
+                            <input type="hidden" name="row" value="{{ row }}">
+                            <input type="hidden" name="column" value="{{ col }}">
+                   
+                        
+                            <!-- let user select a link to a note -->
+                            <p>{{tableEnt.note.label}} <br>
+                               {{tableEnt.note(size=1)}}</p>
+
+                            <!-- let user type in some random string -->
+                            <p> {{tableEnt.string.label}} <br>
+                                {{tableEnt.string(size=10)}}</p>
+                                
+                            <!-- let user submit the form -->
+                            <p>{{tableEnt.submit(size=10)}}</p>
+                        </form>
+                    
+                    <!-- end statements of this form table -->
+                    </td>
+                {% endfor %}
+            </tr>
+    {% endfor %}
+</table>  
+
+<br>
+
+<!-- showcase the product of the user's submissions -->
+<p>Table: {{ thisTable.table_name }}</p>
+
+            <!-- create the table -->
+            <table>
+                <!-- iterate through each row in the table -->
+                {% for row in range(thisTable.numRows) %}
+                        <tr>
+                            <!-- iterate through each coulmn in the table -->
+                            {% for col in range(thisTable.numColumns) %}
+                                <td> 
+                                    <!-- iterate through the entry in the entries of this table -->
+                                    {% for entry in entryList %}
+                                        <!-- find the entry to the corresponding cell -->
+                                        {% if entry.entryRow == row and entry.entryColumn == col%} 
+                                            <!-- show the content -->
+                                            <p> content: {{ entry.entry_String}}</p>
+                                            <!-- iterate through every note -->
+                                            {% for note in notes %}
+                                                <!-- find the note to the coressponding note id in the entry-->
+                                                {% if entry.entry_Note == note.id %} 
+                                                    <!-- display the note in the cell -->
+                                                    <p>
+                                                        <!-- make it a link so the user can head to the edit not page -->
+                                                        link to note:
+                                                        <a href="{{ url_for('editnote', notename = note.note_name) }}">
+                                                            {{ note.note_name}}
+                                                        </a>
+                                                    </p>
+                                                    
+                                                <!-- ending statements -->
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                  
+                                </td>
+                            {% endfor %}
+                        </tr>
+                {% endfor %}
+            </table>  
+            
+             
+
+
+{% endblock %}
