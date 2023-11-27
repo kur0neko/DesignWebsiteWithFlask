@@ -40,7 +40,7 @@ class updateName (FlaskForm):                                                   
 
     def validate_oldname(self,check):                                                                                   #another function to add a validation check such that the current username matches what the user entered as their current username       
         if(check.data != self.username):                                                                                #self.username was passed in routes.py and is used to validate oldusername, and make sure the user enters the correct value
-             raise ValidationError('oldname has to be same as current username')                                        #if they do not enter the correct value, the validation error is thrown
+             raise ValidationError('the username you entered has to be same as current username')                                        #if they do not enter the correct value, the validation error is thrown
 
     newname = StringField('New username', validators=[DataRequired()])                                                  #user can enter their new username in this field                                
 
@@ -56,7 +56,7 @@ class updatePassword (FlaskForm):                                               
 
     def validate_oldpassword(self,check):                                                                                   #another function to add a validation check such that the current password matches what the user entered as their current password                                 
         if(check.data != self.password):                                                                                    #self.password was passed in routes.py and is used to validate oldpassword, and make sure the user enters the correct value
-             raise ValidationError('old password has to be same as current password')                                       #if they do not enter the correct value, the validation error is thrown
+             raise ValidationError('the password you entered has to be same as current password')                                       #if they do not enter the correct value, the validation error is thrown
 
     newpassword = PasswordField('New password', validators=[DataRequired(), EqualTo('confirm', message='Passwords must match')]) #user can enter their new password which must equal to the later field confirm (user retypes their password twice)
 
@@ -92,7 +92,7 @@ class DeleteProfile(FlaskForm):                                                 
         if(check.data != self.password):                                                                                    #self.password represents the user's password, and check.data is the typepassword that is entered by the user
              raise ValidationError('The password you typed does not match the your current password')                       #validation error is raised when they are not equal                                       
 
-    confirm  = PasswordField('Repeat New Password')                                                                         #user must type in their password again
+    confirm  = PasswordField('Repeat Current Password')                                                                         #user must type in their password again
     confirmDeletion = BooleanField('Confirm Deletion',validators=[DataRequired()])                                          #user must confirm the deletion
     submit = SubmitField('Delete Profile')                                                                                  #user can submit the form
 
