@@ -17,20 +17,6 @@
         font-family: Quicksand
         }
 
-        /* button is styled with border, padding and color*/
-        .button {
-        border: 1px solid black;
-        text-decoration: none;
-        padding: 0.5vw;
-        color: black;
-        background-color: rgb(255, 255, 255);
-        }
-
-        /* button changed when hovered by color and border*/
-        .button:hover {
-        background-color: rgb(0, 0, 0);
-        color: #ffffff;
-        }
 
     </style>
 </head>
@@ -69,8 +55,6 @@
                 {{ form.password.label(class="form-control-label") }}
                 {{ form.password(size=32, class="form-control", placeholder="Enter your password") }}
               </div>
-
-          
 
               <div class="form-group text-center">
                 {{ form.submit(class="btn btn-primary btn-block") }}
