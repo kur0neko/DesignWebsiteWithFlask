@@ -53,46 +53,50 @@ def home():
 		return redirect('/login')													
 	return render_template('home.html',  user=user, note_list=note_list, newnote=newnote, img_list=img_list, table_list = table_list, note_results = note_results, keyword = keyword)
 
-@myapp_obj.route("/login", methods=['GET', 'POST'])												#basic login function
+@myapp_obj.route("/login", methods=['GET', 'POST'])
 def login():
-	form = LoginForm()																			#create the login form
-	valid = True																				#assume the form is always valid at the start
-	if form.validate_on_submit():																#if the form is submited
-		found_user = User.query.filter_by(username=form.username.data, password=form.password.data).first()	#check if the user exists
-		if found_user:
-			session['user'] = form.username.data												#if the form exists set the session
-			print('you logged in! it worked!')													#debug
-			db.session.commit()																	#commit the changes
-			return redirect('/home')															#redirect to the homepage
-		else:
-			valid = False																		#otherwise the login credentials were false, which login.html will user this valid variable to print an error message
-	return render_template('login.html', form=form, valid = valid)								#render the template
+    form = LoginForm()
+    if form.validate_on_submit():
+        found_user = User.query.filter_by(username=form.username.data).first()
+        if found_user:
+            print(f'Found user: {found_user.username}')
+            if found_user.check_password(form.password.data):
+                session['user'] = form.username.data
+                flash('Login successful!', 'success')
+                return redirect('/home')
+            else:
+                print('Invalid password')
+        else:
+            print('User not found')
+
+        flash('Invalid username or password. Please try again.', 'danger')
+        return redirect('/login')
+    return render_template('login.html', form=form)#render the template
 
 @myapp_obj.route('/logout')																		#template for logging out
 def logout():
 	session.pop("user", None)																	#pop the user session
 	return redirect('/')																		#redirect to the index page
 
-@myapp_obj.route("/createaccount", methods=['GET', 'POST'])							#template for create account
+@myapp_obj.route("/createaccount", methods=['GET', 'POST'])
 def createaccount():
+    username_list = User.query.all()
+    form = CreateAccountForm()
+    form.usernameList = username_list
 
-	username_list = User.query.all()												#query for all existing users in the user database, we need this so that an account will not be created with a username that already exists
-	form = CreateAccountForm()														#create the form to create an account
-	form.usernameList = username_list												#create a variable for the form that contains a list of all existing users, this is used in forms.py
-	print(form.validate_on_submit())												#debug
-	if form.validate_on_submit():													#if the form is submitted
-		print('do something')														#debug
-		print(f'this is the username of the user {form.username.data}')				#debug
-		print(f'this is the password of the user {form.password.data}')				#debug
-		u = User(username=form.username.data, password=form.password.data,
-				email=form.email.data)												#create a element to be added to the user database
-		db.session.add(u)															#add it to the user database
-		db.session.commit()															#commit the changes
-		return redirect('/')														#redirect to the index page
-	else:
-		print(form.errors)															#debug
+    if form.validate_on_submit():
+        u = User(username=form.username.data, email=form.email.data)
+        u.set_password(form.password.data)  # Hash the password
+        db.session.add(u)
+        db.session.commit()
+        flash('Account created successfully!', 'success')
+        return redirect('/')
+	
 
-	return render_template('createaccount.html', form=form)							#render the template
+    return render_template('createaccount.html', form=form)
+
+
+
 
 @myapp_obj.route("/profile", methods=['GET', 'POST'])
 def profile():

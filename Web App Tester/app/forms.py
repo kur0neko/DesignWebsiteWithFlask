@@ -8,7 +8,8 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Sign In')
 
-class CreateAccountForm(FlaskForm):                                                                     #create account form
+class CreateAccountForm(FlaskForm): 
+    name = StringField('Full Name', validators=[DataRequired()])                                     #username field with validators
     email = StringField('Email', validators=[DataRequired(), Email()])                                  #email field with validation to make sure that it is an actual email field
     username = StringField('Username', validators=[DataRequired()])                                     #username field with validators
 
