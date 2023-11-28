@@ -4,7 +4,7 @@ from flask import flash
 from flask import session
 from flask import request, send_file
 from app.models import User, Note, Table, Image, TableEntries
-from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, NewNoteButton, EditNoteButton, Editbox, DeleteProfile, tableEntry, modifyParams
+from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, NewNoteButton, EditNoteButton, Editbox, DeleteProfile, tableEntry, modifyParams, DeleteNoteButton
 from app.models import User, Note, Table
 from app import myapp_obj
 from app import db
@@ -20,6 +20,7 @@ def home():
 		user = session['user']
 		newnote = NewNoteButton() 																#create both 'New Note' and 'Edit Note' buttons
 		editbutton = EditNoteButton()
+		deleteButton=DeleteNoteButton()
 		found_user = User.query.filter_by(username=session['user']).first()						#find the database entry with the same name as the user logged in
 		if found_user:
 			session['id'] = found_user.id														#make the session id equal to the id of the found entry
@@ -37,9 +38,9 @@ def home():
 						img_dict[imagename] = note.id											#to check values appended										
 					img_list.append(img_dict)
 					print(img_list)															
-					note_list[f'{note.note_name}'] = [note.note_body, editbutton, note.id]		#if found any entries, for value add their note_body (content in box) and key as note_name	
+					note_list[f'{note.note_name}'] = [note.note_body, editbutton, deleteButton, note.id]		#if found any entries, for value add their note_body (content in box) and key as note_name	
 				else:
-					note_list[f'{note.note_name}'] = [note.note_body, editbutton]				#no images, do not have a list for the values
+					note_list[f'{note.note_name}'] = [note.note_body, editbutton, deleteButton]				#no images, do not have a list for the values
 
 
 		table_list = Table.query.filter_by(user_id = session['id']).all() 						# create a list of all tables that belong to the current user
@@ -305,3 +306,17 @@ def download(img_name):
 	found_img = Image.query.filter_by(imgname=img_name).first()												#find the data entry with same name as the image name
 	return send_file(BytesIO(found_img.img), download_name=found_img.imgname, as_attachment=True)			#use send file, change read data into image, download w/name of image as attachment
  
+ 
+@myapp_obj.route('/deleteNote/<notename>', methods=['POST', 'GET'])													#used to receive the image name for download
+def deleteNote(notename):
+    #check if the current user it the real owner 
+    if 'user' in session:
+        found_note = Note.query.filter_by(note_name=notename).first()
+        if found_note:
+            #note = Note.query.get_or_404(found_note)
+            db.session.delete(found_note)
+            db.session.commit()
+    return redirect('/home')
+
+
+
