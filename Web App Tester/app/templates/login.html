@@ -17,25 +17,73 @@
         font-family: Quicksand
         }
 
+        /* button is styled with border, padding and color*/
+        .button {
+        border: 1px solid black;
+        text-decoration: none;
+        padding: 0.5vw;
+        color: black;
+        background-color: rgb(255, 255, 255);
+        }
+
+        /* button changed when hovered by color and border*/
+        .button:hover {
+        background-color: rgb(0, 0, 0);
+        color: #ffffff;
+        }
+
     </style>
 </head>
 
 <body>
+<!-- Add some spacing -->
 <br>
 <h1>Login User </h1>
 <form action="" method="POST" novalidate>
       {{form.hidden_tag()}}
-      <p> {{form.username.label}} <br>
+
+    <!-- User enters username here -->
+    <p> {{form.username.label}} <br>
        {{form.username(size=32)}}</p>
 
+       <!-- show the errors if the user does invalid behaviour-->
+       <div class = "error">
+        <!-- show all the errors the user incurred by using a for loop -->
+        {% for error in form.username.errors %}
+            <span style="color:red;">{{ error }}</span>
+        {% endfor %}
+       </div>   
 
-      <p> {{form.password.label}} <br>
+    <!-- User enters password here -->
+    <p> {{form.password.label}} <br>
        {{form.password(size=32)}}</p>
 
+        <!-- show the errors if the user does invalid behaviour-->
+       <div class = "error">
+        <!-- show all the errors the user incurred by using a for loop -->
+        {% for error in form.password.errors %}
+            <span style="color:red;">{{ error }}</span>
+        {% endfor %}
+       </div>   
 
-      <p> {{form.remember_me.label}} <br>
-       {{form.remember_me()}}</p> 
+    <!-- User submits here -->
+    <p>{{form.submit()}}</p>
 
-      <p>{{form.submit()}}</p>
+        <!-- show if user enters invalid username or pasword -->
+        <div class = "error">
+            {% if not valid %}
+                <span style="color:red;">Incorrect password or username</span>
+            {% endif %}
+        </div>   
 </form>
+
+<br>
+<!-- Allow user to redirect themselves to create an account-->
+<p> Don't have an existing accounting? </p>
+
+<!-- creation of a button-->
+<a href="/createaccount" class = "button">
+    Create Account
+</a>
+
 </body>

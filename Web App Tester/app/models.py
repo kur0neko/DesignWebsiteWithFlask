@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(32), nullable=False)
+    username = db.Column(db.String(32), nullable=False, unique=True)
     password = db.Column(db.String(32), nullable=False)
     email = db.Column(db.String(100), nullable=False)
 
@@ -23,7 +23,7 @@ class User(db.Model):
 class Note(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
-    note_name = db.Column(db.String(15))
+    note_name = db.Column(db.String(15), unique=True)
     note_body = db.Column(db.String(1000))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 

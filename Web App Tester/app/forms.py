@@ -6,26 +6,30 @@ from wtforms.widgets import TextArea
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
-class CreateAccountForm(FlaskForm):
-    name = StringField('Full name', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password',validators=[DataRequired(), EqualTo('confirm', message='Passwords must match')])
-    confirm  = PasswordField('Repeat Password')
-    submit = SubmitField('Create Account')
+class CreateAccountForm(FlaskForm):                                                                     #create account form
+    email = StringField('Email', validators=[DataRequired(), Email()])                                  #email field with validation to make sure that it is an actual email field
+    username = StringField('Username', validators=[DataRequired()])                                     #username field with validators
+
+    def validate_username(self,check):                                                                  #extra validator to make sure that every account's username is unique
+        for user in self.usernameList:                                                                  #go through every username
+            if check.data == user.username:                                                             #if the user's typed username already exists
+                raise ValidationError('This username already exists')                                   #raise a validation error
+
+    password = PasswordField('Password',validators=[DataRequired(), EqualTo('confirm', message='Passwords must match')])       #password that the user wants for the account, if the confirm and password are not equal validation error is also thrown
+    confirm  = PasswordField('Repeat Password')                                                                                #retype password
+    submit = SubmitField('Create Account')                                                                                     #submit the account
 
 class Notebox(FlaskForm):
     note_name = StringField('Note Name: ', validators=[DataRequired()])
     
-    def validate_note_name(self,check):
-        for note in self.notelist:
-            if check.data == note.note_name:
-                raise ValidationError('This note name already exists')
+    def validate_note_name(self,check):                                                                 #extra validator to make sure that every note has a unique name
+        for note in self.notelist:                                                                      #go through every note's name
+            if check.data == note.note_name:                                                            #if the typed note name already exists 
+                raise ValidationError('This note name already exists')                                  #raise a validation error
     
-    note_body = StringField('Note', widget=TextArea())
+    note_body = StringField('Note', widget=TextArea())                                                  
     image_upload = MultipleFileField('Image', name='image')
     submit = SubmitField('Create Note')
 
