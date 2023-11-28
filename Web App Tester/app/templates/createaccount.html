@@ -18,36 +18,87 @@
        font-family: Quicksand
        }
 
+        /* button is styled with border, padding and color*/
+        .button {
+        border: 1px solid black;
+        text-decoration: none;
+        padding: 0.5vw;
+        color: black;
+        background-color: rgb(255, 255, 255);
+        }
+
+        /* button changed when hovered by color and border*/
+        .button:hover {
+        background-color: rgb(0, 0, 0);
+        color: #ffffff;
+        }
+
    </style>
 
 </head>
 
 <body>
    <br>
+   <!-- Title -->
    <h1>Create an Account</h1>
-   <form action="" method="POST" novalidate>
-       {{form.hidden_tag()}}
-       <p> {{form.name.label}} <br>
-          {{form.name(size=32)}}</p>
 
-   
+   <!-- form for creating the account, pulled from routes.py -->
+   <form action="" method="POST" novalidate>
+      {{form.hidden_tag()}}
+
+      <!-- User enters email address here -->
        <p> {{form.email.label}} <br>
           {{form.email(size=32)}}</p>
 
+         <!-- show the errors if the user does invalid behaviour-->
+         <div class = "error">
+            <!-- show all the errors the user incurred by using a for loop -->
+            {% for error in form.email.errors %}
+               <span style="color:red;">{{ error }}</span>
+            {% endfor %}
+         </div> 
    
+      <!-- User enters username here -->
        <p> {{form.username.label}} <br>
           {{form.username(size=32)}}</p>
 
-
+         <!-- show the errors if the user does invalid behaviour-->
+         <div class = "error">
+               <!-- show all the errors the user incurred by using a for loop -->
+               {% for error in form.username.errors %}
+                  <span style="color:red;">{{ error }}</span>
+               {% endfor %}
+         </div> 
+         
+      <!-- User enters password -->
        <p> {{form.password.label}} <br>
           {{form.password(size=32)}}</p>
 
+         <!-- show the errors if the user does invalid behaviour-->
+         <div class = "error">
+            <!-- show all the errors the user incurred by using a for loop -->
+            {% for error in form.password.errors %}
+               <span style="color:red;">{{ error }}</span>
+            {% endfor %}
+         </div>          
    
+      <!-- User must retype their password correctly here-->
        <p> {{form.confirm.label}} <br>
           {{form.confirm(size=32)}}</p>
-
-   
+      
+      <!-- there are no errors for the confirm, it is all handeled in password-->
+      <!-- User must submit the form here -->
        <p>{{form.submit()}}</p>
    </form>
+
+<br>
+<!-- Allow user to redirect themselves to login-->
+<p> Already have an account? </p>
+
+<!-- creation of a button-->
+<a href="/login" class = "button">
+    Login Here
+</a>
+
 </body>
 

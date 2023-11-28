@@ -11,7 +11,7 @@ from app import db
 from io import BytesIO
 
 @myapp_obj.route("/")
-def index():
+def index():																					#index page
 		return render_template('index.html')
 
 @myapp_obj.route("/home")																		#homepage 
@@ -54,38 +54,44 @@ def home():
 
 @myapp_obj.route("/login", methods=['GET', 'POST'])												#basic login function
 def login():
-	form = LoginForm()
-	if form.validate_on_submit():
-		found_user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
+	form = LoginForm()																			#create the login form
+	valid = True																				#assume the form is always valid at the start
+	if form.validate_on_submit():																#if the form is submited
+		found_user = User.query.filter_by(username=form.username.data, password=form.password.data).first()	#check if the user exists
 		if found_user:
-			session['user'] = form.username.data
-			print('you logged in! it worked!')
-			db.session.commit()
-			return redirect('/home')
+			session['user'] = form.username.data												#if the form exists set the session
+			print('you logged in! it worked!')													#debug
+			db.session.commit()																	#commit the changes
+			return redirect('/home')															#redirect to the homepage
 		else:
-			return redirect('/createaccount')
-	return render_template('login.html', form=form)
+			valid = False																		#otherwise the login credentials were false, which login.html will user this valid variable to print an error message
+	return render_template('login.html', form=form, valid = valid)								#render the template
 
-@myapp_obj.route('/logout')
+@myapp_obj.route('/logout')																		#template for logging out
 def logout():
-	session.pop("user", None)
-	return redirect('/')
+	session.pop("user", None)																	#pop the user session
+	return redirect('/')																		#redirect to the index page
 
 @myapp_obj.route("/createaccount", methods=['GET', 'POST'])							#template for create account
 def createaccount():
-    form = CreateAccountForm()
-    print(form.validate_on_submit())
-    if form.validate_on_submit():
-        print('do something')
-        print(f'this is the username of the user {form.username.data}')
-        print(f'this is the password of the user {form.password.data}')
-        u = User(username=form.username.data, password=form.password.data,
-                 email=form.email.data)
-        db.session.add(u)
-        db.session.commit()
-        return redirect('/')
 
-    return render_template('createaccount.html', form=form)
+	username_list = User.query.all()												#query for all existing users in the user database, we need this so that an account will not be created with a username that already exists
+	form = CreateAccountForm()														#create the form to create an account
+	form.usernameList = username_list												#create a variable for the form that contains a list of all existing users, this is used in forms.py
+	print(form.validate_on_submit())												#debug
+	if form.validate_on_submit():													#if the form is submitted
+		print('do something')														#debug
+		print(f'this is the username of the user {form.username.data}')				#debug
+		print(f'this is the password of the user {form.password.data}')				#debug
+		u = User(username=form.username.data, password=form.password.data,
+				email=form.email.data)												#create a element to be added to the user database
+		db.session.add(u)															#add it to the user database
+		db.session.commit()															#commit the changes
+		return redirect('/')														#redirect to the index page
+	else:
+		print(form.errors)															#debug
+
+	return render_template('createaccount.html', form=form)							#render the template
 
 @myapp_obj.route("/profile", methods=['GET', 'POST'])
 def profile():
