@@ -73,6 +73,9 @@ Pip3 install -r requirements.txt
   Python3 run.py
   ```
 - Python will display Port Localhost
+  ```bash
+  http://127.0.0.1:5000/
+  ```
 - Copy the Port localhost open on the web browser.
   
 **Example How to Run our project in a Virtual Environment**
