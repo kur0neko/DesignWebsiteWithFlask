@@ -260,15 +260,15 @@ def edittable(table_id):
 	
 
 
-@myapp_obj.route('/search', methods=['GET','POST'])
+@myapp_obj.route('/search', methods=['GET','POST']) 															#creating instance'/', accept POST and GET form
 def search():
-    if 'user' in session:
-        UserID = session.get('id')  
-        keyword = request.args.get('searched', '')
-        note_results = search_notes(UserID, keyword)
-        return render_template('search.html', keyword=keyword, note_results=note_results)
+    if 'user' in session:																						#If the user is logged in, in the session
+        UserID = session.get('id')  																			#save the user ID from database which will use later on to verified who is logged in to use search.
+        keyword = request.args.get('searched', '')																#Get string argument that user enter from search bar by GET(required to use equest.args.get in order to work correctly)
+        note_results = search_notes(UserID, keyword)															#call function to pass userID and keyword that user search.
+        return render_template('search.html', keyword=keyword, note_results=note_results)						#function will return query which will use to select* from Note where(userID==User.id) Render this page template
     else:
-        return redirect('/home')
+        return redirect('/home')																				#if user not in the session not login just return to home page
 
 
 @myapp_obj.route('/editnote/<notename>', methods=['GET', 'POST'])		#creation of edit note page/'<notename> for the name of the note being sent
@@ -296,9 +296,9 @@ def editnote(notename):
 	return render_template('editnote.html', editnote=editnote)			 
 
 def search_notes(userID,keyword):
-    #also compare user from the FK_noteID to user ID
-     result = Note.query.filter(userID == Note.user_id, Note.note_name.ilike(f'%{keyword}%')).all() 
-     return result
+    
+     result = Note.query.filter(userID == Note.user_id, Note.note_name.ilike(f'%{keyword}%')).all()           #return the query select Note that have the userID matched to current user logged in, search only the files that this user has in her/his session.
+     return result  																						  #note that "ilike" will allow to find all case sensitive as well. Fetch all file that have similar name or case sensitive
     
 @myapp_obj.route('/download/<img_name>', methods=['GET'])													#used to receive the image name for download
 def download(img_name):
