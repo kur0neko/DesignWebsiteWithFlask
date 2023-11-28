@@ -99,9 +99,10 @@
               <form action = "editnote/{{note}}">
                 <p>{{note_list[note][1].button}}</p>
               </form>
-              <!-- delete not button-->
-              <a href="/deleteNote/{{note}}">
+              <!-- delete note button-->
+              <form action="/deleteNote/{{note}}">
                 <p>{{note_list[note][2].button}}</p>
+              </form>
           </div>
       {% endfor %}
   </div>
