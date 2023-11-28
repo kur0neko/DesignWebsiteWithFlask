@@ -83,13 +83,13 @@
               <p>Note: {{note}}</p> 
               <p>Note-Text: {{note_list[note][0]}}</p>
               <!--If there are images (img_list exists), make a download attachment for each image-->
-              {% if note_list[note][2] %}
+              {% if note_list[note][3] %}
               <span>Attachments: </span>
                 {% for img in img_list %}
                 <!--loop through all sets of images for each note-->
                   {% for name in img %}
                 <!--link each image in the dictionary for 1 note-->
-                    {% if img[name] == note_list[note][2] %}
+                    {% if img[name] == note_list[note][3] %}
                     <a href="download/{{name}}">{{name}}</a><br>
                     {% endif %}
                   {% endfor %}
@@ -99,6 +99,8 @@
               <form action = "editnote/{{note}}">
                 <p>{{note_list[note][1].button}}</p>
               </form>
+              <a action="/deleteNote/{{note}}">
+                <p>{{note_list[note][2].button}}</p>
           </div>
       {% endfor %}
   </div>

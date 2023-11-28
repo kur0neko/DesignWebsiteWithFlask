@@ -83,6 +83,9 @@ class NewNoteButton(FlaskForm):
 class EditNoteButton(FlaskForm):
     button = SubmitField('Edit Note')
     
+class DeleteNoteButton(FlaskForm):
+    button = SubmitField('Delete Note')
+    
 
                                                                                                                         
 class DeleteProfile(FlaskForm):                                                                                             #form for user to delete their profile
