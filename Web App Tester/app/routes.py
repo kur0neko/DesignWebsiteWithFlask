@@ -106,8 +106,10 @@ def profile():
 
 		if found_user:																#if this user exists (which will always be true, but better safe than sorry)
 			session['id'] = found_user.id											#set the session id to the found user's id
-			
+		
+		username_list = User.query.all()											#query all usernames
 		changeName = updateName()													#create the form so the user can update their username
+		changeName.usernameList =  username_list									#create username_list for the change Name for that can be used later for validation
 		changeName.username = found_user.username									#create a variable for the changeName form so that it can be used in the validation in forms.py
 		if changeName.validate_on_submit():											#check if the form was validated
 			found_user.username = changeName.newname.data							#change the user's username to the new username

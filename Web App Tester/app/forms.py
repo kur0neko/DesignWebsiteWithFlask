@@ -52,6 +52,9 @@ class updateName (FlaskForm):                                                   
     def validate_newname(self,check):                                                                                   #another function to add a validation check such that the current username does not matche what the user entered as their wanted new username
         if(self.oldname.data == check.data):                                                                            #self.username was passed in routes.py and is used to validate newusername, and make sure the user enters the correct value
              raise ValidationError('New name cannot be the same as your old name')                                      #if they do not enter the correct value, the validation error is thrown
+        for user in self.usernameList:                                                                                  #go through every username
+            if check.data == user.username:                                                                             #if the user's typed username already exists
+                raise ValidationError('This username already exists')                                                   #raise a validation error
    
     submit = SubmitField('Update')                                                                                      #user can submit the form
 
