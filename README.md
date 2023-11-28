@@ -68,11 +68,14 @@ Pip3 install -r requirements.txt
    ```
 **How to Run our project**
 - Open terminal on this specific directory <DesignWebsiteWithFlask/Web App Tester/>
-- When u inside the Web App Tester folder, run bash command to execute python script 
+- When you inside the Web App Tester folder, run bash command to execute python script 
   ```bash
   Python3 run.py
   ```
-**Example How to Run our project on a Virtual Environment**
+- Python will display Port Localhost
+- Copy the Port localhost open on the web browser.
+  
+**Example How to Run our project in a Virtual Environment**
 ![](https://github.com/kur0neko/DesignWebsiteWithFlask/blob/master/images/Example1.gif)
 
    
