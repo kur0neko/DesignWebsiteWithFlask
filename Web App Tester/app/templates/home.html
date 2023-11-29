@@ -31,16 +31,18 @@
 
 <!-- Search Requirement -->
 <div class = "searchFunction">
-
+<!-- Search use GET form, create a search bar with the submit button -->
   <form method="GET">
     <label for="query">Search Notes: &nbsp;</label>
     <input type="search" placeholder="search" aria-label="Search", name="searched">
     <button type="submit"class="btn btn-outline-secondary">Search</button>
   </form>
 
+  <!-- If the keyword is not empty -->
   {% if keyword %}
+  <!-- Print the keyword that user enter -->
   <h1 Notes search :> {{keyword}}</h1>
-  
+  <!-- User for loop, loop retreive all note.notename from database -->
   {% if note_results %}
   <p>The result is found!<br></p>
   
@@ -50,6 +52,7 @@
           <li>
               Note: 
                 <strong>
+                  <!-- Loop print out all the note in the current user session wiht the link of files -->
                 <a href="{{ url_for('editnote', notename = note.note_name) }}">
                 {{ note.note_name}}
                 </a>
@@ -57,7 +60,7 @@
               
           </li>
       {% endfor %}
-  
+        <!--If the search is not found, print search keyword and statement file is not found  -->
       {% else %}
       Sorry, your seach term: <strong>{{keyword}}</strong> file is not found
       {% endif %}
