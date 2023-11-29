@@ -32,7 +32,7 @@ NoteHub is the Note Web application built with Flask python framework, WTforms, 
 
 **Prerequisite requirement**
 -
--![Static Badge](https://img.shields.io/badge/Linux-purple?style=3d&logo=Linux) ![Static Badge](https://img.shields.io/badge/Mac%20OS-black?style=3d&logo=Apple)
+- ![Static Badge](https://img.shields.io/badge/Linux-purple?style=3d&logo=Linux) ![Static Badge](https://img.shields.io/badge/Mac%20OS-black?style=3d&logo=Apple)
 - Python from version 3.4+ come with pip3
 [Python Download](https://www.python.org/downloads/ )
 
