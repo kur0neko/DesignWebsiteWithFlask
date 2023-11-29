@@ -53,25 +53,25 @@ def home():
 		return redirect('/login')													
 	return render_template('home.html',  user=user, note_list=note_list, newnote=newnote, img_list=img_list, table_list = table_list, note_results = note_results, keyword = keyword)
 
-@myapp_obj.route("/login", methods=['GET', 'POST'])
+@myapp_obj.route("/login", methods=['GET', 'POST'])													#template for login
 def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        found_user = User.query.filter_by(username=form.username.data).first()
+    form = LoginForm()																				#create login form
+    if form.validate_on_submit():																	#validate the form if found
+        found_user = User.query.filter_by(username=form.username.data).first()						#find the corresponding username
         if found_user:
-            print(f'Found user: {found_user.username}')
-            if found_user.check_password(form.password.data):
-                session['user'] = form.username.data
-                flash('Login successful!', 'success')
-                return redirect('/home')
+            print(f'Found user: {found_user.username}')												#if the username is found
+            if found_user.check_password(form.password.data):										#check the corresponding password
+                session['user'] = form.username.data												#set the session
+                flash('Login successful!', 'success')												#flash a message
+                return redirect('/home')															#redirect to home
             else:
-                print('Invalid password')
+                print('Invalid password')															#otherwise print an invalid message
         else:
-            print('User not found')
+            print('User not found')																	#debug
 
-        flash('Invalid username or password. Please try again.', 'danger')
-        return redirect('/login')
-    return render_template('login.html', form=form)#render the template
+        flash('Invalid username or password. Please try again.', 'danger')							#flash a message if invalid login
+        return redirect('/login')																	#redirect to login
+    return render_template('login.html', form=form)													#render the template
 
 @myapp_obj.route('/logout')																		#template for logging out
 def logout():
@@ -80,20 +80,20 @@ def logout():
 
 @myapp_obj.route("/createaccount", methods=['GET', 'POST'])
 def createaccount():
-    username_list = User.query.all()
-    form = CreateAccountForm()
-    form.usernameList = username_list
+    username_list = User.query.all()														#get a list of all the users
+    form = CreateAccountForm()																#create the create account form
+    form.usernameList = username_list														#get a username list and make it a variable for the form
 
-    if form.validate_on_submit():
-        u = User(username=form.username.data, email=form.email.data)
-        u.set_password(form.password.data)  # Hash the password
-        db.session.add(u)
-        db.session.commit()
-        flash('Account created successfully!', 'success')
-        return redirect('/')
+    if form.validate_on_submit():															#if the form is validated
+        u = User(username=form.username.data, email=form.email.data)						#create a user
+        u.set_password(form.password.data)  												# Hash the password
+        db.session.add(u)																	# add the changes 
+        db.session.commit()																	#commit the changes
+        flash('Account created successfully!', 'success')									#debug
+        return redirect('/')																#redirect to index
 	
 
-    return render_template('createaccount.html', form=form)
+    return render_template('createaccount.html', form=form)									#render the template
 
 
 

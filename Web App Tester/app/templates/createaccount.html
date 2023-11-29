@@ -22,6 +22,8 @@
 
 </head>
 <body>
+
+  <!-- Form for user to create an account-->
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
@@ -31,6 +33,7 @@
             <form action="" method="POST" novalidate>
               {{ form.hidden_tag() }}
 
+              <!-- Full name entered here -->
               <div class="form-group">
                 <label for="{{ form.name.id }}" class="form-control-label">Full Name</label>
                 {{ form.name(size=32, class="form-control", placeholder="Enter your full name") }}
@@ -43,6 +46,7 @@
                   {% endfor %}
                 </div>
 
+                <!-- Email here -->
               <div class="form-group">
                 <label for="{{ form.email.id }}" class="form-control-label">Email</label>
                 {{ form.email(size=32, class="form-control", placeholder="Enter your email") }}
@@ -55,6 +59,7 @@
                   {% endfor %}
                 </div>
 
+                <!-- Username entered here -->
               <div class="form-group">
                 <label for="{{ form.username.id }}" class="form-control-label">Username</label>
                 {{ form.username(size=32, class="form-control", placeholder="Choose a username") }}
@@ -67,6 +72,7 @@
                   {% endfor %}
                 </div>
 
+                <!-- Password here -->
               <div class="form-group">
                 <label for="{{ form.password.id }}" class="form-control-label">Password</label>
                 {{ form.password(size=32, class="form-control", placeholder="Enter your password") }}
@@ -79,11 +85,13 @@
                   {% endfor %}
                 </div>
 
+                <!-- Retype the password -->
               <div class="form-group">
                 <label for="{{ form.confirm.id }}" class="form-control-label">Confirm Password</label>
                 {{ form.confirm(size=32, class="form-control", placeholder="Confirm your password") }}
               </div>
 
+              <!-- Submit -->
               <div class="form-group text-center">
                 {{ form.submit(class="btn btn-primary btn-block") }}
               </div>

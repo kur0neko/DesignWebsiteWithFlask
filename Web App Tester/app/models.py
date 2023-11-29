@@ -13,7 +13,7 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    noter = db.relationship('Note', backref ='owner', lazy = 'dynamic', cascade = 'all')
+    noter = db.relationship('Note', backref ='owner', lazy = 'dynamic', cascade = 'all') #build the relationship between the note and the user, this is also used when a user is deleted so that there is a cascading delete
     tabler = db.relationship('Table', backref ='owner', lazy = 'dynamic', cascade = 'all') #build the relationship between the table and the user, so when a user is deleted their is a cascading delete 
 
 
