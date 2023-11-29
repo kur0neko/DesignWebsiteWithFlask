@@ -267,7 +267,7 @@ def edittable(table_id):
 	
 
 
-@myapp_obj.route('/search', methods=['GET','POST']) 															#creating instance'/', accept POST and GET form
+@myapp_obj.route('/search', methods=['GET','POST']) 															#creating instance template'/search', accept POST and GET form
 def search():
     if 'user' in session:																						#If the user is logged in, in the session
         UserID = session.get('id')  																			#save the user ID from database which will use later on to verified who is logged in to use search.
@@ -315,14 +315,14 @@ def download(img_name):
  
 @myapp_obj.route('/deleteNote/<notename>', methods=['POST', 'GET'])													#used to receive the image name for download
 def deleteNote(notename):
-    #check if the current user it the real owner 
-    if 'user' in session:
-        found_note = Note.query.filter_by(note_name=notename).first()
-        if found_note:
-            #note = Note.query.get_or_404(found_note)
-            db.session.delete(found_note)
-            db.session.commit()
-    return redirect('/home')
+    #check if the current user it the real owner                                                              	#function deleteNote is function will remove note by notename
+    if 'user' in session:																					    #First create instance template /deleteNote accept POST and GET forms
+        found_note = Note.query.filter_by(note_name=notename).first()											#first check if the user is logged in in the session
+        if found_note:																							#find the note of the user that logged in, if the notename match to the database note name
+            #note = Note.query.get_or_404(found_note)                                                           #If found hode the value of Notename inside found_note, If found_note is have  notename
+            db.session.delete(found_note)																		#delete the notedata out of the database
+            db.session.commit()																					#Commit the current transaction in database
+    return redirect('/home')																					#then redirect to home page
 
 
 
