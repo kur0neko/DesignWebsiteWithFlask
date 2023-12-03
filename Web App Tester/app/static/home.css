@@ -1,0 +1,48 @@
+ 
+ /* create box around search, note, and table requirement */
+ .searchFunction, 
+ .noteFunction, 
+ .tableFunction {
+    padding: 10px;
+    border: 1px solid #000000;
+}
+
+.search-bar {                       /* styling the search bar */
+    font-size: 16px;
+    font-family: Quicksand;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.home-button {                      /* styling all buttons on the homepage */
+    background-color: #ffffff;
+    font-family: Quicksand;
+    font-size: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border-width: 1px;
+    transition: 0.30s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.home-button:hover {                /* hovering affect for buttons */
+    background-color: #8cd599;
+}
+
+.title {                            /* title styling on the homepage */                                      
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.note-display {                     /* styling for the display of notes on home page */
+    word-wrap: break-word;
+    padding: 10px;
+    border: 1px solid #000000;
+    margin-right: 200px;
+}

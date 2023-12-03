@@ -2,27 +2,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<style>
-
-  /* create box around search requirement */
-  .searchFunction {
-      padding: 10px;
-      border: 1px solid #000000;
-  }
-
-  /* create box around note requirement */
-  .noteFunction {
-      padding: 10px;
-      border: 1px solid #000000;
-  }
-
-  /* create box around table requirement */
-  .tableFunction{
-    padding: 10px;
-    border: 1px solid #000000;
-  }
-
-</style>
 
 <!-- Title -->
 <h1 class="Title">
@@ -33,9 +12,9 @@
 <div class = "searchFunction">
 <!-- Search use GET form, create a search bar with the submit button -->
   <form method="GET">
-    <label class ="note-title" for="query">Search Notes: &nbsp;</label>
-    <input type="search" placeholder="search" aria-label="Search", name="searched">
-    <button type="submit" class="btn btn-outline-secondary note-box-button">Search</button>
+    <label class ="title" for="query">Search Notes: &nbsp;</label>
+    <input class="search-bar" type="search" placeholder="search" aria-label="Search", name="searched">
+    <button type="submit" class="btn btn-outline-secondary home-button">Search</button>
   </form>
 
   <!-- If the keyword is not empty -->
@@ -62,7 +41,7 @@
       {% endfor %}
         <!--If the search is not found, print search keyword and statement file is not found  -->
       {% else %}
-      Sorry, your seach term: <strong>{{keyword}}</strong> file is not found
+      Sorry, your search term: <strong>{{keyword}}</strong> file is not found
       {% endif %}
 
     {% endif %}
@@ -76,9 +55,9 @@
   <!-- represents the newnote and the edit notes buttons on the profile-->
   <form action="newnote">
     {{newnote.hidden_tag()}}
-    <p>{{newnote.button(class="note-box-button")}}</p>
+    <p>{{newnote.button(class="home-button")}}</p>
   </form>
-  <p class ="note-title">Your notes are:<br></p>
+  <p class ="title">Your notes are:<br></p>
       <!--for loop to print every note in the dictionary in '/home' route function-->
       {% for note in note_list %}
           <div class = "note-display">
@@ -117,12 +96,12 @@
 <div class = "tableFunction">
   <!-- create new table button which links to the new table webpage -->
   <a href="/newtable">
-    <button class="note-box-button">Create Table</button>
+    <button class="home-button">Create Table</button>
   </a>
 
   <div>
     <!-- Show list of all currently created tables-->
-    <p class ="note-title">
+    <p class ="title">
         Your Tables:
         <!-- iterate through each table of the user's -->
         {% for table in table_list %}
