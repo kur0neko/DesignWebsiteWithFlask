@@ -35,7 +35,7 @@
   <form method="GET">
     <label for="query">Search Notes: &nbsp;</label>
     <input type="search" placeholder="search" aria-label="Search", name="searched">
-    <button type="submit"class="btn btn-outline-secondary">Search</button>
+    <button type="submit" class="btn btn-outline-secondary">Search</button>
   </form>
 
   <!-- If the keyword is not empty -->
@@ -76,18 +76,18 @@
   <!-- represents the newnote and the edit notes buttons on the profile-->
   <form action="newnote">
     {{newnote.hidden_tag()}}
-    <p>{{newnote.button}}</p>
+    <p>{{newnote.button(class="note-box-button")}}</p>
   </form>
   <p>Your notes are:<br></p>
       <!--for loop to print every note in the dictionary in '/home' route function-->
       {% for note in note_list %}
-          <div>
+          <div class = "note-display">
               <!--display the note name, note content, and an edit button-->
               <p>Note: {{note}}</p> 
               <p>Note-Text: {{note_list[note][0]}}</p>
               <!--If there are images (img_list exists), make a download attachment for each image-->
               {% if note_list[note][3] %}
-              <span>Attachments: </span>
+              <span>Attachments: </span><br>
                 {% for img in img_list %}
                 <!--loop through all sets of images for each note-->
                   {% for name in img %}
@@ -100,11 +100,11 @@
               {% endif %}
               <!--for every edit note button, it is linked to 'editnote/(name of the note corresponding to dictionary)'-->
               <form action = "editnote/{{note}}">
-                <p>{{note_list[note][1].button}}</p>
+                <p>{{note_list[note][1].button(class="note-box-button")}}</p>
               </form>
               <!-- delete note button-->
               <form action="/deleteNote/{{note}}">
-                <p>{{note_list[note][2].button}}</p>
+                <p>{{note_list[note][2].button(class="note-box-button")}}</p>
               </form>
           </div>
       {% endfor %}

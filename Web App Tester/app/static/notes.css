@@ -1,0 +1,68 @@
+.note {
+    text-align: center;
+}
+
+.note-display {
+    word-wrap: break-word;
+    padding: 10px;
+    border: 1px solid #000000;
+    margin-right: 200px;
+}
+
+.note-box-name-label {
+    font-size: 18px;
+    font-family: Quicksand;
+    font-weight: bold
+}
+
+.note-box-name {
+    font-size: 18px;
+    font-family: Quicksand;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.note-box-note{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 16px;
+    font-family: Quicksand;
+    border-radius: 5px;
+    resize: none;
+}
+
+.note-box-button, 
+input[type="file"]::file-selector-button {
+    background-color: #ffffff;
+    font-family: Quicksand;
+    font-size: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border-width: 1px;
+    transition: 0.30s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.note-box-button:hover, 
+input[type="file"]::file-selector-button:hover {
+    background-color: #8cd599;
+}
+
+.note-box-image-text{
+    font-family: Quicksand;
+    font-size: 16px;
+}
+
+.note-box-button-alignment {
+    margin-left: 525px;
+    margin-right: 525px;
+    text-align: left;
+}

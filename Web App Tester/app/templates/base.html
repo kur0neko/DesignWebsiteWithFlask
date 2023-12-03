@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- webpage title -->
-  <title>NoteHub</title>
+    <title>NoteHub</title>
   <!-- pulled font from google api-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
-
-  <style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    <link rel = "stylesheet" href="{{url_for('static', filename='notes.css')}}">
+    <style>
 
       /* set font family for the body*/
       body {
@@ -45,16 +45,14 @@
       background-color: #000000;
       max-width: 100vw;
       }
-
-  </style>
- 
+    </style>
 </head>
 
 <body>
     
         <div class="navBar">
             
-                    
+                   
                         {% if 'user' in session %}
                             <a href="{{ url_for('logout') }}">Sign Out</a>
                         {% endif %}
