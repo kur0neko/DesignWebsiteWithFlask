@@ -2,6 +2,11 @@
     text-align: center;
 }
 
+.note-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
 .note-display {
     word-wrap: break-word;
     padding: 10px;
@@ -14,6 +19,7 @@
     font-family: Quicksand;
     font-weight: bold
 }
+
 
 .note-box-name {
     font-size: 18px;

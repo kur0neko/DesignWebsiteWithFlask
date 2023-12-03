@@ -33,9 +33,9 @@
 <div class = "searchFunction">
 <!-- Search use GET form, create a search bar with the submit button -->
   <form method="GET">
-    <label for="query">Search Notes: &nbsp;</label>
+    <label class ="note-title" for="query">Search Notes: &nbsp;</label>
     <input type="search" placeholder="search" aria-label="Search", name="searched">
-    <button type="submit" class="btn btn-outline-secondary">Search</button>
+    <button type="submit" class="btn btn-outline-secondary note-box-button">Search</button>
   </form>
 
   <!-- If the keyword is not empty -->
@@ -78,7 +78,7 @@
     {{newnote.hidden_tag()}}
     <p>{{newnote.button(class="note-box-button")}}</p>
   </form>
-  <p>Your notes are:<br></p>
+  <p class ="note-title">Your notes are:<br></p>
       <!--for loop to print every note in the dictionary in '/home' route function-->
       {% for note in note_list %}
           <div class = "note-display">
@@ -122,7 +122,7 @@
 
   <div>
     <!-- Show list of all currently created tables-->
-    <p>
+    <p class ="note-title">
         Your Tables:
         <!-- iterate through each table of the user's -->
         {% for table in table_list %}
