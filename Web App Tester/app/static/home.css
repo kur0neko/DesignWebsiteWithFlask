@@ -1,4 +1,37 @@
- 
+      /* set font family for the body*/
+      body {
+        font-family: Quicksand
+        }
+  
+        /* sets a font size for the navigation bar text, a background is given and overflow is set to hidden */
+        .navBar {
+        background-color: #ffffff;
+        overflow: hidden;
+        font-size: 1vw;
+        border: 0.1px solid;
+        color: #000000;
+        }
+  
+        /* the hyperlinks in the nav bar are set to the right with a 
+        padding, a color, and the underline is removed by setting text decoration to none*/
+        .navBar a {
+        float: right;
+        padding: 10px;
+        color: #000000;
+        text-decoration: none;
+        }
+  
+        /* sets a background color to a different color after the link is hovered on*/
+        .navBar a:hover {
+        background-color: #8cd599;
+        }
+  
+        /*the top class is given a background color and a max width*/
+        .top {
+        background-color: #000000;
+        max-width: 100vw;
+        }
+        
  /* create box around search, note, and table requirement */
  .searchFunction, 
  .noteFunction, 
