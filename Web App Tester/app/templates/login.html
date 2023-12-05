@@ -2,77 +2,148 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- title of webpage-->
-    <title>NoteHub</title>
-    <!-- pulled font from google api-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- webpage title -->
+  <title>NoteHub</title>
 
-    <style>
+  <!-- pulled font from google api-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
 
-        /* set font family for the body*/
-        body {
-        font-family: Quicksand
-        }
+  <style>
+    /* set font family for the body*/
+    body {
+      font-family: Quicksand;
+    }
 
+    /* Styles for the form container */
+    .container {
+      margin-top: 5%;
+    }
 
-    </style>
+    .card {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+      padding: 2rem;
+    }
+
+    .card-title {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Styles for the form elements */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-control-label {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .form-control {
+      font-size: 1rem;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #000000;
+    }
+
+    /* Styles for error messages */
+    .error {
+      color: red;
+    }
+
+    /* Styles for the submit and create account buttons */
+    .form-group.text-center {
+      margin-top: 2rem;
+    }
+
+    .btn {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: #ffffff;
+      color: #000000;
+      border: 1px solid #000000;
+    }
+
+    .btn-secondary {
+      background-color: #8cd599;
+      color: #ffffff;
+      border: 1px solid #8cd599;
+    }
+
+    .btn-block {
+      display: block;
+      width: 100%;
+    }
+
+    .btn:hover {
+      filter: brightness(90%);
+    }
+  </style>
+
 </head>
-
 
 <body>
 
-  <!-- Form to allow user to login -->
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h1 class="card-title text-center mb-4">Login</h1>
+  <!-- Form for user to log in -->
+  <div class="container">
+    <div class="card shadow">
+      <div class="card-body">
+        <h1 class="card-title">Login</h1>
+        <form action="" method="POST" novalidate>
+          {{ form.hidden_tag() }}
 
-            <!-- Flash Messages -->
-            <div class="flash-messages">
-              {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                  <div class="alert alert-danger">
-                    {% for message in messages %}
-                      {{ message }}
-                    {% endfor %}
-                  </div>
-                {% endif %}
-              {% endwith %}
-            </div>
-
-            <form action="" method="POST" novalidate>
-              {{ form.hidden_tag() }}
-
-              <!-- Username entered here -->
-              <div class="form-group">
-                {{ form.username.label(class="form-control-label") }}
-                {{ form.username(size=32, class="form-control", placeholder="Enter your username") }}
-              </div>
-
-              <!-- Password entered here -->
-              <div class="form-group">
-                {{ form.password.label(class="form-control-label") }}
-                {{ form.password(size=32, class="form-control", placeholder="Enter your password") }}
-              </div>
-
-              <!-- Submit here -->
-              <div class="form-group text-center">
-                {{ form.submit(class="btn btn-primary btn-block") }}
-              </div>
-            </form>
-            
-            <!-- Sign Up Link -->
-            <div class="text-center">
-              <p>Don't have an account? <a href="{{ url_for('createaccount') }}">Sign Up</a></p>
-            </div>
+          <!-- Username entered here -->
+          <div class="form-group">
+            {{ form.username.label(class="form-control-label") }}
+            {{ form.username(size=32, class="form-control", placeholder="Enter your username") }}
           </div>
+
+          <!-- show error messages if form submission was invalid -->
+          <div class="error">
+            {% for error in form.username.errors %}
+            <span>{{ error }}</span><br>
+            {% endfor %}
+          </div>
+
+          <!-- Password here -->
+          <div class="form-group">
+            {{ form.password.label(class="form-control-label") }}
+            {{ form.password(size=32, class="form-control", placeholder="Enter your password") }}
+          </div>
+
+          <!-- show error messages if form submission was invalid -->
+          <div class="error">
+            {% for error in form.password.errors %}
+            <span>{{ error }}</span><br>
+            {% endfor %}
+          </div>
+
+          <!-- Submit -->
+          <div class="form-group text-center">
+            {{ form.submit(class="btn btn-primary btn-block") }}
+          </div>
+        </form>
+
+        <!-- Create Account button -->
+        <div class="form-group text-center">
+          <a href="{{ url_for('createaccount') }}" class="btn btn-secondary btn-block">Create Account</a>
         </div>
       </div>
     </div>
   </div>
 </body>
+
+</html>
