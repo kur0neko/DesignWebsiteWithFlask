@@ -4,7 +4,7 @@
 3. Register an account
 4. Create Folders
 5. Edit notes
-6. Export Notes
+6. ~~Export Notes~~ Changed Into "New Note"
 7. Attach Images
 8. Search notes by note names
 9. Delete user profile
@@ -166,7 +166,7 @@ User creates changes without saving
 
 Noah Nguyen
 
-**6.  Export Notes**
+**6.  **~~Export Notes~~** (Changed Into "New Note")
 
 -**Summary:**
 The user can download a note in the file type version based on their choice
