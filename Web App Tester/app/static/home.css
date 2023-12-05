@@ -45,15 +45,13 @@
     padding: 10px;
     border: 1px solid #000000;
     margin-right: 200px;
-    position: relative;
 }
 
-.translate {                        /* styling for the translation box */
-    position: absolute;
-    top : 0px;
-    right: 0px;
+.translate {                        /* styling for the translation box */ 
     border: 1px solid #000000;
-    padding: 10px;
+    padding: 20px;
+    margin: 20px;
     display: inline-block;
-    margin: 10px;
 }
+
+

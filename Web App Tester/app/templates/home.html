@@ -81,10 +81,6 @@
               <form action = "editnote/{{note}}">
                 <p>{{note_list[note][1].button(class="note-box-button")}}</p>
               </form>
-              <!-- delete note button-->
-              <form action="/deleteNote/{{note}}">
-                <p>{{note_list[note][2].button(class="note-box-button")}}</p>
-              </form>
 
               <div class = "translate">
                 <form action="" method="POST">
@@ -92,9 +88,9 @@
                 <!-- part of the form which allows destinational language to be selected -->
                 <p> {{translated.destLang.label}} <br>
                    {{translated.destLang(size=1)}}</p>
-            
+                  
                 <!-- button to let user submit -->
-                <p>{{translated.submit()}}</p>
+                <p>{{translated.submit(class="home-button")}}</p>
               </form>
             
               {% if not valid %}
@@ -111,6 +107,11 @@
               </div>    
               {% endif %}
             </div>
+            
+              <!-- delete note button-->
+              <form action="/deleteNote/{{note}}">
+                <p>{{note_list[note][2].button(class="note-box-button")}}</p>
+              </form>
 
           </div>
 
