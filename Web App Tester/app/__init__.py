@@ -7,10 +7,11 @@ myapp_obj = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 myapp_obj.config.from_mapping(
-    SECRET_KEY = 'meghanaiscool',
+    SECRET_KEY = 'thisiscool',
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 
 'app.db'),
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = False,
+    GOOGLE_TRANSLATE_SECRET_KEY='insertKeyHere'   #API key goes here, to be used for google translate API. (if more than 60,000 characters get translated in a month, I get charged money)
 )
 
 db = SQLAlchemy(myapp_obj)
