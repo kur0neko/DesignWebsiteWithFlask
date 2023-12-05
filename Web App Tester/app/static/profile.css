@@ -1,0 +1,13 @@
+.profile-box-name-label {                      /* styling label of the profile name */
+    font-size: 18px;
+    font-family: Quicksand;
+    font-weight: bold
+}
+
+.profile-box-name{                             /* styling the name of the table */
+    padding: 5px;
+    font-size: 15px;
+    font-family: Quicksand;
+    border-radius: 5px;
+    resize: none;
+}

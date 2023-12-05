@@ -20,7 +20,7 @@
     {{newsize.hidden_tag()}} 
 
     <!-- first part of the form which allows rows to be changed -->
-    <p> {{newsize.rows.label}} <br>
+    <p> {{newsize.rows.label(class = "table-box-name-label")}} <br>
        {{newsize.rows(size=5,class = "table-box-num")}}</p>
 
         <!-- show the errors if the user submits and invalid number -->
@@ -32,7 +32,7 @@
        </div>    
 
     <!-- second part of the form which allows columns to be changed -->
-    <p> {{newsize.columns.label}} <br>
+    <p> {{newsize.columns.label(class = "table-box-name-label")}} <br>
        {{newsize.columns(size=5,class = "table-box-num")}}</p>
 
         <!-- show the errors if the user submits and invalid number -->
