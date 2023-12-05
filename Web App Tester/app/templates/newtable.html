@@ -8,8 +8,8 @@
         <form action="" method="POST" novalidate>
             {{table.hidden_tag()}}
             <!-- user eneters table name -->
-            <p> {{table.name.label}} <br>
-               {{table.name(size=32)}}</p>
+            <p> {{table.name.label(class = "table-box-name-label")}} <br>
+               {{table.name(size=32, class = "table-box-name" )}}</p>
 
                <!-- any errors will be displayed using a for loop-->
                <div class = "error">
@@ -20,8 +20,8 @@
                </div>    
 
             <!-- user eneters the number of rows they would like-->
-            <p> {{table.rows.label}} <br>
-               {{table.rows(size=10)}}</p>
+            <p> {{table.rows.label(class = "table-box-name-label")}} <br>
+               {{table.rows(size=10, class = "table-box-num")}}</p>
 
                <!-- any errors will be displayed using a for loop-->
                <div class = "error">
@@ -32,8 +32,8 @@
                </div>    
         
             <!-- user eneters the number of columns they would like-->
-            <p> {{table.columns.label}} <br>
-               {{table.columns(size=10)}}</p>
+            <p> {{table.columns.label(class = "table-box-name-label")}} <br>
+               {{table.columns(size=10, class = "table-box-num")}}</p>
 
                <!-- any errors will be displayed using a for loop-->
                <div class = "error">

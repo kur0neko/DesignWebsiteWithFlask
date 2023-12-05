@@ -21,7 +21,7 @@
 
     <!-- first part of the form which allows rows to be changed -->
     <p> {{newsize.rows.label}} <br>
-       {{newsize.rows(size=5)}}</p>
+       {{newsize.rows(size=5,class = "table-box-num")}}</p>
 
         <!-- show the errors if the user submits and invalid number -->
        <div class = "error">
@@ -33,7 +33,7 @@
 
     <!-- second part of the form which allows columns to be changed -->
     <p> {{newsize.columns.label}} <br>
-       {{newsize.columns(size=5)}}</p>
+       {{newsize.columns(size=5,class = "table-box-num")}}</p>
 
         <!-- show the errors if the user submits and invalid number -->
        <div class = "error">
@@ -67,12 +67,12 @@
                    
                         
                             <!-- let user select a link to a note -->
-                            <p>{{tableEnt.note.label}} <br>
-                               {{tableEnt.note(size=1)}}</p>
+                            <p>{{tableEnt.note.label(class = "table-box-name-label")}} <br>
+                               {{tableEnt.note(size=1,class = "table-box-num")}}</p>
 
                             <!-- let user type in some random string -->
-                            <p> {{tableEnt.string.label}} <br>
-                                {{tableEnt.string(size=10)}}</p>
+                            <p> {{tableEnt.string.label(class = "table-box-name-label")}} <br>
+                                {{tableEnt.string(size=10, class = "table-box-name-label")}}</p>
                                 
                             <!-- let user submit the form -->
                             <p>{{tableEnt.submit(size=10, class="home-button")}}</p>
@@ -88,7 +88,7 @@
 <br>
 
 <!-- showcase the product of the user's submissions -->
-<p>Table: {{ thisTable.table_name }}</p>
+<h3>Table: {{ thisTable.table_name }}</h3>
 
             <!-- create the table -->
             <table>

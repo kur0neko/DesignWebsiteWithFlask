@@ -1,0 +1,38 @@
+    /* add nice border to the entire table */
+    table {
+        border: 1px solid #000000;
+    }
+
+    /* add nice border and padding to each cell in the table */
+    th, td {
+        padding: 10px;
+        border: 1px solid #000000;
+    }
+
+    .table-box-name-label {                      /* styling label of the table name */
+        font-size: 18px;
+        font-family: Quicksand;
+        font-weight: bold
+    }
+
+    .table-box-name{                             /* styling the name of the table */
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 15px;
+        font-family: Quicksand;
+        border-radius: 5px;
+        resize: none;
+    }
+
+    .table-box-num{                /*styling numbers of the table*/
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 15px;
+        font-family: Quicksand;
+        border-radius: 5px;
+        resize: none; 
+    }
