@@ -29,6 +29,8 @@ NoteHub is the Note Web application built with Flask python framework, WTforms, 
 ![Static Badge](https://img.shields.io/badge/typing_extensions-version%204.8.0-green?style=3d&logo=typing_extensions)
 ![Static Badge](https://img.shields.io/badge/Werkzeug-version%203.0.1-green?style=3d&logo=Werkzeug)
 ![Static Badge](https://img.shields.io/badge/WTForms-3.1.1-white?style=3d&logo=WTForms)
+![Static Badge](https://img.shields.io/badge/requests-blue?style=plastic&logo=requests&logoColor=blue)
+
 
 **Prerequisite requirement**
 -
