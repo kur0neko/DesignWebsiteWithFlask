@@ -44,3 +44,20 @@ In this meeting the group discussed the comments and fixes needed for Milestone 
 1. Noah finished up coding the requirements for Attach Images and Edit Notes and a new requirement Create Note. In the future, will work on interface design of the pages related to the requirements worked on.
 1. **Summary:**
 The team discussed the requirements that were finished over the last week and the requirements that need to be finished before the deadline of Milestone 2. Also the team worked on and tested the code written for the requirements to catch bugs and errors. Finally the team also discussed what the next steps of the project are and any finishing requirements for the project.
+
+### 2023-12-5 at 10:40PM
+- **Attendees: Nutthawat Panyangnoi, Noah Nguyen, Meghana Indukuri**
+
+-**Team updates:** 
+
+- Yousef will work on the CSS styling of the pages Login and Create Account 
+
+- Nutthawat will work on the Delete Table requirement to finish up the last requirement for the project in replacement of the Advanced Search requirement. 
+
+- Meghana finished up the Translate Google API and added CSS styling to the Edit Table page,	 New Table page, and changed the requirement Note Folder Structure to Edit Table.
+
+- Noah finished up the styling for the edit note page, the new note page, and the home page, and changed the requirement Export Notes to New Note.
+
+- **Summary:**
+In this meeting, the team discussed the final requirements needed to complete the project. Multiple requirements were changed and discussed for the project. The team discussed what each member would work on for the last Milestone.
+
