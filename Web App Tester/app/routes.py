@@ -4,7 +4,7 @@ from flask import flash
 from flask import session
 from flask import request, send_file
 from app.models import User, Note, Table, Image, TableEntries
-from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, NewNoteButton, EditNoteButton, Editbox, DeleteProfile, tableEntry, modifyParams, DeleteNoteButton, TranslateBox
+from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, NewNoteButton, EditNoteButton, Editbox, DeleteProfile, tableEntry, modifyParams, DeleteNoteButton, TranslateBox ,DeleteTableButton
 from app.models import User, Note, Table
 from app import myapp_obj
 from app import db
@@ -390,6 +390,17 @@ def deleteNote(notename):
             db.session.delete(found_note)																		#delete the notedata out of the database
             db.session.commit()																					#Commit the current transaction in database
     return redirect('/home')																					#then redirect to home page
+
+@myapp_obj.route('/deleteTable/<table_id>', methods=['GET', 'POST'])
+def deleteTable(table_id):
+    if 'user' in session: 																						#check if user is in session
+        found_table = Table.query.filter_by(id=table_id).first()																				# create the form for entering a value into the table
+        #notes = Note.query.filter(Note.user_id == session['id']).all()
+        if found_table:
+            db.session.delete(found_table)
+            db.session.commit()	
+    return redirect('/home')
+
 
 
 

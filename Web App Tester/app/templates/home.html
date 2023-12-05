@@ -127,6 +127,7 @@
   <a href="/newtable">
     <button class="home-button">Create Table</button>
   </a>
+  
 
   <div>
     <!-- Show list of all currently created tables-->
@@ -139,6 +140,12 @@
           <a href="{{ url_for('edittable', table_id = table.id) }}">
               <!-- print the name of the table -->
               <p>{{table.table_name}}</p>
+          </a>
+        </div>
+
+        <div>
+          <a href="{{ url_for('deleteTable', table_id = table.id)}}">
+              <button class="home-button">Delete Table</button>
           </a>
         </div>
         {% endfor %}
