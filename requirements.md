@@ -2,13 +2,13 @@
 1. Sign In
 2. Sign out
 3. Register an account
-4. Create Folders
+4. ~~Export Notes~~ Changed Into "Edit Table"
 5. Edit notes
-6. ~~Export Notes~~ Changed Into "New Note"
+6. ~~Create Folder~~ Changed Into "New Note"
 7. Attach Images
 8. Search notes by note names
 9. Delete user profile
-10. Search with advanced expressions
+10. ~~Search with advanced expressions~~ Changed Into "Delete Tables"
 11. Connect to Google Translate API
 12. Edit user profile
 13. Create Tables with Links to Notes
