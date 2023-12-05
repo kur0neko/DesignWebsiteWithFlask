@@ -3,7 +3,7 @@ NoteHub is the Note Web application built with Flask python framework, WTforms, 
 
 **Group Members**
 
-- Nutthawat Panyangnoi (@kur0neko) -  Requirements: Search, Delete Note
+- Nutthawat Panyangnoi (@kur0neko) -  Requirements: Search, Delete Note, Delete Table
 - Yousef Asad (@yasad21) - Requirements: Sign In, Register Account, Logout
 - Noah Nguyen (@noahnguyen015) (team lead) - Requirements: Edit Note, Attach Images, ~~Export Notes~~ New Note
 - Meghana Indukuri (@meghanai28) -  Requirements: Delete profile, Edit profile, Create table, Connect to Google Translate API, Edit Table
