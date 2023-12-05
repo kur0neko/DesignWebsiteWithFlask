@@ -370,7 +370,8 @@ def editnote(notename):
 
 def search_notes(userID,keyword):
     
-     result = Note.query.filter(userID == Note.user_id, Note.note_name.ilike(f'%{keyword}%')).all()           #return the query select Note that have the userID matched to current user logged in, search only the files that this user has in her/his session.
+     result = Note.query.filter(userID == Note.user_id, 
+	 (Note.note_name.ilike(f'%{keyword}%') | (Note.note_body.ilike(f'%{keyword}%')))).all()           #return the query select Note that have the userID matched to current user logged in, search only the files that this user has in her/his session.
      return result  																						  #note that "ilike" will allow to find all case sensitive as well. Fetch all file that have similar name or case sensitive
     
 @myapp_obj.route('/download/<img_name>', methods=['GET'])													#used to receive the image name for download
