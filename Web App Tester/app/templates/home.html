@@ -2,27 +2,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<style>
-
-  /* create box around search requirement */
-  .searchFunction {
-      padding: 10px;
-      border: 1px solid #000000;
-  }
-
-  /* create box around note requirement */
-  .noteFunction {
-      padding: 10px;
-      border: 1px solid #000000;
-  }
-
-  /* create box around table requirement */
-  .tableFunction{
-    padding: 10px;
-    border: 1px solid #000000;
-  }
-
-</style>
 
 <!-- Title -->
 <h1 class="Title">
@@ -33,9 +12,9 @@
 <div class = "searchFunction">
 <!-- Search use GET form, create a search bar with the submit button -->
   <form method="GET">
-    <label for="query">Search Notes: &nbsp;</label>
-    <input type="search" placeholder="search" aria-label="Search", name="searched">
-    <button type="submit"class="btn btn-outline-secondary">Search</button>
+    <label class ="title" for="query">Search Notes: &nbsp;</label>
+    <input class="search-bar" type="search" placeholder="search" aria-label="Search", name="searched">
+    <button type="submit" class="btn btn-outline-secondary home-button">Search</button>
   </form>
 
   <!-- If the keyword is not empty -->
@@ -62,7 +41,7 @@
       {% endfor %}
         <!--If the search is not found, print search keyword and statement file is not found  -->
       {% else %}
-      Sorry, your seach term: <strong>{{keyword}}</strong> file is not found
+      Sorry, your search term: <strong>{{keyword}}</strong> file is not found
       {% endif %}
 
     {% endif %}
@@ -76,18 +55,18 @@
   <!-- represents the newnote and the edit notes buttons on the profile-->
   <form action="newnote">
     {{newnote.hidden_tag()}}
-    <p>{{newnote.button}}</p>
+    <p>{{newnote.button(class="home-button")}}</p>
   </form>
-  <p>Your notes are:<br></p>
+  <p class ="title">Your notes are:<br></p>
       <!--for loop to print every note in the dictionary in '/home' route function-->
       {% for note in note_list %}
-          <div>
+          <div class = "note-display">
               <!--display the note name, note content, and an edit button-->
               <p>Note: {{note}}</p> 
               <p>Note-Text: {{note_list[note][0]}}</p>
               <!--If there are images (img_list exists), make a download attachment for each image-->
               {% if note_list[note][3] %}
-              <span>Attachments: </span>
+              <span>Attachments: </span><br>
                 {% for img in img_list %}
                 <!--loop through all sets of images for each note-->
                   {% for name in img %}
@@ -100,11 +79,11 @@
               {% endif %}
               <!--for every edit note button, it is linked to 'editnote/(name of the note corresponding to dictionary)'-->
               <form action = "editnote/{{note}}">
-                <p>{{note_list[note][1].button}}</p>
+                <p>{{note_list[note][1].button(class="note-box-button")}}</p>
               </form>
               <!-- delete note button-->
               <form action="/deleteNote/{{note}}">
-                <p>{{note_list[note][2].button}}</p>
+                <p>{{note_list[note][2].button(class="note-box-button")}}</p>
               </form>
           </div>
       {% endfor %}
@@ -117,12 +96,12 @@
 <div class = "tableFunction">
   <!-- create new table button which links to the new table webpage -->
   <a href="/newtable">
-    <button>Create Table</button>
+    <button class="home-button">Create Table</button>
   </a>
 
   <div>
     <!-- Show list of all currently created tables-->
-    <p>
+    <p class ="title">
         Your Tables:
         <!-- iterate through each table of the user's -->
         {% for table in table_list %}

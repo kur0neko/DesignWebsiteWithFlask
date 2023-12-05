@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
+
     <h1>Edit a Note</h1>
-    <div></div>
-    <form action="" method="POST" enctype="multipart/form-data">
-    <!--Displays the textbox of the edit note page-->
-        {{editnote.hidden_tag()}}
-        <p>{{editnote.note_body(rows = 25, cols = 100)}}</p>
-        <!--Additional Images to the note-->
-        <p>{{editnote.image_upload2}}</p>
-        <!--'Save Changes Button'-->
-        <p>{{editnote.save()}}</p>
-    </form>
+    <div class = "note">
+        <form action="" method="POST" enctype="multipart/form-data">
+            <!--Displays the textbox of the edit note page-->
+            {{editnote.hidden_tag()}}
+            <p>{{editnote.note_body(class ="note-box-note", rows = 25, cols = 100)}}</p>
+            
+            <!--Additional Images to the note-->
+            <div class = "note-box-button-alignment">
+                <p>{{editnote.image_upload2(class ="note-box-image-text")}}</p>
+            </div>
+            <!--'Save Changes Button'-->
+            <div class = "note-box-button-alignment">
+                <p>{{editnote.save(class="note-box-button")}}</p>
+            </div>
+        </form>
     </div>
 {% endblock %}
