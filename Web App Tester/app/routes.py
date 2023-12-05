@@ -4,17 +4,18 @@ from flask import flash
 from flask import session
 from flask import request, send_file
 from app.models import User, Note, Table, Image, TableEntries
-from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, NewNoteButton, EditNoteButton, Editbox, DeleteProfile, tableEntry, modifyParams, DeleteNoteButton
+from .forms import CreateAccountForm, LoginForm, Notebox, TableParams, updateName, updatePassword, NewNoteButton, EditNoteButton, Editbox, DeleteProfile, tableEntry, modifyParams, DeleteNoteButton, TranslateBox
 from app.models import User, Note, Table
 from app import myapp_obj
 from app import db
 from io import BytesIO
+import requests
 
 @myapp_obj.route("/")
 def index():																					#index page
 		return render_template('index.html')
 
-@myapp_obj.route("/home")																		#homepage 
+@myapp_obj.route("/home", methods=['GET', 'POST'])																		#homepage 
 def home():
 	if 'user' in session:																		#check for user
 		user = session['user']
@@ -24,6 +25,36 @@ def home():
 		found_user = User.query.filter_by(username=session['user']).first()						#find the database entry with the same name as the user logged in
 		if found_user:
 			session['id'] = found_user.id														#make the session id equal to the id of the found entry
+
+		languages = [                                                                         # dictionary of languages to be used by googletrans library
+        ('ar', 'arabic'),
+        ('bn', 'bengali'),
+        ('zh-cn', 'chinese (simplified)'),
+        ('zh-tw', 'chinese (traditional)'),
+        ('nl', 'dutch'),
+        ('en', 'english'),
+        ('fr', 'french'),
+        ('de', 'german'),
+        ('hi', 'hindi'),
+        ('ga', 'irish'),
+        ('it', 'italian'),
+        ('ja', 'japanese'),
+        ('ko', 'korean'),
+        ('la', 'latin'),
+        ('pt', 'portuguese'),
+        ('ro', 'romanian'),
+        ('es', 'spanish'),
+        ('sv', 'swedish'),
+        ('th', 'thai'),
+        ('tr', 'turkish'),
+        ('vi', 'vietnamese'),
+        ('cy', 'welsh')
+        ]
+
+		translated = TranslateBox()                                                                     #create the flask form
+		translated.destLang.choices = languages                                                         #set the flask form choices to these languages
+		valid = True
+		overuse = False
 		
 		img_list = []																			#holds all images for each note																			#dictionary to hold the image name and id
 		note_list = {}																			#dictionary to hold the note_name, note_body, and edit button
@@ -41,17 +72,52 @@ def home():
 					note_list[f'{note.note_name}'] = [note.note_body, editbutton, deleteButton, note.id]		#if found any entries, for value add their note_body (content in box) and key as note_name	
 				else:
 					note_list[f'{note.note_name}'] = [note.note_body, editbutton, deleteButton]				#no images, do not have a list for the values
-
+				
+				if translated.validate_on_submit(): 
+					print('here')                                                                               #translation was sucessfully submited
+					text = note.note_body                                                                 #get the text from the note box
+					print(text)                                                                                 #debug
+					print(translated.destLang.data)                                                             #debug
+					if text:
+						APIkey = str(myapp_obj.config.get('GOOGLE_TRANSLATE_SECRET_KEY'))                                           
+						newBody = translateThis(text, translated.destLang.data, APIkey)                         #call translating method
+						if newBody == 'nulloveruseGOOGLE_TRANSLATE_SECRET_KEY12282004':                         #make sure that when API key is overused sen use a message
+							overuse = True
+						elif newBody:
+							note.note_body = newBody                                                      #if validated make the changed string equal to the database note_body variable (the content)                                                                                            
+							db.session.commit()                                                                 #commit the changes
+							return redirect('/home')                                                            #go back home   
+						else:
+							valid = False
 
 		table_list = Table.query.filter_by(user_id = session['id']).all() 						# create a list of all tables that belong to the current user
 
 		UserID = session.get('id')  
 		keyword = request.args.get('searched')
 		note_results = search_notes(UserID, keyword)
-		
+	
 	else:
 		return redirect('/login')													
-	return render_template('home.html',  user=user, note_list=note_list, newnote=newnote, img_list=img_list, table_list = table_list, note_results = note_results, keyword = keyword)
+	return render_template('home.html',  user=user, note_list=note_list, newnote=newnote, img_list=img_list, table_list = table_list, note_results = note_results, keyword = keyword, translated = translated, overuse = overuse, valid = valid)
+
+
+def translateThis(text, dest1, apiKey):                                                 #translate method
+    
+    parameters = {'q': text,'target': dest1,'key': apiKey}								#paramaters needed for the request to google translate api
+    print(apiKey)																		#debug
+    response = requests.post("https://translation.googleapis.com/language/translate/v2", params=parameters)	#request the google translate API, not using the credentials methods because that will leak more private information than just the API Key
+    print(response.status_code)															#print if the request to API was sucessful. 200 means sucess, 403 means failure
+    if response.status_code == 200:
+        translation = response.json()													#get the response if request worked
+        print(translation)                                                              #debug
+        translated = translation['data']['translations'][0]['translatedText']           #get translation
+        detectedLanguage = translation['data']['translations'][0]['detectedSourceLanguage'] #get detected language
+        if detectedLanguage == dest1:                                                   #detect the language and check if its equal to source
+            translated = None                                                           #send message NONE to route
+    else:
+        translated = 'nulloveruseGOOGLE_TRANSLATE_SECRET_KEY12282004'               #if API overrequested make sure to not let user do more
+    return translated                                                               #return the text from the translation
+
 
 @myapp_obj.route("/login", methods=['GET', 'POST'])													#template for login
 def login():

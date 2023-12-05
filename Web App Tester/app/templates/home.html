@@ -85,7 +85,35 @@
               <form action="/deleteNote/{{note}}">
                 <p>{{note_list[note][2].button(class="note-box-button")}}</p>
               </form>
+
+              <div class = "translate">
+                <form action="" method="POST">
+                  {{translated.hidden_tag()}} 
+                <!-- part of the form which allows destinational language to be selected -->
+                <p> {{translated.destLang.label}} <br>
+                   {{translated.destLang(size=1)}}</p>
+            
+                <!-- button to let user submit -->
+                <p>{{translated.submit()}}</p>
+              </form>
+            
+              {% if not valid %}
+              <div class = "error">
+                <!-- show all the errors the user incurred by using a for loop -->
+                    <span style="color:red;">destination language cannot be same as detected source language</span>
+               </div>    
+              {% endif %}
+            
+              {% if overuse %}
+              <div class = "error">
+                <!-- show all the errors the user incurred by using a for loop -->
+                    <span style="color:red;">API requests have been overused for today, please try again tommorow</span>
+              </div>    
+              {% endif %}
+            </div>
+
           </div>
+
       {% endfor %}
   </div>
 
