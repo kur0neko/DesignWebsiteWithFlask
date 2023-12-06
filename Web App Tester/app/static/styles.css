@@ -1,0 +1,117 @@
+/* Styles for home.css */
+
+.searchFunction,
+.noteFunction,
+.tableFunction {
+    padding: 10px;
+    border: 1px solid #000000;
+}
+
+.search-bar {
+    font-size: 16px;
+    font-family: 'Quicksand', sans-serif;
+    padding: 5px 10px;
+}
+
+.home-button {
+    background-color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    transition: 0.30s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.home-button:hover {
+    background-color: #8cd599;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.note-display {
+    word-wrap: break-word;
+    padding: 10px;
+    border: 1px solid #000000;
+    margin-right: 200px;
+}
+
+.translate {
+    border: 1px solid #000000;
+    padding: 20px;
+    margin: 20px;
+    display: inline-block;
+}
+
+/* Styles for notes.css */
+
+.note {
+    text-align: center;
+}
+
+.note-box-name-label {
+    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+}
+
+.note-box-name {
+    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;
+    padding: 5px 10px;
+}
+
+.note-box-note {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 5px;
+    resize: none;
+}
+
+.note-box-button,
+input[type="file"]::file-selector-button {
+    background-color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    transition: 0.30s;
+    cursor: pointer;
+}
+
+.note-box-button:hover,
+input[type="file"]::file-selector-button:hover {
+    background-color: #8cd599;
+}
+
+.note-box-image-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+}
+
+.note-box-button-alignment {
+    margin-left: 525px;
+    margin-right: 525px;
+    text-align: left;
+}
+
+/* Additional styles for the entire application */
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+form {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.btn {
+    font-family: 'Quicksand', sans-serif;
+}
