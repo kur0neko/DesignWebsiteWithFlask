@@ -26,8 +26,8 @@
 ## Non-functional Requirements
 1. Only work expect to work Google Chrome
 2. Multilingual Support
-3. Dark mode
-4. Change font colors
+~~3. Dark mode~~
+~~4. Change font colors~~
 
 
 Yousef Asad
