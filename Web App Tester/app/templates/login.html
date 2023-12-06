@@ -56,6 +56,7 @@
 
     /* Styles for error messages */
     .error {
+      margin-bottom: 1.5rem;
       color: red;
     }
 
@@ -72,12 +73,14 @@
     }
 
     .btn-primary {
+      font-family: Quicksand;
       background-color: #ffffff;
       color: #000000;
       border: 1px solid #000000;
     }
 
     .btn-secondary {
+      text-decoration: none;
       background-color: #8cd599;
       color: #ffffff;
       border: 1px solid #8cd599;
@@ -102,6 +105,21 @@
     <div class="card shadow">
       <div class="card-body">
         <h1 class="card-title">Login</h1>
+
+                    <!-- Flash Messages -->
+                    <div class="flash-messages">
+                      {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                          <div class="alert alert-danger">
+                            {% for message in messages %}
+                              {{ message }}
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                      {% endwith %}
+                    </div>
+                    <br>
+
         <form action="" method="POST" novalidate>
           {{ form.hidden_tag() }}
 
