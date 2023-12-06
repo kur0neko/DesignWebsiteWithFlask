@@ -41,6 +41,8 @@ class Table(db.Model):                                          #model for table
     numColumns = db.Column(db.Integer)                          #number of columns
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))   #foriegn key which allows user to have one to many relationship with table  
 
+    tablethis = db.relationship('TableEntries', backref ='owner', lazy = 'dynamic', cascade = 'all') #build the relationship between the table and the entries, so when a table is deleted their is a cascading delete 
+
     def __repr__(self):
         return f'<table {self.id}: {self.table_name}>'          #define a string rep of the table itself
 

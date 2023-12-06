@@ -399,6 +399,8 @@ def deleteTable(table_id):
         if found_table:
             db.session.delete(found_table)
             db.session.commit()	
+            print(Table.query.all())
+            print(TableEntries.query.all())
     return redirect('/home')
 
 
