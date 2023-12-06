@@ -184,14 +184,14 @@ def profile():
 			return redirect('/profile')												#redirect to the profile
 
 		changePassword = updatePassword()											#create the form so the user can update their password
-		changePassword.password = found_user.password								#create a variable for the changePassword form so that it can be used in the validation in forms.py
+		changePassword.user1 = found_user										#create a variable for the changePassword form so that it can be used in the validation in forms.py
 		if changePassword.validate_on_submit():										#check if the form was validated
-			found_user.password = changePassword.newpassword.data					#change the user's password to the new password
+			found_user.set_password(changePassword.newpassword.data)				#change the user's password to the new password
 			db.session.commit()														#commit the changes
 			return redirect('/profile')												#redirect to the profile
 		
 		delete = DeleteProfile()													#create the form so that the user can delete their profile
-		delete.password = found_user.password										#create a variable for the form so that it can be used in forms.py for validation
+		delete.user1= found_user														#create a variable for the form so that it can be used in forms.py for validation
 		if delete.validate_on_submit():												#check if form validated
 			db.session.delete(found_user)											#delete the user from the database
 			db.session.commit()														#commit the changes

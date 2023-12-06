@@ -63,7 +63,7 @@ class updatePassword (FlaskForm):                                               
     oldpassword = PasswordField('Please enter your current password', validators=[DataRequired()])                          #user must eneter their current password
 
     def validate_oldpassword(self,check):                                                                                   #another function to add a validation check such that the current password matches what the user entered as their current password                                 
-        if(check.data != self.password):                                                                                    #self.password was passed in routes.py and is used to validate oldpassword, and make sure the user enters the correct value
+        if(not self.user1.check_password(check.data)):                                                                                    #self.password was passed in routes.py and is used to validate oldpassword, and make sure the user enters the correct value
              raise ValidationError('the password you entered has to be same as current password')                                       #if they do not enter the correct value, the validation error is thrown
 
     newpassword = PasswordField('New password', validators=[DataRequired(), EqualTo('confirm', message='Passwords must match')]) #user can enter their new password which must equal to the later field confirm (user retypes their password twice)
@@ -99,8 +99,8 @@ class DeleteProfile(FlaskForm):                                                 
 
     typepassword = PasswordField('Type your current password to confirm deletion', validators=[DataRequired(), EqualTo('confirm', message='Passwords must match') ])#user types in a password which must equal to the confirm field
 
-    def validate_typepassword(self,check):                                                                                  #another validation check for the typepassword field where routes.py sends in the user's current password and it is checked against the password entered in the form
-        if(check.data != self.password):                                                                                    #self.password represents the user's password, and check.data is the typepassword that is entered by the user
+    def validate_typepassword(self,check):                                                                             #another validation check for the typepassword field where routes.py sends in the user's current password and it is checked against the password entered in the form
+        if (not self.user1.check_password(check.data)):                                                                                    #self.password represents the user's password, and check.data is the typepassword that is entered by the user
              raise ValidationError('The password you typed does not match the your current password')                       #validation error is raised when they are not equal                                       
 
     confirm  = PasswordField('Repeat Current Password')                                                                         #user must type in their password again
