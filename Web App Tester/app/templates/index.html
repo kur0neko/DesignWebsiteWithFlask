@@ -9,51 +9,93 @@
     <!-- pulled font from google api-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
 
+     <!-- Title of the page -->
+     <h1>
+        Welcome to the NoteHub
+    </h1> 
+    <h2>
+        Unleash your Creativity, Anytime, Everywhere!
+    </h2>
+
     <style>
 
         /* set font family for the body*/
-        body {
-        font-family: Quicksand
+        h1{
+            text-align: center;
         }
-
+        h2{
+            text-align: center;
+        }
+        
+        body {
+            margin: 0;  
+         }
+      
         /* button is styled with border, padding and color*/
         .button {
-        border: 1px solid black;
-        text-decoration: none;
-        padding: 0.5vw;
-        color: black;
-        background-color: rgb(255, 255, 255);
+            margin:auto;
+            border: 1px solid black;
+            text-decoration: none;
+            padding: 0.5vw;
+            color: black;
+            background-color: rgb(255, 255, 255);
         }
 
         /* button changed when hovered by color and border*/
         .button:hover {
-        background-color: rgb(0, 0, 0);
-        color: #ffffff;
+            background-color: #8cd599;
         }
+        .container{
+            text-align:center
+        }
+
+        .bgImage{
+            height: 50px;
+              border-radius: 30px;
+              width: 50px;
+              display: inline-block;
+              vertical-align: middle;
+              margin: 0 5px;
+        }
+        
+        img {
+            display: inline-block;
+            vertical-align: middle;
+        }
+            
+            .biohead {
+              width: 100%;
+              position: flex;
+              text-align: center;
+              display: block;
+              color: dimgray;
+              font-size: 2.5em;
+              box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+              min-width: 600px;
+            }
+
 
     </style>
 </head>
 
 <body>
-
-        <!-- Title of the page -->
-        <h1>
-		    Welcome to the Notes App
-		</h1> 
-
+            <div class="container">
+                <p>
+                    <a href="/login" class = "button">
+                        Login
+                    </a>
+    
+                    <a href="/createaccount" class = "button">
+                        Create Account
+                    </a>
+                </p>
+            </div>
             <!-- Buttons to login or create account using hrefs -->
-            <p>
-                <a href="/login" class = "button">
-                    Login
-                </a>
-    
-                <!-- Space for styling -->
-                &nbsp; 
-    
-                <a href="/createaccount" class = "button">
-                    Create Account
-                </a>
-            </p>
+
+            <div class="bgImage">
+                <img src="static/img/NoteHubLive.png">
+            </div>
+            
             
 
 </body>
