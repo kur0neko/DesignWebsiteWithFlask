@@ -119,6 +119,7 @@ class modifyParams(FlaskForm):                                                  
 
 
 class TranslateBox (FlaskForm):
+    note = StringField('Name:') #name of note
     destLang = SelectField('Destination Language') #destination language that user wants to translate the text box to       
     submit = SubmitField('Translate') #user presses this button to translate to specified language
 

@@ -73,9 +73,10 @@ def home():
 				else:
 					note_list[f'{note.note_name}'] = [note.note_body, editbutton, deleteButton]				#no images, do not have a list for the values
 				
-				if translated.validate_on_submit(): 
-					print('here')                                                                               #translation was sucessfully submited
-					text = note.note_body                                                                 #get the text from the note box
+		if translated.validate_on_submit(): 
+					print(translated.note)    
+					notethis = Note.query.filter_by(note_name = translated.note.data).first()                                                                        #translation was sucessfully submited
+					text = notethis.note_body                                                                 #get the text from the note box
 					print(text)                                                                                 #debug
 					print(translated.destLang.data)                                                             #debug
 					if text:
@@ -84,7 +85,7 @@ def home():
 						if newBody == 'nulloveruseGOOGLE_TRANSLATE_SECRET_KEY12282004':                         #make sure that when API key is overused sen use a message
 							overuse = True
 						elif newBody:
-							note.note_body = newBody                                                      #if validated make the changed string equal to the database note_body variable (the content)                                                                                            
+							notethis.note_body = newBody                                                      #if validated make the changed string equal to the database note_body variable (the content)                                                                                            
 							db.session.commit()                                                                 #commit the changes
 							return redirect('/home')                                                            #go back home   
 						else:

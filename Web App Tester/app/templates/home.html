@@ -85,6 +85,10 @@
               <div class = "translate">
                 <form action="" method="POST">
                   {{translated.hidden_tag()}} 
+
+                  <!-- the note predertmined-->
+                  <input type="hidden" name="note" value="{{ note }}">
+
                 <!-- part of the form which allows destinational language to be selected -->
                 <p> {{translated.destLang.label}} <br>
                    {{translated.destLang(size=1)}}</p>
