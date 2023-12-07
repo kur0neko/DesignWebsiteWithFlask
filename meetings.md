@@ -52,7 +52,7 @@ The team discussed the requirements that were finished over the last week and th
 
 - Yousef will work on the CSS styling of the pages Login and Create Account 
 
-- Nutthawat will work on the Delete Table requirement to finish up the last requirement for the project in replacement of the Advanced Search requirement. 
+- Nutthawat will work on the Delete Table requirement to finish up the last requirement for the project in replacement of the Advanced Search requirement , also he will work on layout format of index page, and lastly he will record the presentation video. 
 
 - Meghana finished up the Translate Google API and added CSS styling to the Edit Table page,	 New Table page, and changed the requirement Note Folder Structure to Edit Table.
 
