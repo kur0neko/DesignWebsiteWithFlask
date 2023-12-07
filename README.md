@@ -3,10 +3,13 @@
 [![Please Click here](https://img.shields.io/badge/CLICK%20HERE%20to%20WATCH%20NoteHub%20Presentation%20Video-Purple?logo=Drive
 )](https://drive.google.com/file/d/1W-2-1aD7Eho6LLdhMYXPfIieSb_5hM37/view?usp=sharing)
 
-OR
+OR 
+
+Alternative Links:
 
 ![Google Drive Video Visible Link](https://drive.google.com/drive/u/0/folders/1Qjj0_eQfeeGvylERCg1oiBUI9UF6nMBH)
 
+![Youtube Video Link](https://www.youtube.com/watch?v=xKCkn3ZL6H8)
 
 
 # NoteHub
