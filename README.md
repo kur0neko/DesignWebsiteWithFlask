@@ -1,6 +1,12 @@
 # NoteHub
 NoteHub is the Note Web application built with Flask python framework, WTforms, SQL alchemy, and Jinja web template engine.
 
+# Video Presentation
+
+[![Please Click here](https://img.shields.io/badge/CLICK%20HERE%20to%20WATCH%20NoteHub%20Presentation%20Video-Purple?logo=Drive
+)](https://drive.google.com/file/d/1W-2-1aD7Eho6LLdhMYXPfIieSb_5hM37/view?usp=sharing)
+
+
 **Group Members**
 
 - Nutthawat Panyangnoi (@kur0neko) -  Requirements: Search, Delete Note, ~~Advanced Search~~ Delete Table
