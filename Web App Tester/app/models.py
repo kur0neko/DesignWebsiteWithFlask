@@ -23,7 +23,7 @@ class User(db.Model):
 class Note(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
-    note_name = db.Column(db.String(15), unique=True)
+    note_name = db.Column(db.String(15))
     note_body = db.Column(db.String(1000))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
