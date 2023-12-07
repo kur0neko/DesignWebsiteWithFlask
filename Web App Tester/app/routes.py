@@ -75,7 +75,7 @@ def home():
 				
 		if translated.validate_on_submit(): 
 					print(translated.note)    
-					notethis = Note.query.filter_by(note_name = translated.note.data).first()                                                                        #translation was sucessfully submited
+					notethis = Note.query.filter_by(note_name = translated.note.data, user_id = session['id']).first()                                                                        #translation was sucessfully submited
 					text = notethis.note_body                                                                 #get the text from the note box
 					print(text)                                                                                 #debug
 					print(translated.destLang.data)                                                             #debug
