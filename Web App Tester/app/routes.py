@@ -385,7 +385,7 @@ def download(img_name):
 def deleteNote(notename):
     #check if the current user it the real owner                                                              	#function deleteNote is function will remove note by notename
     if 'user' in session:																					    #First create instance template /deleteNote accept POST and GET forms
-        found_note = Note.query.filter_by(note_name=notename).first()											#first check if the user is logged in in the session
+        found_note = Note.query.filter_by(note_name=notename,user_id = session['id']).first()											#first check if the user is logged in in the session
         if found_note:																							#find the note of the user that logged in, if the notename match to the database note name
             #note = Note.query.get_or_404(found_note)                                                           #If found hode the value of Notename inside found_note, If found_note is have  notename
             db.session.delete(found_note)																		#delete the notedata out of the database
