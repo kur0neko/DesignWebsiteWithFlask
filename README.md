@@ -9,7 +9,7 @@ Alternative Links:
 
 ![Google Drive Video Visible Link](https://drive.google.com/file/d/1W-2-1aD7Eho6LLdhMYXPfIieSb_5hM37/view?usp=sharing)
 
-![Youtube Video Link](https://www.youtube.com/watch?v=xKCkn3ZL6H8)
+![Youtube Video Link]([https://www.youtube.com/watch?v=xKCkn3ZL6H8](https://youtu.be/xKCkn3ZL6H8?si=AdRiaCP6ey3ngnhp))
 
 
 # NoteHub
