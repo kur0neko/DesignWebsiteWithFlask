@@ -7,7 +7,7 @@ OR
 
 Alternative Links:
 
-![Google Drive Video Visible Link](https://drive.google.com/drive/u/0/folders/1Qjj0_eQfeeGvylERCg1oiBUI9UF6nMBH)
+![Google Drive Video Visible Link](https://drive.google.com/file/d/1W-2-1aD7Eho6LLdhMYXPfIieSb_5hM37/view?usp=sharing)
 
 ![Youtube Video Link](https://www.youtube.com/watch?v=xKCkn3ZL6H8)
 
