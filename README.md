@@ -103,6 +103,9 @@ Pip3 install -r requirements.txt
 **Example How to Run our project in a Virtual Environment**
 ![](https://github.com/kur0neko/DesignWebsiteWithFlask/blob/master/images/Example1.gif)
 
+
+In order to use the google translate feature, you must add a Google Translate API key to the __init__.py file in <DesignWebsiteWithFlask/Web App Tester/app>. Place it in the variable GOOGLE_TRANSLATE_SECRET_KEY.
+
    
 
 
